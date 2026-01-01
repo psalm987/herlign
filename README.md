@@ -1,24 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Herlign FC Website
+
+This is a Next.js 15 project built with TypeScript, Tailwind CSS, and shadcn/ui, configured with the Herlign FC brand guidelines.
+
+## Brand Assets
+
+### Colors
+
+The project includes custom Tailwind color tokens for all brand colors with full variant support:
+
+- **Grin** (`#4C7F0E`) - Use `bg-grin-500`, `text-grin-600`, etc.
+- **Peenk** (`#ECAFF2`) - Use `bg-peenk-500`, `text-peenk-600`, etc.
+- **Ohrange** (`#EC661C`) - Use `bg-ohrange-500`, `text-ohrange-600`, etc.
+- **Perple** (`#8048F7`) - Use `bg-perple-500`, `text-perple-600`, etc.
+- **Lermorn** (`#B4C96E`) - Use `bg-lermorn-500`, `text-lermorn-600`, etc.
+
+Each color has variants from 50-950 following Tailwind's color scale convention.
+
+### Fonts
+
+Three custom font families are configured:
+
+- **Axiforma** - Body text (use `font-sans`)
+- **Clash Display** - Headings (use `font-heading`)
+- **Gochi Hand** - Decorative/handwriting (use `font-handwriting`)
+
+All fonts are locally hosted in the `public/fonts` directory.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 

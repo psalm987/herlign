@@ -26,7 +26,7 @@ const CurvedLineSection = () => {
         />
         <Star
           size="200"
-          className="absolute top-0 -right-20 text-ohrange-500"
+          className="absolute top-0 -right-20 text-ohrange-400"
         />
         {/* <Logo /> */}
       </div>

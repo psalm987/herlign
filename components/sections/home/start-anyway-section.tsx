@@ -11,18 +11,17 @@ export function StartAnywaySection() {
           </h2>
 
           <p className="font-sans text-lg md:text-xl text-gray-700 mb-4">
-            Overthinking? We know the feeling.
+            Stuck? Overwhelmed? Good
           </p>
 
           <p className="font-sans text-lg md:text-xl text-gray-700 mb-10 leading-relaxed">
-            We created Start Anyway, a hands-on workshop and resource hub for
-            women who need a gentle nudge to get started. If you&apos;re tired
-            of planning and ready to begin, this is the perfect solution for
-            you.
+            Your antidote to creative paralysis is waiting. The &quote;Start
+            Anyway&quot; hub has everything you need to kick perfectionism to
+            the curb and ship your work.
           </p>
 
-          <Button asChild size="lg">
-            <Link href="/start-anyway">Join the Next Workshop</Link>
+          <Button asChild size="lg" className="bg-perple-500">
+            <Link href="/start-anyway"> Raid the Toolkit</Link>
           </Button>
         </div>
       </div>

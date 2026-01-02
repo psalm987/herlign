@@ -26,9 +26,13 @@ export function HeroSection() {
               asChild
               size="xl"
               variant="ghost"
-              className="border-gray-900 text-gray-900 hover:bg-peenk-400"
+              className="text-gray-900 hover:bg-transparent"
             >
-              <Link href="/start-anyway">
+              <Link
+                href="https://tally.so/r/mBlYNA"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Or, take the{" "}
                 <span className="font-handwriting text-2xl text-ohrange-500 hover:text-gray-900">
                   fun quiz

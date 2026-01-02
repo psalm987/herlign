@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { YouTubeEmbed } from "@next/third-parties/google";
 
-export function SafeSpaceSection() {
+export function YoutubeSection() {
   return (
     <section className="py-20 md:py-28 bg-peenk-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

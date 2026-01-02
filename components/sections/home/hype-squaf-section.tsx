@@ -11,7 +11,7 @@ import Image from "next/image";
 //   "Events, workshops and meetups designed with you in mind",
 // ];
 
-export function CommunityFeaturesSection() {
+export function HypeSquadSection() {
   return (
     <section className=" bg-grin-500 relative overflow-hidden">
       <Image

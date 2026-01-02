@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/sections/general/navigation";
 import { HeroSection } from "@/components/sections/home/hero-section";
-import { SafeSpaceSection } from "@/components/sections/home/safe-space-section";
-import { CommunityFeaturesSection } from "@/components/sections/home/community-features-section";
+import { YoutubeSection } from "@/components/sections/home/youtube-section";
+import { HypeSquadSection } from "@/components/sections/home/hype-squaf-section";
 import { StartAnywaySection } from "@/components/sections/home/start-anyway-section";
 import { QuizSection } from "@/components/sections/home/quiz-section";
 import { TestimonialsSection } from "@/components/sections/home/testimonials-section";
@@ -19,8 +19,8 @@ export default function Home() {
           <HeroSection />
           <CurvedLineSection />
         </div>
-        <SafeSpaceSection />
-        <CommunityFeaturesSection />
+        <YoutubeSection />
+        <HypeSquadSection />
         <StartAnywaySection />
         <QuizSection />
         <TestimonialsSection />

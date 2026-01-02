@@ -61,7 +61,7 @@ export function TestimonialsSection() {
               </span>
 
               <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900">
-                Women Are Blooming Here
+                Don&apos;t Just Take Our Word For It
               </h2>
             </div>
           </div>

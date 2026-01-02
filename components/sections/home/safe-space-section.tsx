@@ -15,25 +15,15 @@ export function SafeSpaceSection() {
           </div>
           <div className="text-left max-w-2xl flex-1">
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6 text-pretty">
-              A Safe Space for Women Who Want{" "}
+              Eavesdrop on
               <span className="font-handwriting text-4xl sm:text-5xl md:text-6xl text-peenk-700">
-                More
+                Inspiration.
               </span>
             </h2>
 
             <p className="font-sans text-lg md:text-lg text-gray-700 mb-10 leading-relaxed">
-              Get your daily dose of inspiration on{" "}
-              <Link
-                href="#"
-                className="italic text-2xl font-handwriting text-peenk-700"
-              >
-                Herlign Voices{" "}
-              </Link>
-              from women who are building stuff.{" "}
-              {/*  We are a circle of ambitious
-              women showing up for ourselves daily.  */}
-              Here, you&apos;ll find motivation, honest conversations, and women
-              who remind you that growth is possible.
+              Get your weekly dose of real talk, messy stories, and brilliant
+              ideas from women who are building things. No fluff, all fuel.
             </p>
 
             <Button asChild size="lg" className="bg-ohrange-500">
@@ -42,7 +32,7 @@ export function SafeSpaceSection() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Watch previous episodes
+                Tune into Herlign Voices on YouTube
               </Link>
             </Button>
           </div>

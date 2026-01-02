@@ -5,7 +5,7 @@ import { CommunityFeaturesSection } from "@/components/sections/home/community-f
 import { StartAnywaySection } from "@/components/sections/home/start-anyway-section";
 import { QuizSection } from "@/components/sections/home/quiz-section";
 import { TestimonialsSection } from "@/components/sections/home/testimonials-section";
-import { FounderSection } from "@/components/sections/home/founder-section";
+// import { FounderSection } from "@/components/sections/home/founder-section";
 import { FinalCtaSection } from "@/components/sections/home/final-cta-section";
 import { Footer } from "@/components/sections/general/footer";
 import CurvedLineSection from "@/components/sections/home/curved-line-section";
@@ -24,7 +24,7 @@ export default function Home() {
         <StartAnywaySection />
         <QuizSection />
         <TestimonialsSection />
-        <FounderSection />
+        {/* <FounderSection /> */}
         <FinalCtaSection />
       </main>
       <Footer />

@@ -19,16 +19,22 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button asChild size="xl" className="bg-ohrange-500">
-              <Link href="/contact">Join our community</Link>
+              <Link href="/stat-anyway">Start Your Quest</Link>
             </Button>
 
             <Button
               asChild
               size="xl"
-              variant="outline"
+              variant="ghost"
               className="border-gray-900 text-gray-900 hover:bg-peenk-400"
             >
-              <Link href="/start-anyway">Start Anyway</Link>
+              <Link href="/start-anyway">
+                Or, take the{" "}
+                <span className="font-handwriting text-2xl text-ohrange-500 hover:text-gray-900">
+                  fun quiz
+                </span>{" "}
+                first. We don&apos;t judge.
+              </Link>
             </Button>
           </div>
         </div>

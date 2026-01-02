@@ -98,6 +98,31 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Custom animations */
+  --animate-subtle-lift-with-pause: subtle-lift-with-pause 4s ease-in-out
+    infinite;
+
+  @keyframes subtle-lift-with-pause {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    12.5% {
+      transform: translateY(-6px) rotate(0.5deg);
+    }
+    25% {
+      transform: translateY(-6px) rotate(-0.3deg);
+    }
+    37.5% {
+      transform: translateY(-6px) rotate(0.2deg);
+    }
+    50% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
 }
 
 :root {

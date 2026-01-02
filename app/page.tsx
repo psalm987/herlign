@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/sections/general/navigation";
 import { HeroSection } from "@/components/sections/home/hero-section";
 import { YoutubeSection } from "@/components/sections/home/youtube-section";
-import { HypeSquadSection } from "@/components/sections/home/hype-squaf-section";
+import { HypeSquadSection } from "@/components/sections/home/hype-squad-section";
 import { StartAnywaySection } from "@/components/sections/home/start-anyway-section";
 import { QuizSection } from "@/components/sections/home/quiz-section";
 import { TestimonialsSection } from "@/components/sections/home/testimonials-section";

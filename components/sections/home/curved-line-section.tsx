@@ -6,7 +6,7 @@ import Star from "@/components/svg/star";
 
 const CurvedLineSection = () => {
   return (
-    <div className="p-24 pt-0 overflow-x-hidden overflow-y-hidden flex justify-center">
+    <div className="p-24 pt-0 overflow-x-hidden overflow-y-hidden flex justify-center pointer-events-none">
       <div className="relative ">
         <DemoCurvedText
           path={path[0]}

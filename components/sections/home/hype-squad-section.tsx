@@ -21,7 +21,7 @@ export function HypeSquadSection() {
         className="absolute h-auto w-screen object-cover"
       />
       <div className="py-20 md:py-28 px-4 relative">
-        <div className="max-w-3xl mx-auto py-8 sm:py-12 lg:py-18 px-4 sm:px-6 lg:px-8 bg-white rounded-lg border border-lermorn-50">
+        <div className="max-w-3xl mx-auto py-8 sm:py-12 lg:py-18 px-4 sm:px-6 lg:px-8 bg-white rounded-lg border border-lermorn-50 animate-subtle-lift-with-pause ">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
               Your{" "}

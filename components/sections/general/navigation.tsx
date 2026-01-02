@@ -37,7 +37,7 @@ export function Navigation() {
           {/* Logo - centered */}
           <div className="flex-1 flex justify-center md:flex-none">
             <Link href="/" className="flex items-center">
-              <Logo animate />
+              <Logo animate className="fill-ohrange-500" />
             </Link>
           </div>
 

@@ -2,7 +2,6 @@ import React from "react";
 import DemoCurvedText from "@/components/ui/curved-text";
 import { path } from "@/components/constants/paths";
 import Image from "next/image";
-import Logo from "@/components/svg/logo";
 import Star from "@/components/svg/star";
 
 const CurvedLineSection = () => {
@@ -26,7 +25,7 @@ const CurvedLineSection = () => {
         />
         <Star
           size="200"
-          className="absolute top-0 -right-20 text-ohrange-400"
+          className="absolute top-0 -right-20 text-lermorn-400"
         />
         {/* <Logo /> */}
       </div>

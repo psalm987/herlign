@@ -15,9 +15,12 @@ export function StartAnywaySection() {
           </p>
 
           <p className="font-sans text-lg md:text-xl text-gray-700 mb-10 leading-relaxed">
-            Your antidote to creative paralysis is waiting. The &quote;Start
-            Anyway&quot; hub has everything you need to kick perfectionism to
-            the curb and ship your work.
+            Your antidote to creative paralysis is waiting. The{" "}
+            <span className="font-handwriting text-xl md:text-2xl text-perple-600">
+              &quot;Start Anyway&quot;
+            </span>{" "}
+            hub has everything you need to kick perfectionism to the curb and
+            ship your work.
           </p>
 
           <Button asChild size="lg" className="bg-perple-500">

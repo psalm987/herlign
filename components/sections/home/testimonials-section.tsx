@@ -1,41 +1,6 @@
-import { Card } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import TESTIMONIALS from "@/components/constants/testimonials";
+import TestimonialCard from "@/components/ui/testimonial-card";
 import Image from "next/image";
-
-interface Testimonial {
-  name: string;
-  role: string;
-  quote: string;
-  image?: string;
-  rating: number;
-}
-
-const testimonials: Testimonial[] = [
-  {
-    name: "Ada",
-    role: "Designer",
-    quote:
-      "I joined Herlign during a season where I felt stuck. In just weeks, I found clarity, support, and women who understood me. This space feels like home.",
-    // image: "https://picsum.photos/seed/ada/100/100",
-    rating: 5,
-  },
-  {
-    name: "Tolu",
-    role: "Working Mum",
-    quote:
-      "Finally, a community where I don't feel judged for wanting more. Herlign helped me start the projects I'd been scared of for years.",
-    // image: "https://picsum.photos/seed/tolu/100/100",
-    rating: 5,
-  },
-  // {
-  //   name: "Chioma",
-  //   role: "Content Creator",
-  //   quote:
-  //     "The supportive environment at Herlign gave me the confidence to pursue my creative dreams. I&apos;ve grown so much since joining!",
-  //   image: "https://picsum.photos/seed/chioma/100/100",
-  //   rating: 5,
-  // },
-];
 
 export function TestimonialsSection() {
   return (
@@ -70,51 +35,8 @@ export function TestimonialsSection() {
 
         {/* Testimonial Cards */}
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className={`p-6 border-none shadow-none relative`}
-            >
-              <div className="flex flex-col h-full">
-                {/* Star Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-orange-400 text-orange-400"
-                    />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <p className="font-sans text-sm md:text-base text-gray-700 mb-6 leading-relaxed grow">
-                  {testimonial.quote}
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-3">
-                  {testimonial.image && (
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 shrink-0">
-                      <Image
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        width={48}
-                        height={48}
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <p className="font-sans text-md font-semibold text-gray-900">
-                      {testimonial.name}
-                    </p>
-                    <p className="font-sans text-xs text-gray-600">
-                      {testimonial.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Card>
+          {TESTIMONIALS.slice(0, 2).map((testimonial, index) => (
+            <TestimonialCard key={index} testimonial={testimonial} showRating />
           ))}
         </div>
       </div>

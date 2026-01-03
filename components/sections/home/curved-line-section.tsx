@@ -1,4 +1,3 @@
-import React from "react";
 import DemoCurvedText from "@/components/ui/curved-text";
 import { path } from "@/components/constants/paths";
 import Image from "next/image";

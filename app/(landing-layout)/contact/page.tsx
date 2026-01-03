@@ -1,19 +1,12 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+// import RawForm from "@/components/demo/raw-form";
+import ContactFormSection from "@/components/sections/contact/form-section";
 
 export default function ContactPage() {
   return (
     <main className="py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl md:text-6xl font-bold text-gray-900 mb-8">
-          Get in Touch
-        </h1>
-        <p className="font-sans text-xl text-gray-700 mb-8">
-          Contact form coming soon...
-        </p>
-        <Button asChild className="bg-perple-600 hover:bg-perple-700">
-          <Link href="/">Back to Home</Link>
-        </Button>
+        <ContactFormSection />
+        {/* <RawForm /> */}
       </div>
     </main>
   );

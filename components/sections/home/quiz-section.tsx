@@ -12,9 +12,8 @@ export function QuizSection() {
           </h2>
 
           <p className="font-sans text-lg md:text-xl text-white/90 mb-4 leading-relaxed">
-            Are you a &quot;Midnight Visionary&quot; or a &quot;Sunrise
-            Strategist&quot;? Discover your archetype and unlock your unique
-            superpower.
+            Are you a &quot;Soft Spark&quot; or a &quot;Big Energy&quot;?
+            Discover your archetype and unlock your unique superpower.
           </p>
 
           <Button asChild size="xl" className="text-shadow-none">
@@ -23,7 +22,7 @@ export function QuizSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Search className="size-6" /> Discover Your Archetype
+              <Search className="size-6" /> Discover Your Creative Style
             </Link>
           </Button>
         </div>

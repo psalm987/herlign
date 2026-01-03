@@ -6,12 +6,12 @@ export function TestimonialsSection() {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative mb-16 h-[300px] md:h-[500px] lg:h-[700px] px-6">
+        <div className="relative mb-16 h-[300px] lg:h-[700px] px-0 overflow-hidden md:px-6 ">
           <Image
             fill
             alt="bento"
             src="/images/png/bento-md-with-pics.png"
-            className="object-contain md:hidden"
+            className="object-contain md:hidden  scale-150"
           />
           <Image
             fill

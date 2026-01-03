@@ -15,7 +15,7 @@ export function HypeSquadSection() {
   return (
     <section className=" bg-grin-500 relative overflow-hidden">
       <Image
-        src="/images/png/patterns/lermon-500.png"
+        src="/images/png/patterns/lermon-500-mini.png"
         alt=""
         fill
         className="absolute h-auto w-screen object-cover"

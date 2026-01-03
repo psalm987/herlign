@@ -7,7 +7,7 @@ export function FounderSection() {
         <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-12 text-center">
           The Woman Behind the{" "}
           <span className="font-handwriting text-ohrange-500 text-4xl sm:text-5xl md:text-6xl">
-            Madness.
+            Madness
           </span>
         </h2>
 

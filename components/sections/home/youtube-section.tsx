@@ -16,7 +16,7 @@ export function YoutubeSection() {
           <div className="text-left max-w-2xl flex-1">
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6 text-pretty">
               Eavesdrop on{" "}
-              <span className="font-handwriting text-4xl sm:text-5xl md:text-6xl text-peenk-700">
+              <span className="font-handwriting text-4xl sm:text-5xl md:text-6xl text-peenk-600">
                 Inspiration.
               </span>
             </h2>

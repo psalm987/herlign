@@ -3,7 +3,7 @@ import TestimonialsSection from "@/components/sections/about/testimonial-section
 
 export default function AboutPage() {
   return (
-    <main className="py-20">
+    <main>
       <FounderSection />
       <TestimonialsSection />
     </main>

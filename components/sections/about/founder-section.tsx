@@ -2,7 +2,7 @@ import HerlignPattern from "@/components/svg/herlign-pattern";
 
 export function FounderSection() {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-8 sm:py-20 md:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-12 text-center">
           The Woman Behind the{" "}

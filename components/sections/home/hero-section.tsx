@@ -6,9 +6,11 @@ export function HeroSection() {
     <section className="relative pt-20  md:pt-32 -mb-34">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 text-pretty">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-gray-900 mb-6 text-pretty">
             A Home for{" "}
-            <span className="font-handwriting text-ohrange-600">Creative</span>{" "}
+            <span className="font-handwriting text-ohrange-600 text-5xl sm:text-6xl md:text-7xl lg:text-9xl">
+              Creative
+            </span>{" "}
             Women
           </h1>
 

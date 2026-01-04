@@ -78,6 +78,7 @@ const ContactFormSection = () => {
         alt=""
         fill
         className="absolute h-auto w-screen object-cover"
+        priority
       />
       <div className="max-w-5xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg shadow-ohrange-950/10 relative">
         <div className="grid grid-cols-1 md:grid-cols-2">

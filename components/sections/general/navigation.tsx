@@ -6,7 +6,6 @@ import { Menu, X } from "lucide-react";
 import Logo from "@/components/svg/logo";
 
 const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/start-anyway", label: "Start Anyway" },
   { href: "/contact", label: "Contact" },
@@ -48,7 +47,7 @@ export function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-sans text-base font-medium text-gray-700 hover:text-perple-600 transition-colors uppercase"
+                  className="text-sm font-medium text-gray-700 hover:text-perple-600 transition-colors uppercase"
                 >
                   {link.label}
                 </Link>

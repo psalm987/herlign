@@ -8,7 +8,7 @@ const AboutHeroSection = () => {
     <section className="py-8 sm:py-20 md:py-28 bg-perple-700 relative">
       <Image
         fill
-        className="absolute inset-0 h-full w-auto"
+        className="absolute inset-0 h-full w-auto object-cover md:object-fill 2xl:object-contain "
         src="/images/png/perple-bound-left.png"
         alt=""
         priority

@@ -16,7 +16,7 @@ export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/60 backdrop-blur-sm border-b border-gray-200">
+    <header className="sticky top-0 z-50 w-full bg-white/60 backdrop-blur-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Mobile menu button - left side */}
@@ -42,7 +42,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop navigation - centered */}
-          <div className="hidden md:flex md:flex-1 md:items-center md:justify-center">
+          <nav className="hidden md:flex md:flex-1 md:items-center md:justify-center">
             <div className="flex space-x-8">
               {navLinks.map((link) => (
                 <Link
@@ -54,7 +54,7 @@ export function Navigation() {
                 </Link>
               ))}
             </div>
-          </div>
+          </nav>
 
           {/* Right side spacer for mobile to keep logo centered */}
           <div className="flex md:hidden w-10" />
@@ -63,7 +63,7 @@ export function Navigation() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
+        <nav className="md:hidden border-t border-gray-200 bg-white">
           <div className="px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <Link
@@ -76,8 +76,8 @@ export function Navigation() {
               </Link>
             ))}
           </div>
-        </div>
+        </nav>
       )}
-    </nav>
+    </header>
   );
 }

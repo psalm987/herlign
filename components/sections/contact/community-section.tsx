@@ -11,7 +11,7 @@ import Image from "next/image";
 //   "Events, workshops and meetups designed with you in mind",
 // ];
 
-export function HypeSquadSection() {
+export function CommunitySection() {
   return (
     <section className=" bg-grin-500 relative overflow-hidden">
       <Image
@@ -24,17 +24,12 @@ export function HypeSquadSection() {
         <div className="max-w-3xl mx-auto py-8 sm:py-12 lg:py-18 px-4 sm:px-6 lg:px-8 bg-white rounded-lg border border-lermorn-50 animate-subtle-lift-with-pause ">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
-              Your{" "}
-              <span className="font-handwriting text-4xl sm:text-3xl md:text-6xl text-grin-400">
-                Hype Squad
-              </span>{" "}
-              Awaits
+              Prefer a Crowd?
             </h2>
 
             <p className="font-sans text-lg md:text-xl text-gray-700 mb-8">
-              Creativity can be lonely. It doesn&apos;t have to be. Join our
-              free, buzzing WhatsApp community for daily wins, instant feedback,
-              and memes that only creatives get
+              For faster, more casual conversation, our WhatsApp community is
+              where it&apos;s at.
             </p>
           </div>
           <div className="text-center">

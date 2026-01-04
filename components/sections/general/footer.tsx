@@ -1,3 +1,5 @@
+import LINKS from "@/components/constants/links";
+import { Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -11,41 +13,72 @@ export function Footer() {
               A home for creative women who want more.
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-sans font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 font-sans text-sm">
               <li>
-                <Link href="/" className="text-gray-300 hover:text-perple-400 transition-colors">
+                <Link
+                  href="/"
+                  className="text-gray-300 hover:text-perple-400 transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-perple-400 transition-colors">
+                <Link
+                  href="/about"
+                  className="text-gray-300 hover:text-perple-400 transition-colors"
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/start-anyway" className="text-gray-300 hover:text-perple-400 transition-colors">
+                <Link
+                  href="/start-anyway"
+                  className="text-gray-300 hover:text-perple-400 transition-colors"
+                >
                   Start Anyway
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-perple-400 transition-colors">
+                <Link
+                  href="/contact"
+                  className="text-gray-300 hover:text-perple-400 transition-colors"
+                >
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="font-sans font-semibold mb-4">Connect</h4>
-            <p className="font-sans text-gray-300 text-sm">
-              Join our community and start your creative journey today.
+            <h4 className="font-sans font-semibold mb-4">
+              Stalk Us. It&apos;s Encouraged.
+            </h4>
+            <p className="font-sans text-gray-300 text-sm mb-4">
+              Catch the behind-the-scenes chaos and daily inspiration on our
+              socials.
             </p>
+            <div className="flex flex-row gap-2">
+              <Link
+                href={LINKS[0].socials.instagram}
+                target="_blank"
+                className="opacity-100 text-white hover:text-orange-400 "
+              >
+                <Instagram />
+              </Link>
+              <Link
+                href={LINKS[0].socials.linkedin}
+                target="_blank"
+                className="opacity-100 text-white hover:text-orange-400 "
+              >
+                <Linkedin />
+              </Link>
+            </div>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="font-sans text-sm text-gray-400">
             © {new Date().getFullYear()} Herlign. All rights reserved.

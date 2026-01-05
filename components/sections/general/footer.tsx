@@ -62,14 +62,14 @@ export function Footer() {
             </p>
             <div className="flex flex-row gap-2">
               <Link
-                href={LINKS[0].socials.instagram}
+                href={LINKS.socials.instagram}
                 target="_blank"
                 className="opacity-100 text-white hover:text-orange-400 "
               >
                 <Instagram />
               </Link>
               <Link
-                href={LINKS[0].socials.linkedin}
+                href={LINKS.socials.linkedin}
                 target="_blank"
                 className="opacity-100 text-white hover:text-orange-400 "
               >

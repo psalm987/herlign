@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { YouTubeEmbed } from "@next/third-parties/google";
+import LINKS from "@/components/constants/links";
 
 export function YoutubeSection() {
   return (
@@ -15,24 +16,26 @@ export function YoutubeSection() {
           </div>
           <div className="text-left max-w-2xl flex-1">
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6 text-pretty">
-              Eavesdrop on{" "}
+              A Safe Space for Women who want{" "}
               <span className="font-handwriting text-4xl sm:text-5xl md:text-6xl text-peenk-600">
-                Inspiration.
+                More.
               </span>
             </h2>
 
             <p className="font-sans text-lg md:text-lg text-gray-700 mb-10 leading-relaxed">
-              Get your weekly dose of real talk, messy stories, and brilliant
-              ideas from women who are building things. No fluff, all fuel.
+              Get your daily dose of inspiration from women who are building
+              stuff. We are a circle of ambitious women showing up for ourselves
+              daily. Here, you&apos;ll find motivation, honest conversations,
+              and women who remind you that growth is possible.
             </p>
 
             <Button asChild size="lg" className="bg-ohrange-500">
               <Link
-                href="https://www.youtube.com/@HerlignFC"
+                href={LINKS.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Tune into Herlign Voices on YouTube
+                Watch our previous Herlign Voices episodes
               </Link>
             </Button>
           </div>

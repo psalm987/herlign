@@ -1,7 +1,7 @@
 "use client";
 import LINKS from "@/components/constants/links";
 import { Button } from "@/components/ui/button";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -86,7 +86,7 @@ const ContactFormSection = () => {
           <div className="relative flex flex-col justify-end p-8 md:p-12 text-center md:text-left bg-linear-to-t from-ohrange-600 via-ohrange-500 to-ohrange-500">
             <div className="md:pt-40">
               <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mb-4">
-                Let&apos;s Chat. No, Really.
+                Let&apos;s Chat.
               </h2>
               <p className="text-white opacity-90 text-pretty">
                 Have a question? Want to suggest a workshop? Just feel like
@@ -96,7 +96,7 @@ const ContactFormSection = () => {
               <p className="text-white opacity-90 text-xs mb-4 text-pretty">
                 Prefer a Crowd? For faster, more casual conversation, our{" "}
                 <Link
-                  href={LINKS[0].external.join_whatsapp_community}
+                  href={LINKS.external.join_whatsapp_community}
                   target="_blank"
                   className="font-bold opacity-100 underline "
                 >
@@ -107,18 +107,25 @@ const ContactFormSection = () => {
               </p>
               <div className="flex flex-row gap-2 justify-center md:justify-start">
                 <Link
-                  href={LINKS[0].socials.instagram}
+                  href={LINKS.socials.instagram}
                   target="_blank"
                   className="opacity-100 text-white hover:text-orange-400 "
                 >
                   <Instagram />
                 </Link>
                 <Link
-                  href={LINKS[0].socials.linkedin}
+                  href={LINKS.socials.linkedin}
                   target="_blank"
                   className="opacity-100 text-white hover:text-orange-400 "
                 >
                   <Linkedin />
+                </Link>
+                <Link
+                  href={LINKS.socials.youtube}
+                  target="_blank"
+                  className="opacity-100 text-white hover:text-orange-400 "
+                >
+                  <Youtube />
                 </Link>
               </div>
             </div>

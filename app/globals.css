@@ -217,3 +217,45 @@
     background-size: var(--bg-size-value);
   }
 }
+
+@keyframes move-bg-right {
+  0% {
+    background-position-x: 56px;
+    background-position-y: 0;
+  }
+  100% {
+    background-position-x: -56px;
+    background-position-y: 0;
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.ltr-linear-infinite {
+  animation: move-bg-right 2s linear infinite;
+  transform: scaleX(2);
+}
+
+.progress-animation.visible {
+  animation: progress 3.5s ease-in-out forwards;
+}
+
+.progress-animation.not-visible {
+  animation: progress 3.5s ease-in-out backwards;
+}
+
+.box-shadow-s {
+  box-shadow: rgb(107, 100, 132) 0px 5px 0px;
+}
+
+.inner {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import LINKS from "@/components/constants/links";
 
 export function HeroSection() {
   return (
@@ -19,27 +20,15 @@ export function HeroSection() {
             yours.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button asChild size="xl" className="bg-ohrange-500">
-              <Link href="/start-anyway">Start Your Quest</Link>
+              <Link href={LINKS.external.join_whatsapp_community}>
+                Join the community
+              </Link>
             </Button>
-
-            <Button
-              asChild
-              size="xl"
-              variant="ghost"
-              className="text-gray-900 hover:bg-transparent inline md:inline-flex whitespace-normal md:whitespace-nowrap"
-            >
-              <Link
-                href="https://tally.so/r/mBlYNA"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Or, take the{" "}
-                <span className="font-handwriting text-2xl text-ohrange-500 hover:text-gray-900">
-                  fun quiz
-                </span>{" "}
-                first. We don&apos;t judge.
+            <Button asChild size="xl">
+              <Link href={LINKS.external.join_whatsapp_community}>
+                Join the &apos;Start Anyway&apos; movement
               </Link>
             </Button>
           </div>

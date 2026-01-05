@@ -33,7 +33,7 @@ const AboutHeroSection = () => {
         </p>
         <div className="flex justify-center mt-8">
           <Button asChild size="xl" className="bg-ohrange-500 ">
-            <Link href={LINKS[0].start_anyway}>Start anyway</Link>
+            <Link href={LINKS.start_anyway}>Start anyway</Link>
           </Button>
         </div>
       </div>

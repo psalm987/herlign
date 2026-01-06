@@ -17,11 +17,12 @@ const StartAnywayHeroSection = () => {
           className="fill-white self-end mb-12 hidden md:inline"
         />
         <h2 className="font-heading text-3xl sm:text-5xl  md:text-7xl font-semibold mb-4 ">
-          Your Anti-Perfectionism Toolkit.
+          There&apos;s No Such Thing As Perfect Timing
         </h2>
-        <p className="md:max-w-md text-lg">
-          Stop planning. Start doing. Everything you need to silence your inner
-          critic and launch that thing.
+        <p className="md:max-w-2xl text-lg md:text-xl leading-relaxed">
+          Stop waiting for “perfect.” Take the step you&apos;ve been hesitating
+          on. This is your toolkit to start the step you&apos;ve been hesitating
+          on.
         </p>
       </div>
     </section>

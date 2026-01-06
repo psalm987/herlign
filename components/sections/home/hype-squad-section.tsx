@@ -10,7 +10,7 @@ const BENEFITS = [
   "Events, workshops and meetups designed with you in mind",
 ];
 
-export function HypeSquadSection() {
+export default function HypeSquadSection() {
   return (
     <section className="relative overflow-hidden bg-[url('/images/jpeg/herlign5.jpeg')] bg-cover bg-fixed bg-no-repeat">
       <div className="py-20 md:py-28 px-4 relative">

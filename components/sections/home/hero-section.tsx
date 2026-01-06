@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import LINKS from "@/components/constants/links";
 import Image from "next/image";
 
-export function HeroSection() {
+export default function HeroSection() {
   return (
     <section className="relative pt-20 md:pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -2,7 +2,7 @@ import TESTIMONIALS from "@/components/constants/testimonials";
 import TestimonialCard from "@/components/ui/testimonial-card";
 import Image from "next/image";
 
-export function TestimonialsSection() {
+export default function TestimonialsSection() {
   return (
     <section className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +26,7 @@ export function TestimonialsSection() {
               </span>
 
               <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900">
-                Don&apos;t Just Take Our Word For It
+                Women Are Blooming Here
               </h2>
             </div>
           </div>

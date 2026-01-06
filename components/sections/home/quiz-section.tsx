@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
-export function QuizSection() {
+export default function QuizSection() {
   return (
     <section className="py-20 md:py-28 bg-perple-700 bg-[url('/images/png/patterns/perple-600.png')] bg-repeat relative animate-[move-bg_30s_linear_infinite]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

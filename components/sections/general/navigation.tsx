@@ -1,9 +1,10 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Logo from "@/components/svg/logo";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/about", label: "About" },
@@ -13,6 +14,8 @@ const navLinks = [
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/60 backdrop-blur-sm border-b border-gray-200">
@@ -47,7 +50,11 @@ export function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-gray-700 hover:text-perple-600 transition-colors uppercase"
+                  className={cn(
+                    "text-sm font-medium text-gray-500 hover:text-ohrange-600 transition-colors uppercase",
+                    pathname?.toLowerCase() === link.href?.toLowerCase() &&
+                      "font-semibold text-gray-900"
+                  )}
                 >
                   {link.label}
                 </Link>

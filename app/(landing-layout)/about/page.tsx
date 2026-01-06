@@ -1,4 +1,4 @@
-import TestimonialsSection from "@/components/sections/about/founder-section";
+import FounderSection from "@/components/sections/about/founder-section";
 import AboutHeroSection from "@/components/sections/about/hero-section";
 // import FAQSection from "@/components/sections/about/faq-section";
 
@@ -7,7 +7,7 @@ export default function AboutPage() {
     <main>
       <AboutHeroSection />
 
-      <TestimonialsSection />
+      <FounderSection />
       {/* <FAQSection /> */}
     </main>
   );

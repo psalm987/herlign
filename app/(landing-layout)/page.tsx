@@ -5,14 +5,11 @@ import { StartAnywaySection } from "@/components/sections/home/start-anyway-sect
 import { QuizSection } from "@/components/sections/home/quiz-section";
 import { TestimonialsSection } from "@/components/sections/home/testimonials-section";
 
-import CurvedLineSection from "@/components/sections/home/curved-line-section";
-
 export default function Home() {
   return (
     <main>
       <div className="bg-linear-to-b from-peenk-500 via-peenk-400 to-peenk-100">
         <HeroSection />
-        <CurvedLineSection />
       </div>
       <YoutubeSection />
       <HypeSquadSection />

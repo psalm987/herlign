@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import LINKS from "@/components/constants/links";
 
 export function StartAnywaySection() {
   return (
@@ -11,20 +12,21 @@ export function StartAnywaySection() {
           </h2>
 
           <p className="font-sans text-lg md:text-xl text-gray-700 mb-4">
-            Stuck? Overwhelmed? Good
+            Overthinking? We know the feeling.
           </p>
 
           <p className="font-sans text-lg md:text-xl text-gray-700 mb-10 leading-relaxed">
-            Your antidote to creative paralysis is waiting. The{" "}
+            We created{" "}
             <span className="font-handwriting text-xl md:text-2xl text-perple-600">
               &quot;Start Anyway&quot;
             </span>{" "}
-            hub has everything you need to kick perfectionism to the curb and
-            ship your work.
+            , a hands-on workshop and resource hub for women who need a gentle
+            nudge to get started. If you&apos;re tired of planning and ready to
+            begin, this is the perfect solution for you.
           </p>
 
           <Button asChild size="lg" className="bg-perple-500">
-            <Link href="/start-anyway"> Raid the Toolkit</Link>
+            <Link href={LINKS.start_anyway}> Raid the Toolkit</Link>
           </Button>
         </div>
       </div>

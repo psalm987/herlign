@@ -4,7 +4,7 @@ const MissionSection = () => {
   return (
     <section className="py-8 sm:py-20 md:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-linear-to-b relative from-lermorn-600 via-80% via-lermorn-700 to-lermorn-800 text-white p-20 rounded-2xl">
+        <div className="bg-linear-to-b relative from-lermorn-600 via-80% via-lermorn-700 to-lermorn-800 text-white p-8 md:p-14 lg:p-20 rounded-2xl">
           <div className="max-w-md">
             <h2 className="font-heading text-4xl  md:text-6xl font-semibold mb-4 ">
               Our Mission is Simple

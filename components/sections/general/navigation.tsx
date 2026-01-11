@@ -51,7 +51,7 @@ export function Navigation() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-sm font-medium text-gray-500 hover:text-ohrange-600 transition-colors uppercase",
+                    "text-sm font-medium text-gray-600 hover:text-ohrange-600 transition-colors uppercase",
                     pathname?.toLowerCase() === link.href?.toLowerCase() &&
                       "font-semibold text-gray-900"
                   )}

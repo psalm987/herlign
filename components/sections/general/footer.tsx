@@ -1,5 +1,5 @@
 import LINKS from "@/components/constants/links";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, Youtube } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -74,6 +74,13 @@ export function Footer() {
                 className="opacity-100 text-white hover:text-orange-400 "
               >
                 <Linkedin />
+              </Link>
+              <Link
+                href={LINKS.socials.youtube}
+                target="_blank"
+                className="opacity-100 text-white hover:text-orange-400 "
+              >
+                <Youtube />
               </Link>
             </div>
           </div>

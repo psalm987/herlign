@@ -9,9 +9,7 @@ import FounderSection from "@/components/sections/home/founder-section";
 export default function Home() {
   return (
     <main>
-      <div className="bg-linear-to-b from-peenk-500 via-peenk-400 to-peenk-100">
-        <HeroSection />
-      </div>
+      <HeroSection />
       <YoutubeSection />
       <HypeSquadSection />
       <StartAnywaySection />

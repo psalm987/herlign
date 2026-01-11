@@ -17,7 +17,7 @@ const MissionSection = () => {
               celebrates her progress.
             </p>
           </div>
-          <div className="mx-auto contain-content lg:absolute right-16 -top-8 rounded-lg lg:after:content-[''] lg:after:absolute lg:after:inset-0 lg:after:bg-linear-to-b lg:after:from-transparent lg:after:via-transparent lg:after:to-black lg:after:rounded-lg">
+          <div className="mx-auto contain-content lg:absolute right-16 -top-9.5 lg:hover:rotate-6 transition-transform duration-500 rounded-lg lg:after:content-[''] lg:after:absolute lg:after:inset-0 lg:after:bg-linear-to-b lg:after:from-transparent lg:after:via-transparent lg:after:to-black lg:after:rounded-lg">
             <Image
               src="/images/jpeg/herlign3.jpeg"
               height={600}

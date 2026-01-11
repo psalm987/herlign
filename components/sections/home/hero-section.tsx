@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-20 md:pt-32 bg-linear-to-b from-peenk-500 via-peenk-400 via-30% to-peenk-100">
+    <section className="relative pt-20 md:pt-32 bg-linear-to-b from-peenk-500 via-peenk-400 lg:via-30% to-peenk-100">
       <Image
         src="/images/png/patterns/peenk-500-mini.png"
         alt=""

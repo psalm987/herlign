@@ -41,12 +41,12 @@ const WhoWeServeSection = () => {
             We welcome women who are:
           </p>
         </div>
-        <div className=" mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className=" mt-12 grid gap-8 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {WHO_WE_SERVE.map((who) => (
             <div
               key={who.title}
               className={
-                "relative aspect-2/3 w-full rounded-2xl overflow-hidden"
+                "relative aspect-2/3 w-full rounded-4xl overflow-hidden"
               }
             >
               <Image
@@ -64,7 +64,7 @@ const WhoWeServeSection = () => {
               </div>
             </div>
           ))}
-          <p className="aspect-2/3 bg-ohrange-500 text-ohrange-100 text-center flex items-center rounded-2xl p-8 font-medium text-4xl">
+          <p className="aspect-2/3 bg-ohrange-500 text-ohrange-100 text-center flex items-center rounded-4xl p-8 font-medium text-4xl">
             No matter where you are in your journey, Herlign is your creative
             home.
           </p>

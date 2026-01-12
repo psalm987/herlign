@@ -6,13 +6,13 @@ const GOALS = [
     title: "Be Seen",
     description: "Share their ideas, projects, and wins openly",
     icon: Eye,
-    color: "grin" as const,
+    color: "peenk" as const,
   },
   {
     title: "Be Validated",
     description: "Feel supported and acknowledged in their efforts",
     icon: Heart,
-    color: "peenk" as const,
+    color: "ohrange" as const,
   },
   {
     title: "Stay Grounded",
@@ -24,7 +24,7 @@ const GOALS = [
     title: "Enjoy the Vibes",
     description: "Celebrate creativity, community, and fun",
     icon: Sparkles,
-    color: "ohrange" as const,
+    color: "lermorn" as const,
   },
 ];
 
@@ -56,6 +56,7 @@ const OurStorySection = () => {
                     perple: " text-perple-500",
                     peenk: " text-peenk-500",
                     grin: " text-grin-500",
+                    lermorn: "text-lermorn-500",
                   }[goal.color]
                 )}
               >

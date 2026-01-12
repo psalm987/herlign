@@ -6,13 +6,13 @@ const VALUES = [
     title: "Visibility",
     description: "Every woman's ideas and voice are seen.",
     icon: Eye,
-    color: "grin" as const,
+    color: "peenk" as const,
   },
   {
     title: "Validation",
     description: "Encouragement, recognition, and support along the way.",
     icon: Award,
-    color: "peenk" as const,
+    color: "ohrange" as const,
   },
   {
     title: "Values",
@@ -25,7 +25,7 @@ const VALUES = [
     description:
       "A safe space to share challenges, met with empathy and solidarity.",
     icon: MessageCircle,
-    color: "ohrange" as const,
+    color: "grin" as const,
   },
   {
     title: "Vibes",
@@ -54,7 +54,7 @@ const ValuesSection = () => {
             <div
               key={value.description}
               className={cn(
-                "bg-white shadow-sm hover:shadow-2xl z-10 hover:z-0 transition-shadow p-6 md:p-8 lg:pt-24 relative rounded-4xl lg:rounded-none",
+                "bg-white  z-10 hover:z-0 transition-shadow p-6 md:p-8 lg:pt-24 relative rounded-4xl lg:rounded-none",
                 "flex flex-col sm:flex-row items-start sm:items-center gap-6",
                 {
                   grin: "bg-grin-500 text-grin-50 shadow-grin-500/50",

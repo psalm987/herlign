@@ -8,15 +8,14 @@ const ACTIVITIES = [
     description: "Hands-on experiences to spark creativity",
     icon: Calendar,
     color: "grin" as const,
-    className: "md:col-span-5",
   },
   {
     title: "Talk Shows & Podcasts",
     description: "Stories, insights, and real talk from women just like you",
     icon: Mic2,
-    color: "peenk" as const,
-    className: "md:col-span-7",
+    color: "perple" as const,
     featured: true,
+    image: "/images/jpeg/9-to-5-builders.jpg",
   },
   // Second row: 2 cards
   {
@@ -24,15 +23,14 @@ const ACTIVITIES = [
     description: "Practical skills, inspiration, and mentorship",
     icon: GraduationCap,
     color: "perple" as const,
-    className: "md:col-span-7",
     featured: true,
+    image: "/images/jpeg/9-to-5-builders.jpg",
   },
   {
     title: "Community Conversations",
     description: "Support, feedback, and connection with your tribe",
     icon: Users,
-    color: "ohrange" as const,
-    className: "md:col-span-5",
+    color: "grin" as const,
   },
 ];
 
@@ -53,9 +51,12 @@ const WhatWeDoSection = () => {
 
         {/* Bento-style asymmetric grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 mb-6">
-          {ACTIVITIES.map((activity, index) => (
-            <div key={activity.title} className={activity.className}>
-              <ActivityCard {...activity} index={index} />
+          {ACTIVITIES.map((activity) => (
+            <div
+              key={activity.title}
+              className={activity.featured ? "md:col-span-7" : "md:col-span-5"}
+            >
+              <ActivityCard {...activity} />
             </div>
           ))}
         </div>

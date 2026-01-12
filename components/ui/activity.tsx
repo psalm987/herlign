@@ -1,12 +1,13 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface ActivityCardProps {
   title: string;
   description: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }>;
   color: "grin" | "peenk" | "perple" | "ohrange";
-  index: number;
   featured?: boolean;
+  image?: string;
 }
 
 const BACKGROUND_COLORS = {
@@ -16,12 +17,12 @@ const BACKGROUND_COLORS = {
   ohrange: "bg-ohrange-500",
 };
 
-const DECORATIVE_COLORS = {
-  grin: "bg-grin-200",
-  peenk: "bg-peenk-700",
-  perple: "bg-perple-200",
-  ohrange: "bg-ohrange-200",
-};
+// const DECORATIVE_COLORS = {
+//   grin: "bg-grin-200",
+//   peenk: "bg-peenk-700",
+//   perple: "bg-perple-200",
+//   ohrange: "bg-ohrange-200",
+// };
 
 const TEXT_COLORS = {
   grin: "text-grin-50",
@@ -37,24 +38,40 @@ const ActivityCard = ({
   icon: Icon,
   color,
   featured,
+  image,
 }: ActivityCardProps) => {
   return (
     <div
       className={cn(
-        "group h-full flex flex-col justify-end relative rounded-2xl transition-all duration-300 hover:scale-[1.02]",
+        "group h-full flex flex-col justify-end relative rounded-2xl transition-all duration-300 hover:scale-[1.02]  overflow-hidden",
         featured ? "p-8 md:p-10 min-h-64" : "p-6 md:p-8 min-h-56",
-        BACKGROUND_COLORS[color]
+        image
+          ? "after:absolute after:inset-0 after:bg-linear-to-b after:from-transparent after:to-black"
+          : BACKGROUND_COLORS[color]
       )}
     >
+      {image && (
+        <Image
+          src={image}
+          alt=""
+          fill
+          className="absolute h-full w-full object-cover z-0 "
+        />
+      )}
       {/* Decorative corner accent */}
-      <span
+      {/* <span
         className={cn(
           "absolute top-0 right-0 w-20 h-20 rounded-bl-3xl rounded-tr-2xl transition-opacity opacity-10 group-hover:opacity-20",
-          DECORATIVE_COLORS[color]
+          !image && DECORATIVE_COLORS[color]
         )}
-      />
+      /> */}
 
-      <div className={cn("relative z-10", TEXT_COLORS[color])}>
+      <div
+        className={cn(
+          "relative z-10",
+          image ? "text-white" : TEXT_COLORS[color]
+        )}
+      >
         {/* <div
           className={cn(
             "inline-flex items-center justify-center rounded-xl mb-4 transition-transform group-hover:scale-110",

@@ -12,10 +12,10 @@ const BENEFITS = [
 
 export default function HypeSquadSection() {
   return (
-    <section className="relative overflow-hidden bg-[url('/images/jpeg/herlign5.jpeg')] bg-cover bg-fixed bg-no-repeat">
-      <div className="py-20 md:py-28 px-4 relative">
+    <section className="relative overflow-hidden bg-[url('/images/jpeg/herlign5.jpeg')] bg-cover bg-fixed bg-no-repeat after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-full after:bg-linear-to-b after:from-transparent after:to-black">
+      <div className="py-20 md:py-28 px-4 relative z-10">
         <div className="max-w-xl mx-auto py-8 sm:py-12 lg:py-18 px-4 sm:px-6 lg:px-8 bg-white rounded-lg border border-lermorn-50 animate-subtle-lift-with-pause ">
-          <div className="text-center max-w-3xl mx-auto mb-12 text-gray-700">
+          <div className="relative text-center max-w-3xl mx-auto mb-12 text-gray-700">
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-6">
               Meet Your{" "}
               <span className="font-handwriting text-4xl sm:text-3xl md:text-6xl text-grin-400">

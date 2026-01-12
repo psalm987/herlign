@@ -5,7 +5,7 @@ interface ActivityCardProps {
   title: string;
   description: string;
   icon?: React.ComponentType<{ className?: string }>;
-  color: "grin" | "peenk" | "perple" | "ohrange";
+  color: "grin" | "peenk" | "perple" | "ohrange" | "lermorn";
   featured?: boolean;
   image?: string;
 }
@@ -15,6 +15,7 @@ const BACKGROUND_COLORS = {
   peenk: "bg-peenk-500",
   perple: "bg-perple-500",
   ohrange: "bg-ohrange-500",
+  lermorn: "bg-lermorn-500",
 };
 
 // const DECORATIVE_COLORS = {
@@ -29,6 +30,7 @@ const TEXT_COLORS = {
   peenk: "text-gray-900",
   perple: "text-perple-50",
   ohrange: "text-ohrange-50",
+  lermorn: "text-lermorn-950",
 };
 
 const ActivityCard = ({
@@ -43,7 +45,7 @@ const ActivityCard = ({
   return (
     <div
       className={cn(
-        "group h-full flex flex-col justify-end relative rounded-2xl transition-all duration-300 hover:scale-[1.02]  overflow-hidden",
+        "group h-full flex flex-col justify-end relative rounded-2xl transition-all duration-300 overflow-hidden",
         featured ? "p-8 md:p-10 min-h-64" : "p-6 md:p-8 min-h-56",
         image
           ? "after:absolute after:inset-0 after:bg-linear-to-b after:from-transparent after:to-black"

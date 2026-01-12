@@ -19,9 +19,9 @@ export default function TestimonialsSection() {
             src="/images/png/bento-lg-with-pics.png"
             className="object-contain hidden md:block"
           />
-          <div className="absolute inset-0 -bottom-14 md:bottom-0 flex items-end justify-center pointer-events-none">
+          <div className="absolute inset-0 bottom-0 flex items-end justify-center pointer-events-none">
             <div className="text-center px-6 py-5 md:px-8 md:py-6 max-w-2xl mx-4">
-              <span className="inline-block px-4 py-1.5 bg-perple-50 text-perple-700 rounded-full text-sm font-medium mb-3 md:mb-5">
+              <span className="md:inline-block px-4 py-1.5 bg-perple-50 text-perple-700 rounded-full text-sm font-medium mb-3 md:mb-5 hidden">
                 Testimonials
               </span>
 

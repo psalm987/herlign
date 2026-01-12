@@ -10,21 +10,21 @@ const ACTIVITIES = [
     color: "grin" as const,
   },
   {
-    title: "Talk Shows & Podcasts",
-    description: "Stories, insights, and real talk from women just like you",
-    icon: Mic2,
-    color: "perple" as const,
-    featured: true,
-    image: "/images/jpeg/9-to-5-builders.jpg",
-  },
-  // Second row: 2 cards
-  {
     title: "Seminars & Masterclasses",
     description: "Practical skills, inspiration, and mentorship",
     icon: GraduationCap,
-    color: "perple" as const,
+    color: "lermorn" as const,
     featured: true,
-    image: "/images/jpeg/9-to-5-builders.jpg",
+  },
+
+  // Second row: 2 cards
+  {
+    title: "Talk Shows & Podcasts",
+    description: "Stories, insights, and real talk from women just like you",
+    icon: Mic2,
+    color: "lermorn" as const,
+    featured: true,
+    image: "/images/jpeg/herlign1.jpeg",
   },
   {
     title: "Community Conversations",

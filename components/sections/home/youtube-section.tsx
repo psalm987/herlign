@@ -29,13 +29,17 @@ export default function YoutubeSection() {
               and women who remind you that growth is possible.
             </p>
 
-            <Button asChild size="lg" className="bg-ohrange-500">
+            <Button
+              asChild
+              size="lg"
+              className="bg-ohrange-500 w-full md:w-auto"
+            >
               <Link
                 href={LINKS.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Watch our previous Herlign Voices episodes
+                Watch previous Herlign Voices Eps.
               </Link>
             </Button>
           </div>

@@ -31,7 +31,7 @@ const WHO_WE_SERVE = [
 
 const WhoWeServeSection = () => {
   return (
-    <section className="py-8 sm:py-20 md:py-28 bg-ohrange-50">
+    <section className="py-8 sm:py-20 md:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-4 max-w-xl mx-auto ">

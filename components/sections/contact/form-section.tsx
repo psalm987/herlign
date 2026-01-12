@@ -102,7 +102,7 @@ const ContactFormSection = () => {
                 >
                   WhatsApp community
                 </Link>{" "}
-                is where it&apos;s at. You can also Catch the behind-the-scenes
+                is where it&apos;s at. You can also catch the behind-the-scenes
                 chaos and daily inspiration on our socials.
               </p>
               <div className="flex flex-row gap-2 justify-center md:justify-start">

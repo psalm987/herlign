@@ -34,7 +34,7 @@ const headerColorConfig: HeaderColorConfigMap = {
     logo: "fill-ohrange-500",
   },
   "/about": {
-    header: "bg-perple-500/70 text-white border-perple-400",
+    header: "bg-perple-500/90 text-white border-perple-400",
     bg: "bg-perple-500",
     logo: "fill-ohrange-500",
   },

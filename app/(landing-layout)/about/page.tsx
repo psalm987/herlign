@@ -3,6 +3,7 @@ import AboutHeroSection from "@/components/sections/about/hero-section";
 import MissionSection from "@/components/sections/about/mission-section";
 import OurStorySection from "@/components/sections/about/our-story-section";
 import ValuesSection from "@/components/sections/about/values-section";
+import WhatWeDoSection from "@/components/sections/about/what-we-do-section";
 import WhoWeServeSection from "@/components/sections/about/who-we-serve-section";
 // import FAQSection from "@/components/sections/about/faq-section";
 
@@ -15,6 +16,7 @@ export default function AboutPage() {
       <FounderSection />
       <WhoWeServeSection />
       <ValuesSection />
+      <WhatWeDoSection />
       {/* <FAQSection /> */}
     </main>
   );

@@ -1,4 +1,6 @@
+import LINKS from "@/components/constants/links";
 import HerlignPattern from "@/components/svg/herlign-pattern";
+import Link from "next/link";
 
 export default function FounderSection() {
   return (
@@ -16,17 +18,23 @@ export default function FounderSection() {
             </div>
 
             <div className="flex-1">
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-8">
+              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-4">
                 From Our{" "}
                 <span className="font-handwriting text-ohrange-500 text-4xl sm:text-5xl md:text-6xl">
                   Founder
                 </span>
               </h2>
-              <p className="font-sans text-lg md:text-xl text-gray-700 mb-6 leading-relaxed italic">
+              <p className="font-sans text-lg md:text-xl text-gray-700 mb-4 leading-relaxed italic">
                 Herlign was created because I wanted every creative woman to
                 thrive. You deserve a place to grow without fear, and to build
                 without waiting for perfect.
               </p>
+              <Link
+                className="text-perple-500 hover:underline font-semibold"
+                href={LINKS.about}
+              >
+                See more
+              </Link>
             </div>
           </div>
         </div>

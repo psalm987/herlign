@@ -1,3 +1,6 @@
+"use client";
+import { useViewport } from "@/lib/hook/useViewport";
+import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Eye, Award, Anchor, MessageCircle, Zap } from "lucide-react";
 
@@ -36,6 +39,11 @@ const VALUES = [
 ];
 
 const ValuesSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { hasEntered } = useViewport(ref, {
+    threshold: 0.5,
+    direction: "both",
+  });
   return (
     <section className="py-8 sm:py-20 md:py-28 bg-gray-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,12 +57,12 @@ const ValuesSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-y-8">
-          {VALUES.map((value) => (
+        <div ref={ref} className="grid lg:grid-cols-5 gap-y-8">
+          {VALUES.map((value, index) => (
             <div
               key={value.description}
               className={cn(
-                "bg-white  z-10 hover:z-0 transition-shadow p-6 md:p-8 lg:pt-24 relative rounded-4xl lg:rounded-none",
+                "bg-white z-10 hover:z-0 transition-shadow p-6 md:p-8 lg:pt-24 relative rounded-4xl lg:rounded-none",
                 "flex flex-col sm:flex-row items-start sm:items-center gap-6",
                 {
                   grin: "bg-grin-500 text-grin-50 shadow-grin-500/50",
@@ -64,8 +72,15 @@ const ValuesSection = () => {
                     "bg-ohrange-500 text-ohrange-50 shadow-ohrange-500/50",
                   lermorn:
                     "bg-lermorn-500 text-lermorn-950 shadow-lermorn-500/50",
-                }[value.color]
+                }[value.color],
+                "transition-all duration-700",
+                hasEntered
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               )}
+              style={{
+                transitionDelay: `${index * 700}ms`,
+              }}
             >
               <div
                 className={cn(

@@ -5,7 +5,7 @@ import React from "react";
 
 const FancyProgressBar = () => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const { isInViewport } = useViewport(ref as React.RefObject<Element>, {
+  const { isInViewport } = useViewport(ref, {
     threshold: 0.2,
   });
   return (

@@ -1,8 +1,19 @@
+"use client";
+import { useViewport } from "@/lib/hook/useViewport";
+import { useRef } from "react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
+
 const MissionSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { isInViewport } = useViewport(ref, {
+    threshold: 0.5,
+    direction: "both",
+  });
+
   return (
-    <section className="py-8 sm:py-20 md:py-28 bg-white">
+    <section ref={ref} className="py-8 sm:py-20 md:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col-reverse bg-linear-to-b relative from-lermorn-600 via-80% via-lermorn-700 to-lermorn-800 text-white p-0 lg:p-20 rounded-2xl">
           <div className="lg:max-w-md p-6 sm:p-12 md:p-16 lg:p-0">
@@ -17,7 +28,12 @@ const MissionSection = () => {
               celebrates her progress.
             </p>
           </div>
-          <div className="w-full lg:w-auto contain-content lg:absolute right-16 -top-9 lg:hover:rotate-6 transition-transform duration-500 lg:after:content-[''] lg:after:absolute lg:after:inset-0 lg:after:bg-linear-to-b lg:after:from-transparent lg:after:via-transparent lg:after:to-black lg:after:rounded-lg">
+          <div
+            className={cn(
+              "w-full lg:w-auto contain-content lg:absolute right-16 -top-8  transition-transform duration-500 lg:after:content-[''] lg:after:absolute lg:after:inset-0 lg:after:bg-linear-to-b lg:after:from-transparent lg:after:via-transparent lg:after:to-black lg:after:rounded-lg",
+              isInViewport ? "lg:rotate-6" : ""
+            )}
+          >
             <Image
               src="/images/jpeg/women-group.jpg"
               height={600}

@@ -32,7 +32,7 @@ interface UseViewportReturn {
 }
 
 export function useViewport(
-  ref: RefObject<Element>,
+  ref: RefObject<Element | null>,
   options: UseViewportOptions = {}
 ): UseViewportReturn {
   const {

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const FounderSection = () => {
@@ -31,6 +32,23 @@ const FounderSection = () => {
             are not alone, their ideas matter, and their first step is always
             enough. &quot;
           </p>
+          <div className="mb-8 flex items-center gap-4">
+            <div className="rounded-full overflow-hidden">
+              <Image
+                src="/images/jpeg/maureen-profile.jpg"
+                alt="Maureen Dede"
+                width={60}
+                height={60}
+                className="object-cover hover:scale-150 transition-transform duration-300"
+              />
+            </div>
+            <div>
+              <p className="font-semibold text-lg text-gray-900">
+                Maureen Dede
+              </p>
+              <p className="text-gray-600">Founder</p>
+            </div>
+          </div>
           <Link
             href="https://www.youtube.com/shorts/j70xfmIZtUo"
             target="_blank"

@@ -5,11 +5,11 @@ const MissionSection = () => {
     <section className="py-8 sm:py-20 md:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col-reverse bg-linear-to-b relative from-lermorn-600 via-80% via-lermorn-700 to-lermorn-800 text-white p-0 lg:p-20 rounded-2xl">
-          <div className="lg:max-w-md p-16 lg:p-0">
+          <div className="lg:max-w-md p-6 sm:p-12 md:p-16 lg:p-0">
             <h2 className="font-heading text-4xl  md:text-6xl font-semibold mb-4 ">
               Our Mission is Simple
             </h2>
-            <p className="text-lg md:text-xl">
+            <p className="sm:text-lg md:text-xl">
               To empower women to show up, start anyway, and build boldly,
               whether you&apos;re exploring one passion, juggling many, or
               balancing work and motherhood. At Herlign, we believe that every
@@ -23,7 +23,7 @@ const MissionSection = () => {
               height={600}
               width={400}
               alt=""
-              className="rounded-t-2xl lg:rounded-2xl w-full h-100 object-cover object-[0%_20%] lg:object-top lg:w-auto lg:h-auto"
+              className="rounded-t-2xl lg:rounded-2xl w-full h-50 sm:h-100 object-cover object-[0%_20%] lg:object-top lg:w-auto lg:h-auto"
             />
           </div>
         </div>

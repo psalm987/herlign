@@ -44,6 +44,7 @@ const ValuesSection = () => {
     threshold: 0.5,
     direction: "both",
   });
+
   return (
     <section className="py-8 sm:py-20 md:py-28 bg-gray-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,10 +74,10 @@ const ValuesSection = () => {
                   lermorn:
                     "bg-lermorn-500 text-lermorn-950 shadow-lermorn-500/50",
                 }[value.color],
-                "transition-all duration-700",
+                "transition-[opacity,translate] duration-700",
                 hasEntered
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
+                  : "lg:opacity-0 lg:translate-y-10"
               )}
               style={{
                 transitionDelay: `${index * 700}ms`,

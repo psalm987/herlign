@@ -74,7 +74,7 @@ export function Navigation() {
             <div className="flex md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-gray-700 hover:text-perple-600 p-2"
+                className="p-2"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? (
@@ -87,7 +87,11 @@ export function Navigation() {
 
             {/* Logo - centered */}
             <div className="flex-1 flex justify-center md:flex-none">
-              <Link href="/" className="flex items-center">
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center"
+              >
                 <Logo animate className={headerColor.logo} />
               </Link>
             </div>
@@ -119,11 +123,21 @@ export function Navigation() {
         {/* Mobile menu */}
         <nav
           className={cn(
-            "md:hidden border-t border-gray-200 bg-white overflow-hidden transition-all duration-300 ease-in-out",
+            "md:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out",
             mobileMenuOpen ? "max-h-96" : "max-h-0"
           )}
         >
           <div className="px-4 py-4 space-y-3">
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "block font-sans text-base text-gray-700 font-medium py-2 transition-colors",
+                pathname?.toLowerCase() === "/" && "font-bold"
+              )}
+            >
+              Home
+            </Link>
             {navLinks.map((link) => (
               <Link
                 key={link.href}

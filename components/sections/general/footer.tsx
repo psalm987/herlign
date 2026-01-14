@@ -2,6 +2,20 @@ import LINKS from "@/components/constants/links";
 import { Instagram, Linkedin, Youtube } from "lucide-react";
 import Link from "next/link";
 
+const MENU = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Start Anyway", href: "/start-anyway" },
+  { label: "Events", href: "/events" },
+  { label: "Contact", href: "/contact" },
+];
+
+const SOCIALS = [
+  { name: "Instagram", href: LINKS.socials.instagram, Icon: Instagram },
+  { name: "LinkedIn", href: LINKS.socials.linkedin, Icon: Linkedin },
+  { name: "YouTube", href: LINKS.socials.youtube, Icon: Youtube },
+];
+
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -17,38 +31,16 @@ export function Footer() {
           <div>
             <h4 className="font-sans font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 font-sans text-sm">
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-300 hover:text-perple-400 transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-gray-300 hover:text-perple-400 transition-colors"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/start-anyway"
-                  className="text-gray-300 hover:text-perple-400 transition-colors"
-                >
-                  Start Anyway
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-300 hover:text-perple-400 transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
+              {MENU.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-gray-300 hover:text-perple-400 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -61,27 +53,17 @@ export function Footer() {
               socials.
             </p>
             <div className="flex flex-row gap-2">
-              <Link
-                href={LINKS.socials.instagram}
-                target="_blank"
-                className="opacity-100 text-white hover:text-orange-400 "
-              >
-                <Instagram />
-              </Link>
-              <Link
-                href={LINKS.socials.linkedin}
-                target="_blank"
-                className="opacity-100 text-white hover:text-orange-400 "
-              >
-                <Linkedin />
-              </Link>
-              <Link
-                href={LINKS.socials.youtube}
-                target="_blank"
-                className="opacity-100 text-white hover:text-orange-400 "
-              >
-                <Youtube />
-              </Link>
+              {SOCIALS.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  className="opacity-100 text-white hover:text-orange-400"
+                  aria-label={social.name}
+                >
+                  <social.Icon />
+                </Link>
+              ))}
             </div>
           </div>
         </div>

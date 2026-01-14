@@ -15,6 +15,7 @@ const LINKS = {
     about: "/about",
     start_anyway: "/start-anyway",
     contact: "/contact",
+    events: "/events"
 }
 
 

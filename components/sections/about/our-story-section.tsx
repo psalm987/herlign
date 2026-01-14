@@ -42,15 +42,15 @@ const OurStorySection = () => {
             We wanted to create a safe, inspiring space where women can:
           </p>
         </div>
-        <div className=" mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className=" mt-12 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
           {GOALS.map((goal) => (
             <div
               key={goal.title}
-              className={"bg-lermorn-50 p-6 rounded-lg text-center "}
+              className={"bg-lermorn-50 p-6 pt-0 rounded-lg text-center "}
             >
               <div
                 className={cn(
-                  `mx-auto mb-4 size-16 flex items-center justify-center rounded-full`,
+                  `mx-auto mb-4 size-16 flex items-center justify-center rounded-full -translate-y-8 bg-lermorn-50`,
                   {
                     ohrange: " text-ohrange-500",
                     perple: " text-perple-500",
@@ -62,10 +62,10 @@ const OurStorySection = () => {
               >
                 <goal.icon className="size-8" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="font-sans text-xl font-extrabold text-gray-900/80 mb-2">
                 {goal.title}
               </h3>
-              <p className="text-gray-600">{goal.description}</p>
+              <p className="text-gray-900/50">{goal.description}</p>
             </div>
           ))}
         </div>

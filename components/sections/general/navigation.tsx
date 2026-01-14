@@ -14,6 +14,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/start-anyway", label: "Start Anyway" },
+  { href: "/events", label: "Events" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -47,6 +48,11 @@ const headerColorConfig: HeaderColorConfigMap = {
     header: "bg-ohrange-500/50 text-white border-ohrange-400",
     bg: "bg-ohrange-500",
     logo: "fill-white",
+  },
+  "/events": {
+    header: "bg-grin-500/50 text-white border-grin-400",
+    bg: "bg-grin-500",
+    logo: "fill-lermorn-500",
   },
 };
 
@@ -90,7 +96,7 @@ export function Navigation() {
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center"
+                className="flex items-center "
               >
                 <Logo animate className={headerColor.logo} />
               </Link>

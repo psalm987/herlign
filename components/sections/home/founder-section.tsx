@@ -1,5 +1,6 @@
 import LINKS from "@/components/constants/links";
-import HerlignPattern from "@/components/svg/herlign-pattern";
+// import HerlignPattern from "@/components/svg/herlign-pattern";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function FounderSection() {
@@ -13,7 +14,13 @@ export default function FounderSection() {
                 {/* <div className="w-full h-full flex items-center justify-center text-perple-600 font-heading text-6xl">
                   H
                 </div> */}
-                <HerlignPattern size="300" className="absolute" />
+                {/* <HerlignPattern size="300" className="absolute" /> */}
+                <Image
+                  src="/images/jpeg/maureen2.jpeg"
+                  alt="Maureen Dede"
+                  fill
+                  className="object-cover origin-top-left scale-120 sepia-10"
+                />
               </div>
             </div>
 

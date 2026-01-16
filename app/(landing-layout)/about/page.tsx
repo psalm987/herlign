@@ -1,4 +1,4 @@
-import FounderSection from "@/components/sections/about/founder-section";
+import FounderSection from "@/components/sections/about/founder-section-2";
 import AboutHeroSection from "@/components/sections/about/hero-section";
 import MissionSection from "@/components/sections/about/mission-section";
 import OurStorySection from "@/components/sections/about/our-story-section";

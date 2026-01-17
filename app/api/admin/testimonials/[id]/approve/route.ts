@@ -10,16 +10,17 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
         const supabase = await createClient();
+        const { id } = await params;
 
         const { data, error } = await supabase
             .from('testimonials')
             .update({ is_approved: true } as never)
-            .eq('id', params.id)
+            .eq('id', id)
             .select()
             .single();
 

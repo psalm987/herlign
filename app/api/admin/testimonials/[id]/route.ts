@@ -9,16 +9,17 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
         const supabase = await createClient();
+        const { id } = await params;
 
         const { data, error } = await supabase
             .from('testimonials')
             .select('*')
-            .eq('id', params.id)
+            .eq('id', id)
             .single();
 
         if (error || !data) {
@@ -37,11 +38,12 @@ export async function GET(
 
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
         const supabase = await createClient();
+        const { id } = await params;
 
         const body = await request.json();
         const validation = testimonialUpdateSchema.safeParse(body);
@@ -56,7 +58,7 @@ export async function PUT(
         const { data, error } = await supabase
             .from('testimonials')
             .update(validation.data as never)
-            .eq('id', params.id)
+            .eq('id', id)
             .select()
             .single();
 
@@ -76,16 +78,17 @@ export async function PUT(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
         const supabase = await createClient();
+        const { id } = await params;
 
         const { error } = await supabase
             .from('testimonials')
             .delete()
-            .eq('id', params.id);
+            .eq('id', id);
 
         if (error) {
             return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });

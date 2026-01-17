@@ -11,17 +11,18 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const user = await requireAuth();
         const supabase = await createClient();
+        const { id } = await params;
 
         // Get media record
         const { data: media, error: fetchError } = await supabase
             .from('media')
             .select('*')
-            .eq('id', params.id)
+            .eq('id', id)
             .eq('admin_id', user.id)
             .single();
 
@@ -39,7 +40,7 @@ export async function DELETE(
         const { error: deleteError } = await supabase
             .from('media')
             .delete()
-            .eq('id', params.id);
+            .eq('id', id);
 
         if (deleteError) throw deleteError;
 

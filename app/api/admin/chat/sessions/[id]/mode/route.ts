@@ -11,7 +11,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const user = await requireAuth();
@@ -29,7 +29,7 @@ export async function POST(
         const { mode } = validation.data;
 
         const updatedSession = await switchChatMode(
-            params.id,
+            (await params).id,
             mode,
             mode === 'live' ? user.id : undefined
         );

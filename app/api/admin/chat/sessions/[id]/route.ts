@@ -11,16 +11,17 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
-        const session = await getSession(params.id);
+        const { id } = await params;
+        const session = await getSession(id);
         if (!session) {
             return NextResponse.json({ message: 'Session not found', data: null }, { status: 404 });
         }
 
-        const messages = await getSessionMessages(params.id);
+        const messages = await getSessionMessages(id);
 
         return NextResponse.json({
             message: 'Successfully retrieved chat session',
@@ -45,10 +46,11 @@ export async function GET(
 
 export async function POST(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const user = await requireAuth();
+        const { id } = await params;
 
         const body = await request.json();
         const validation = chatMessageSchema.safeParse(body);
@@ -63,13 +65,13 @@ export async function POST(
         const { message } = validation.data;
 
         // Switch to live mode if not already
-        const session = await getSession(params.id);
+        const session = await getSession(id);
         if (session && session.current_mode !== 'live') {
-            await switchChatMode(params.id, 'live', user.id);
+            await switchChatMode(id, 'live', user.id);
         }
 
         // Add admin message
-        await addMessage(params.id, 'admin', message);
+        await addMessage(id, 'admin', message);
 
         return NextResponse.json({ message: 'Message sent successfully', data: null });
     } catch (error) {

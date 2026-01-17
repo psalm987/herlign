@@ -14,15 +14,16 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const supabase = await createClient();
+        const { id } = await params;
 
         const { data, error } = await supabase
             .from('events')
             .select('*')
-            .eq('id', params.id)
+            .eq('id', id)
             .single();
 
         if (error || !data) {
@@ -52,11 +53,12 @@ export async function GET(
  */
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const user = await requireAuth();
         const supabase = await createClient();
+        const { id } = await params;
 
         // Parse and validate request body
         const body = await request.json();
@@ -73,7 +75,7 @@ export async function PUT(
         const { data, error } = await supabase
             .from('events')
             .update(validation.data as never)
-            .eq('id', params.id)
+            .eq('id', id)
             .eq('admin_id', user.id) // Ensure admin owns the event
             .select()
             .single();
@@ -105,16 +107,17 @@ export async function PUT(
  */
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const user = await requireAuth();
         const supabase = await createClient();
+        const { id } = await params;
 
         const { error } = await supabase
             .from('events')
             .delete()
-            .eq('id', params.id)
+            .eq('id', id)
             .eq('admin_id', user.id); // Ensure admin owns the event
 
         if (error) {

@@ -45,6 +45,8 @@ const baseEventSchema = z.object({
         .default(false),
     status: z.enum(['draft', 'published', 'cancelled'])
         .default('draft'),
+    featured: z.boolean()
+        .default(false),
 });
 
 export const eventSchema = baseEventSchema.refine(
@@ -63,6 +65,10 @@ export const eventQuerySchema = z.object({
     status: z.enum(['draft', 'published', 'cancelled']).optional(),
     page: z.coerce.number().int().positive().default(1),
     limit: z.coerce.number().int().positive().max(100).default(20),
+    search: z.string().max(255).optional(),
+    dateFrom: z.string().datetime().optional(),
+    dateTo: z.string().datetime().optional(),
+    featured: z.coerce.boolean().optional(),
 });
 
 export type EventInput = z.infer<typeof eventSchema>;

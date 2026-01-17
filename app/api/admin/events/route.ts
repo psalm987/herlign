@@ -20,11 +20,15 @@ export async function GET(request: NextRequest) {
         // Parse query parameters
         const searchParams = request.nextUrl.searchParams;
         const queryValidation = eventQuerySchema.safeParse({
-            type: searchParams.get('type'),
-            mode: searchParams.get('mode'),
-            status: searchParams.get('status'),
-            page: searchParams.get('page'),
-            limit: searchParams.get('limit'),
+            type: searchParams.get('type') || undefined,
+            mode: searchParams.get('mode') || undefined,
+            status: searchParams.get('status') || undefined,
+            page: searchParams.get('page') || undefined,
+            limit: searchParams.get('limit') || undefined,
+            search: searchParams.get('search') || undefined,
+            dateFrom: searchParams.get('dateFrom') || undefined,
+            dateTo: searchParams.get('dateTo') || undefined,
+            featured: searchParams.get('featured') || undefined,
         });
 
         if (!queryValidation.success) {
@@ -34,7 +38,7 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        const { type, mode, status, page, limit } = queryValidation.data;
+        const { type, mode, status, page, limit, search, dateFrom, dateTo, featured } = queryValidation.data;
         const offset = (page - 1) * limit;
 
         // Build query
@@ -45,6 +49,20 @@ export async function GET(request: NextRequest) {
         if (type) query = query.eq('type', type);
         if (mode) query = query.eq('mode', mode);
         if (status) query = query.eq('status', status);
+        if (featured !== undefined) query = query.eq('featured', featured);
+
+        // Text search
+        if (search) {
+            query = query.or(`title.ilike.%${search}%,description.ilike.%${search}%`);
+        }
+
+        // Date range filtering
+        if (dateFrom) {
+            query = query.gte('start_date', dateFrom);
+        }
+        if (dateTo) {
+            query = query.lte('start_date', dateTo);
+        }
 
         query = query
             .order('start_date', { ascending: false })
@@ -62,6 +80,10 @@ export async function GET(request: NextRequest) {
         if (type) appliedFilters.type = type;
         if (mode) appliedFilters.mode = mode;
         if (status) appliedFilters.status = status;
+        if (search) appliedFilters.search = search;
+        if (dateFrom) appliedFilters.dateFrom = dateFrom;
+        if (dateTo) appliedFilters.dateTo = dateTo;
+        if (featured !== undefined) appliedFilters.featured = String(featured);
 
         return NextResponse.json({
             message: `Successfully retrieved ${data?.length || 0} event(s)`,

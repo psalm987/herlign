@@ -35,6 +35,7 @@ export interface Database {
                     price: number;
                     is_paid: boolean;
                     status: 'draft' | 'published' | 'cancelled';
+                    featured: boolean;
                     admin_id: string;
                     created_at: string;
                     updated_at: string;
@@ -53,6 +54,7 @@ export interface Database {
                     price?: number;
                     is_paid?: boolean;
                     status?: 'draft' | 'published' | 'cancelled';
+                    featured?: boolean;
                     admin_id: string;
                     created_at?: string;
                     updated_at?: string;
@@ -71,6 +73,7 @@ export interface Database {
                     price?: number;
                     is_paid?: boolean;
                     status?: 'draft' | 'published' | 'cancelled';
+                    featured?: boolean;
                     admin_id?: string;
                     created_at?: string;
                     updated_at?: string;

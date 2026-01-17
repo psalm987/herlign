@@ -17,11 +17,15 @@ export async function GET(request: NextRequest) {
 
         const searchParams = request.nextUrl.searchParams;
         const queryValidation = eventQuerySchema.safeParse({
-            type: searchParams.get('type'),
-            mode: searchParams.get('mode'),
+            type: searchParams.get('type') || undefined,
+            mode: searchParams.get('mode') || undefined,
             status: 'published', // Force published for public
-            page: searchParams.get('page'),
-            limit: searchParams.get('limit'),
+            page: searchParams.get('page') || undefined,
+            limit: searchParams.get('limit') || undefined,
+            search: searchParams.get('search') || undefined,
+            dateFrom: searchParams.get('dateFrom') || undefined,
+            dateTo: searchParams.get('dateTo') || undefined,
+            featured: searchParams.get('featured') || undefined,
         });
 
         if (!queryValidation.success) {
@@ -31,7 +35,7 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        const { type, mode, page, limit } = queryValidation.data;
+        const { type, mode, page, limit, search, dateFrom, dateTo, featured } = queryValidation.data;
         const offset = (page - 1) * limit;
 
         let query = supabase
@@ -41,6 +45,20 @@ export async function GET(request: NextRequest) {
 
         if (type) query = query.eq('type', type);
         if (mode) query = query.eq('mode', mode);
+        if (featured !== undefined) query = query.eq('featured', featured);
+
+        // Text search - search in title and description
+        if (search) {
+            query = query.or(`title.ilike.%${search}%,description.ilike.%${search}%`);
+        }
+
+        // Date range filtering
+        if (dateFrom) {
+            query = query.gte('start_date', dateFrom);
+        }
+        if (dateTo) {
+            query = query.lte('start_date', dateTo);
+        }
 
         query = query
             .gte('end_date', new Date().toISOString()) // Only future/ongoing events
@@ -56,6 +74,10 @@ export async function GET(request: NextRequest) {
         const appliedFilters: Record<string, string> = { status: 'published' };
         if (type) appliedFilters.type = type;
         if (mode) appliedFilters.mode = mode;
+        if (search) appliedFilters.search = search;
+        if (dateFrom) appliedFilters.dateFrom = dateFrom;
+        if (dateTo) appliedFilters.dateTo = dateTo;
+        if (featured !== undefined) appliedFilters.featured = String(featured);
 
         return NextResponse.json(
             {

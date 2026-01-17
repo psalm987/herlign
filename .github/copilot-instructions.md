@@ -256,31 +256,31 @@ export const revalidate = 300;
 
 ## Environment Variables
 
-Required in `.env.local` (see [.env.local](../.env.local)):
+Required in `.env.local`:
 
 ```bash
 # Supabase Configuration
-SUPABASE_URL=
-SUPABASE_PUBLISHABLE_DEFAULT_KEY=
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=your-anon-key
 
 # AI Provider (Choose ONE at a time)
 # OpenAI - https://platform.openai.com/api-keys
-# OPENAI_API_KEY=sk-...
+# OPENAI_API_KEY=
 
 # Google Gemini - https://makersuite.google.com/app/apikey
-GEMINI_API_KEY=
+# GEMINI_API_KEY=
 
 # DeepSeek - https://platform.deepseek.com
-# DEEPSEEK_API_KEY=...
+# DEEPSEEK_API_KEY=
 
 # Application Security
-# Generate a random salt for IP hashing: openssl rand -base64 32
+# Generate a random salt: openssl rand -base64 32
 IP_HASH_SALT=
 
 # Application URLs
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
-# Optional: Storage Quota Alert (in bytes, default: 1GB = 1073741824)
+# Optional: Storage Quota (in bytes, default: 1GB)
 STORAGE_QUOTA_LIMIT=1073741824
 STORAGE_ALERT_THRESHOLD=0.8
 ```
@@ -331,6 +331,142 @@ curl -b cookies.txt http://localhost:3000/api/admin/events
 curl http://localhost:3000/api/events
 ```
 
+## TanStack Query Architecture
+
+### Layer Structure
+
+The project uses a 3-layer architecture for data fetching:
+
+1. **Actions Layer** (`lib/actions/`) - Low-level API calls
+2. **Services Layer** (`lib/services/api.ts`) - Centralized HTTP client
+3. **Hooks Layer** (`lib/tanstack/hooks/`) - React Query hooks
+
+**File Structure:**
+
+```
+lib/
+├── actions/              # API action functions
+│   ├── auth.ts
+│   ├── events.ts
+│   ├── resources.ts
+│   ├── testimonials.ts
+│   ├── links.ts
+│   ├── media.ts
+│   └── chat.ts
+├── services/
+│   └── api.ts           # Fetch wrapper with error handling
+├── tanstack/
+│   ├── types.ts         # Shared TypeScript types
+│   ├── keys.ts          # Query key management
+│   ├── provider.tsx     # QueryClient provider
+│   └── hooks/
+│       ├── useAuth.tsx
+│       ├── useEvents.tsx
+│       ├── useResources.tsx
+│       ├── useTestimonials.tsx
+│       ├── useLinks.tsx
+│       ├── useChat.tsx
+│       └── admin/       # Admin-only hooks with CRUD
+```
+
+### Using TanStack Query Hooks
+
+**Public Hooks** (read-only):
+
+```typescript
+import { useEvents } from "@/lib/tanstack/hooks/useEvents";
+
+const { data, isLoading, error } = useEvents(
+  { status: "published", page: 1, limit: 10 },
+  {
+    onSuccess: (data) => console.log("Loaded:", data),
+    staleTime: 5 * 60 * 1000,
+  },
+);
+```
+
+**Admin Hooks** (full CRUD with optimistic updates):
+
+```typescript
+import {
+  useCreateEvent,
+  useUpdateEvent,
+  useDeleteEvent,
+} from "@/lib/tanstack/hooks/admin/useEvents";
+
+// Create
+const { mutate: createEvent } = useCreateEvent({
+  onSuccess: () => toast.success("Created!"),
+  onError: (error) => toast.error(error.message),
+});
+
+// Update (with optimistic updates)
+const { mutate: updateEvent } = useUpdateEvent({
+  onSuccess: () => toast.success("Updated!"),
+});
+
+// Delete (with optimistic updates)
+const { mutate: deleteEvent } = useDeleteEvent();
+```
+
+### TanStack Query Features
+
+- ✅ **Automatic cache invalidation** - Mutations invalidate related queries
+- ✅ **Optimistic updates** - UI updates immediately, rolls back on error
+- ✅ **Generic hook options** - Pass `onSuccess`, `onError`, `onSettled` from components
+- ✅ **Smart query keys** - Granular cache control
+- ✅ **Pagination support** - All list queries return paginated responses
+- ✅ **DevTools** - React Query DevTools enabled in development
+
+### Best Practices
+
+1. **Spread options first** in mutation hooks:
+
+   ```typescript
+   return useMutation({
+     ...options,          // User options first
+     mutationFn: action,  // Override mutationFn
+     onSuccess: (data, variables, context) => {
+       options?.onSuccess?.(data, variables, context);  // User callback first
+       queryClient.invalidateQueries(...);  // Then internal logic
+     },
+   });
+   ```
+
+2. **Use query keys** from `lib/tanstack/keys.ts` for cache operations
+3. **Handle loading/error states** in components, not hooks
+4. **Leverage staleTime** to reduce unnecessary refetches
+5. **Use enabled option** to conditionally fetch data
+
+See [lib/tanstack/README.md](../lib/tanstack/README.md) for complete documentation.
+
+## Next.js 16 Breaking Changes
+
+### Dynamic Route Params
+
+**CRITICAL**: In Next.js 16, route params are now async. Always await:
+
+```typescript
+// ✅ CORRECT (Next.js 16)
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const { id } = await params; // Must await
+  // ... use id
+}
+
+// ❌ WRONG (Next.js 15 pattern)
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+) {
+  const id = params.id; // Won't work in Next.js 16
+}
+```
+
+All dynamic route handlers must follow this pattern.
+
 ## Project-Specific Conventions (Frontend)
 
 ### Styling Patterns
@@ -345,10 +481,12 @@ curl http://localhost:3000/api/events
 - Place reusable components in `components/`
 - Use shadcn/ui components via `@/components/ui` alias
 - Server components by default (App Router convention)
+- Use TanStack Query hooks for data fetching in client components
 
 ## Documentation Reference
 
 - **[API.md](../API.md)** - Complete API reference with request/response examples
 - **[SETUP.md](../SETUP.md)** - Database setup, deployment, troubleshooting
 - **[API_README.md](../API_README.md)** - Implementation summary and architecture overview
+- **[lib/tanstack/README.md](../lib/tanstack/README.md)** - TanStack Query architecture and usage examples
 - **[supabase/schema.sql](../supabase/schema.sql)** - Database schema with inline comments

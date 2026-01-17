@@ -2,7 +2,12 @@
 
 ## Architecture Overview
 
-Next.js 15 App Router project with TypeScript, Tailwind CSS v4, and shadcn/ui. React Compiler enabled (`reactCompiler: true` in `next.config.ts`). Standard App Router structure with pages in `app/` directory.
+**Hybrid Next.js 16 App Router** project with frontend (Tailwind CSS v4, shadcn/ui) and backend API (Supabase).
+
+- **Frontend**: TypeScript, React 19, React Compiler enabled, custom brand system
+- **Backend**: Supabase PostgreSQL + Auth + Storage, Zod validation, RLS security
+- **API Structure**: RESTful with `/api/auth`, `/api/admin/*` (protected), `/api/*` (public), `/api/chat`
+- **Deployment Target**: Vercel with edge runtime optimization
 
 ## Brand System Implementation
 
@@ -80,8 +85,261 @@ Currently minimal - just the homepage in `app/page.tsx`. When creating new compo
 
 ## Key Files
 
+### Frontend
+
 - `app/fonts.ts` - Font configuration exports (`axiforma`, `clashDisplay`, `gochiHand`)
 - `app/globals.css` - Theme tokens, color variables, Tailwind v4 imports
 - `tailwind.config.ts` - Color scale mapping and font family tokens
 - `components.json` - shadcn/ui configuration
 - `lib/utils.ts` - `cn()` utility for class merging
+
+### Backend/API
+
+- `lib/supabase/server.ts` - Server Supabase client (use `await createClient()`)
+- `lib/supabase/client.ts` - Browser Supabase client
+- `lib/supabase/database.types.ts` - Auto-generated database types
+- `lib/validators/*` - Zod schemas for all entities (events, resources, testimonials, links, chat, media)
+- `lib/auth.ts` - Auth helpers (`requireAuth()`, `getAuthUser()`)
+- `middleware.ts` - Route protection (auto-guards `/api/admin/*`)
+- `supabase/schema.sql` - Complete database schema with RLS policies
+
+## Backend API Architecture
+
+### Critical Pattern: Async Supabase Client
+
+**IMPORTANT**: Supabase clients are now async in Next.js 16. Always await:
+
+```typescript
+// ✅ CORRECT
+const supabase = await createClient();
+const user = await requireAuth();
+
+// ❌ WRONG - will cause runtime errors
+const supabase = createClient(); // Missing await!
+```
+
+All API routes must handle this. See [app/api/admin/events/route.ts](../app/api/admin/events/route.ts) for reference.
+
+### Authentication Flow
+
+1. **Middleware** ([middleware.ts](../middleware.ts)): Auto-protects `/api/admin/*` routes
+2. **Auth Helpers** ([lib/auth.ts](../lib/auth.ts)):
+   - `requireAuth()` - Throws error if not authenticated (use in admin routes)
+   - `getAuthUser()` - Returns user or null (use for conditional logic)
+3. **Login/Logout**: Standard Supabase Auth via cookies ([app/api/auth/](../app/api/auth/))
+
+Example admin route pattern:
+
+```typescript
+export async function POST(request: NextRequest) {
+  try {
+    const user = await requireAuth(); // Protected
+    const supabase = await createClient(); // Await!
+
+    const body = await request.json();
+    const validation = schema.safeParse(body); // Zod validation
+
+    // ... insert with admin_id: user.id
+  } catch (error) {
+    if (error instanceof Error && error.message === "Unauthorized") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
+```
+
+### Validation Pattern
+
+**Always validate with Zod before database operations**:
+
+```typescript
+import { eventSchema } from "@/lib/validators/events";
+
+const validation = eventSchema.safeParse(body);
+if (!validation.success) {
+  return NextResponse.json(
+    { error: "Validation failed", details: validation.error.message },
+    { status: 400 },
+  );
+}
+
+const eventData = { ...validation.data, admin_id: user.id };
+```
+
+Validators in `lib/validators/` include schemas for create, update, and query params. Use type exports:
+
+```typescript
+import { EventInput, EventUpdate, EventQuery } from "@/lib/validators/events";
+```
+
+### Database Access Patterns
+
+**Row Level Security (RLS)**: All tables have RLS enabled. Key policies:
+
+- Public reads: Published events, approved testimonials, all resources/links
+- Admin writes: Own content only (enforced by `admin_id` check)
+- Chat: Session isolation by hashed IP
+
+**Standard CRUD Pattern** (see [app/api/admin/events/](../app/api/admin/events/)):
+
+```typescript
+// List with pagination
+let query = supabase.from("table").select("*", { count: "exact" });
+query = query.eq("field", value); // Add filters
+query = query.range(offset, offset + limit - 1);
+
+// Create
+const { data, error } = await supabase
+  .from("table")
+  .insert({ ...validated, admin_id: user.id })
+  .select()
+  .single();
+
+// Update (enforce ownership)
+await supabase.from("table").update(data).eq("id", id).eq("admin_id", user.id); // Critical!
+
+// Delete (enforce ownership)
+await supabase.from("table").delete().eq("id", id).eq("admin_id", user.id);
+```
+
+### Special Systems
+
+**File Upload** ([lib/storage.ts](../lib/storage.ts)):
+
+- 5MB limit, allowed types: jpg, png, webp, svg
+- `uploadFile(file, adminId)` handles validation + quota check
+- Stores metadata in `media` table + Supabase Storage bucket 'media'
+
+**Chat System** ([lib/chat/](../lib/chat/)):
+
+- GDPR-compliant: IP hashing with SHA-256 + salt
+- Two modes: `auto` (AI bot) or `live` (admin responds)
+- 30-day retention, auto-cleanup via cron
+- AI providers: OpenAI, Gemini, or DeepSeek (env-configured)
+- See [app/api/chat/message/route.ts](../app/api/chat/message/route.ts) for flow
+
+**Rate Limiting** ([lib/rate-limit.ts](../lib/rate-limit.ts)):
+
+- In-memory store (use Redis for production)
+- `checkRateLimit(identifier, config)` returns `{ allowed, count, resetIn }`
+- Presets: `RATE_LIMITS.CHAT` (10/min), `RATE_LIMITS.UPLOAD` (5/min), `RATE_LIMITS.AUTH` (5/5min)
+
+## API Route Structure
+
+```
+/api
+├── auth/                    # Public: login, logout, session
+├── admin/                   # Protected: all require authentication
+│   ├── events/             # CRUD + list with filters
+│   ├── resources/          # CRUD + tag search
+│   ├── testimonials/       # CRUD + approve endpoint
+│   ├── links/              # CRUD
+│   ├── media/              # Upload, list, delete, unused
+│   └── chat/sessions/      # List, view, respond, switch mode
+├── events/                  # Public: published events with caching
+├── resources/               # Public: all resources with caching
+├── testimonials/            # Public: approved only with caching
+├── links/                   # Public: all links with caching
+└── chat/                    # Public: message (guest), history
+```
+
+**Public endpoints** use `revalidate = 300` (5-minute cache):
+
+```typescript
+export const dynamic = "force-dynamic";
+export const revalidate = 300;
+```
+
+## Environment Variables
+
+Required in `.env.local` (see [.env.example](../.env.example)):
+
+```bash
+# Supabase (get from dashboard > Settings > API)
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=  # Secret! Admin operations only
+
+# AI (choose ONE)
+OPENAI_API_KEY=
+# GEMINI_API_KEY=
+# DEEPSEEK_API_KEY=
+
+# Security
+IP_HASH_SALT=  # Generate: openssl rand -base64 32
+
+# App
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+## Development Workflows
+
+### Setup New Features
+
+1. **Database first**: Update [supabase/schema.sql](../supabase/schema.sql) with table + RLS policies
+2. **Types**: Regenerate types or manually update [lib/supabase/database.types.ts](../lib/supabase/database.types.ts)
+3. **Validators**: Create Zod schema in `lib/validators/`
+4. **API routes**: Follow CRUD pattern from existing routes
+5. **Test**: Use curl or Postman (see [API.md](../API.md) for examples)
+
+### Common Commands
+
+```bash
+npm run dev              # Start dev server (http://localhost:3000)
+npm run build            # Production build
+npm run lint             # ESLint check
+
+# Add shadcn component (frontend)
+npx shadcn@latest add [component-name]
+
+# Generate Supabase types (requires CLI)
+supabase gen types typescript --project-id <id> > lib/supabase/database.types.ts
+```
+
+### Debugging Auth Issues
+
+1. Check Supabase Dashboard > Authentication > Users (user confirmed?)
+2. Verify cookies in browser DevTools (should see `sb-access-token`)
+3. Test session: `curl http://localhost:3000/api/auth/session` (should show authenticated)
+4. Middleware logs: Check terminal for 401 errors
+
+### Testing API Endpoints
+
+```bash
+# Login (saves cookie in -c flag)
+curl -c cookies.txt -X POST http://localhost:3000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@example.com","password":"password"}'
+
+# Use authenticated endpoint
+curl -b cookies.txt http://localhost:3000/api/admin/events
+
+# Public endpoint (no auth)
+curl http://localhost:3000/api/events
+```
+
+## Project-Specific Conventions (Frontend)
+
+### Styling Patterns
+
+- Tailwind v4 with CSS-first approach (`@import "tailwindcss"` in `app/globals.css`)
+- Animation utilities via `tw-animate-css` package
+- Custom dark mode variant: `@custom-variant dark (&:is(.dark *))`
+- All theme tokens defined in `@theme inline` block in globals.css
+
+### Component Structure
+
+- Place reusable components in `components/`
+- Use shadcn/ui components via `@/components/ui` alias
+- Server components by default (App Router convention)
+
+## Documentation Reference
+
+- **[API.md](../API.md)** - Complete API reference with request/response examples
+- **[SETUP.md](../SETUP.md)** - Database setup, deployment, troubleshooting
+- **[API_README.md](../API_README.md)** - Implementation summary and architecture overview
+- **[supabase/schema.sql](../supabase/schema.sql)** - Database schema with inline comments

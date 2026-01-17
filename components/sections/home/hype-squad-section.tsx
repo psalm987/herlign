@@ -52,7 +52,7 @@ export default function HypeSquadSection() {
           <div className="text-center">
             <Button asChild size="lg" className="bg-ohrange-500 ">
               <Link href="https://forms.gle/ErugkNVzSk6mVqUr8" target="_blank">
-                Join the Herlign Hive
+                Join the Herlign FC Hive
               </Link>
             </Button>
           </div>

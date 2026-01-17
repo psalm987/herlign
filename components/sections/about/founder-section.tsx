@@ -9,7 +9,7 @@ const FounderSection = () => {
           <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-4 md:text-left sticky top-28">
             Meet the Woman Behind{" "}
             <span className="font-handwriting text-ohrange-500 text-5xl md:text-7xl">
-              Herlign
+              Herlign FC
             </span>
           </h2>
         </div>
@@ -21,7 +21,7 @@ const FounderSection = () => {
             </span>
             , the heart behind <strong>Herlign Female Creatives</strong>. I
             started this community because I was tired of seeing brilliant women
-            with world-changing ideas get stuck in the planning phase. Herlign
+            with world-changing ideas get stuck in the planning phase. Herlign FC
             is the space I wish I had when I was figuring out my own creative
             path.
             <br />

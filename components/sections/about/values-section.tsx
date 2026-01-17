@@ -53,7 +53,7 @@ const ValuesSection = () => {
             Our Values
           </h2>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            At the heart of Herlign are five guiding values that shape
+            At the heart of Herlign FC are five guiding values that shape
             everything we do.
           </p>
         </div>

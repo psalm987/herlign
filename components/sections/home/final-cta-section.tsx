@@ -15,7 +15,7 @@ export function FinalCtaSection() {
         </p>
 
         <Button asChild size="lg" className="bg-ohrange-500">
-          <Link href="/contact">Join the Herlign community</Link>
+          <Link href="/contact">Join the Herlign Community</Link>
         </Button>
       </div>
     </section>

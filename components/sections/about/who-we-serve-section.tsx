@@ -65,7 +65,7 @@ const WhoWeServeSection = () => {
             </div>
           ))}
           <p className="aspect-2/3 bg-ohrange-500 text-ohrange-100 text-center flex items-center rounded-4xl p-8 font-medium text-4xl">
-            No matter where you are in your journey, Herlign is your creative
+            No matter where you are in your journey, Herlign FC is your creative
             home.
           </p>
         </div>

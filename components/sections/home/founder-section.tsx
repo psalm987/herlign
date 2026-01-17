@@ -32,7 +32,7 @@ export default function FounderSection() {
                 </span>
               </h2>
               <p className="font-sans text-lg md:text-xl text-gray-700 mb-4 leading-relaxed italic">
-                Herlign was created because I wanted every creative woman to
+                Herlign FC was created because I wanted every creative woman to
                 thrive. You deserve a place to grow without fear, and to build
                 without waiting for perfect.
               </p>

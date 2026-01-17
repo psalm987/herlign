@@ -23,7 +23,7 @@ const MissionSection = () => {
             <p className="sm:text-lg md:text-xl">
               To empower women to show up, start anyway, and build boldly,
               whether you&apos;re exploring one passion, juggling many, or
-              balancing work and motherhood. At Herlign, we believe that every
+              balancing work and motherhood. At Herlign FC, we believe that every
               woman deserves a community that cheers her on, challenges her, and
               celebrates her progress.
             </p>

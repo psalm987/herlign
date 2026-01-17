@@ -107,12 +107,16 @@ export function getClientIp(request: Request): string {
     // Try various headers (Vercel sets x-forwarded-for)
     const headers = Object.fromEntries(request.headers.entries());
 
-    return (
+    const ip = (
         headers['x-forwarded-for']?.split(',')[0] ||
         headers['x-real-ip'] ||
         headers['cf-connecting-ip'] || // Cloudflare
-        'unknown'
-    );
+        null
+    )
+    if (!ip) {
+        throw new Error('Unauthorized');
+    }
+    return ip;
 }
 
 /**

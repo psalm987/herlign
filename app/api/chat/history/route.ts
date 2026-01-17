@@ -5,7 +5,7 @@
  */
 
 import { getClientIp } from '@/lib/rate-limit';
-import { hashIp, getOrCreateSession, getSessionMessages } from '@/lib/chat/session';
+import { hashIp, getSessionMessages, getSessionByIP } from '@/lib/chat/session';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -13,8 +13,12 @@ export async function GET(request: NextRequest) {
         const clientIp = getClientIp(request);
         const ipHash = await hashIp(clientIp);
 
-        // Get or create session
-        const session = await getOrCreateSession(ipHash);
+        // Get session by IP
+        const session = await getSessionByIP(ipHash);
+
+        if (!session) {
+            return NextResponse.json({ message: 'Session not found', data: null }, { status: 200 });
+        }
 
         // Get all messages
         const messages = await getSessionMessages(session.id);

@@ -67,6 +67,7 @@ export async function getOrCreateSession(ipHash: string): Promise<ChatSession> {
         .single();
 
     if (createError || !newSession) {
+        if (createError) console.error('Create session error:', createError);
         throw new Error('Failed to create chat session');
     }
 
@@ -89,11 +90,36 @@ export async function getSession(sessionId: string): Promise<ChatSession | null>
         .single();
 
     if (error || !data) {
+        if (error) console.error('Get session error:', error);
         return null;
     }
 
     return data;
 }
+
+/**
+ * Gets chat session by IP
+ * 
+ * @param ipHash - Hashed IP address
+ * @returns Chat session or null
+ */
+export async function getSessionByIP(ipHash: string): Promise<ChatSession | null> {
+    const supabase = createAdminClient();
+
+    const { data, error } = await supabase
+        .from('chat_sessions')
+        .select('*')
+        .eq('guest_ip_hash', ipHash)
+        .single();
+
+    if (error || !data) {
+        return null;
+    }
+
+    return data;
+}
+
+
 
 /**
  * Gets all messages for a session

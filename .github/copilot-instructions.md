@@ -256,24 +256,33 @@ export const revalidate = 300;
 
 ## Environment Variables
 
-Required in `.env.local` (see [.env.example](../.env.example)):
+Required in `.env.local` (see [.env.local](../.env.local)):
 
 ```bash
-# Supabase (get from dashboard > Settings > API)
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=  # Secret! Admin operations only
+# Supabase Configuration
+SUPABASE_URL=
+SUPABASE_PUBLISHABLE_DEFAULT_KEY=
 
-# AI (choose ONE)
-OPENAI_API_KEY=
-# GEMINI_API_KEY=
-# DEEPSEEK_API_KEY=
+# AI Provider (Choose ONE at a time)
+# OpenAI - https://platform.openai.com/api-keys
+# OPENAI_API_KEY=sk-...
 
-# Security
-IP_HASH_SALT=  # Generate: openssl rand -base64 32
+# Google Gemini - https://makersuite.google.com/app/apikey
+GEMINI_API_KEY=
 
-# App
+# DeepSeek - https://platform.deepseek.com
+# DEEPSEEK_API_KEY=...
+
+# Application Security
+# Generate a random salt for IP hashing: openssl rand -base64 32
+IP_HASH_SALT=
+
+# Application URLs
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Optional: Storage Quota Alert (in bytes, default: 1GB = 1073741824)
+STORAGE_QUOTA_LIMIT=1073741824
+STORAGE_ALERT_THRESHOLD=0.8
 ```
 
 ## Development Workflows

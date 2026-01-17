@@ -46,14 +46,14 @@ const WhoWeServeSection = () => {
             <div
               key={who.title}
               className={
-                "relative aspect-2/3 w-full rounded-4xl overflow-hidden"
+                "relative aspect-2/3 w-full rounded-4xl overflow-hidden group"
               }
             >
               <Image
                 src={who.image}
                 alt=""
                 fill
-                className="absolute h-full w-full object-cover hover:scale-110 transition-transform duration-300"
+                className="absolute h-full w-full object-cover group-hover:scale-120 transition-transform duration-300"
               />
               <span className="absolute bg-linear-to-b from-transparent to-black h-48 bottom-0 w-full" />
               <div className="p-8 absolute bottom-0 ">

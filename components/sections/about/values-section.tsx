@@ -74,13 +74,13 @@ const ValuesSection = () => {
                   lermorn:
                     "bg-lermorn-500 text-lermorn-950 shadow-lermorn-500/50",
                 }[value.color],
-                "transition-[opacity,translate] duration-700",
+                "transition-[opacity,translate] duration-500",
                 hasEntered
                   ? "opacity-100 translate-y-0"
-                  : "lg:opacity-0 lg:translate-y-10"
+                  : "lg:opacity-0 lg:translate-y-10",
               )}
               style={{
-                transitionDelay: `${index * 700}ms`,
+                transitionDelay: `${index * 300 + 50}ms`,
               }}
             >
               <div
@@ -92,7 +92,7 @@ const ValuesSection = () => {
                     perple: "bg-perple-500 text-perple-50",
                     ohrange: "bg-ohrange-500 text-ohrange-50",
                     lermorn: "bg-lermorn-500 text-lermorn-950",
-                  }[value.color]
+                  }[value.color],
                 )}
               >
                 <value.icon className="size-10" strokeWidth={1.5} />

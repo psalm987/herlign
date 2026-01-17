@@ -22,10 +22,10 @@ export async function GET(
             .single();
 
         if (error || !data) {
-            return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
+            return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
         }
 
-        return NextResponse.json({ data });
+        return NextResponse.json({ message: 'Successfully retrieved testimonial', data });
     } catch (error) {
         console.error('Get testimonial error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {
@@ -61,10 +61,10 @@ export async function PUT(
             .single();
 
         if (error || !data) {
-            return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
+            return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
         }
 
-        return NextResponse.json({ data, message: 'Testimonial updated successfully' });
+        return NextResponse.json({ message: 'Testimonial updated successfully', data });
     } catch (error) {
         console.error('Update testimonial error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {
@@ -88,7 +88,7 @@ export async function DELETE(
             .eq('id', params.id);
 
         if (error) {
-            return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
+            return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
         }
 
         return NextResponse.json({ message: 'Testimonial deleted successfully' });

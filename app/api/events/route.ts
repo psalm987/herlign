@@ -51,15 +51,24 @@ export async function GET(request: NextRequest) {
 
         if (error) throw error;
 
+        const total = count || 0;
+        const totalPages = Math.ceil(total / limit);
+        const appliedFilters: Record<string, string> = { status: 'published' };
+        if (type) appliedFilters.type = type;
+        if (mode) appliedFilters.mode = mode;
+
         return NextResponse.json(
             {
+                message: `Successfully retrieved ${data?.length || 0} published event(s)`,
                 data: data || [],
                 pagination: {
                     page,
                     limit,
-                    total: count || 0,
-                    totalPages: Math.ceil((count || 0) / limit),
+                    total,
+                    totalPages,
+                    hasNext: page < totalPages,
                 },
+                filters: appliedFilters,
             },
             {
                 headers: {

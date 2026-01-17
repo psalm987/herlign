@@ -27,12 +27,12 @@ export async function GET(
 
         if (error || !data) {
             return NextResponse.json(
-                { error: 'Event not found' },
+                { message: 'Event not found', data: null },
                 { status: 404 }
             );
         }
 
-        return NextResponse.json({ data });
+        return NextResponse.json({ message: 'Successfully retrieved event', data });
     } catch (error) {
         console.error('Get event error:', error);
 
@@ -80,12 +80,12 @@ export async function PUT(
 
         if (error || !data) {
             return NextResponse.json(
-                { error: 'Event not found or unauthorized' },
+                { message: 'Event not found or unauthorized', data: null },
                 { status: 404 }
             );
         }
 
-        return NextResponse.json({ data, message: 'Event updated successfully' });
+        return NextResponse.json({ message: 'Event updated successfully', data });
     } catch (error) {
         console.error('Update event error:', error);
 

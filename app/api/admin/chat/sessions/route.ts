@@ -34,14 +34,21 @@ export async function GET(request: NextRequest) {
             limit,
         });
 
+        const totalPages = Math.ceil(total / limit);
+        const appliedFilters: Record<string, string> = {};
+        if (mode) appliedFilters.mode = mode;
+
         return NextResponse.json({
+            message: `Successfully retrieved ${sessions.length} chat session(s)`,
             data: sessions,
             pagination: {
                 page,
                 limit,
                 total,
-                totalPages: Math.ceil(total / limit),
+                totalPages,
+                hasNext: page < totalPages,
             },
+            filters: appliedFilters,
         });
     } catch (error) {
         console.error('Get chat sessions error:', error);

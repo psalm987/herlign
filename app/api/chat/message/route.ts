@@ -69,9 +69,12 @@ export async function POST(request: NextRequest) {
         }
 
         return NextResponse.json({
-            sessionId: session.id,
-            response: botResponse,
-            mode: session.current_mode,
+            message: 'Message sent successfully',
+            data: {
+                sessionId: session.id,
+                response: botResponse,
+                mode: session.current_mode,
+            },
         });
     } catch (error) {
         console.error('Chat message error:', error);

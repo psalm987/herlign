@@ -48,14 +48,24 @@ export async function GET(request: NextRequest) {
 
         if (error) throw error;
 
+        const total = count || 0;
+        const totalPages = Math.ceil(total / limit);
+        const appliedFilters: Record<string, string> = {};
+        if (format) appliedFilters.format = format;
+        if (category) appliedFilters.category = category;
+        if (tags) appliedFilters.tags = tags;
+
         return NextResponse.json({
+            message: `Successfully retrieved ${data?.length || 0} resource(s)`,
             data: data || [],
             pagination: {
                 page,
                 limit,
-                total: count || 0,
-                totalPages: Math.ceil((count || 0) / limit),
+                total,
+                totalPages,
+                hasNext: page < totalPages,
             },
+            filters: appliedFilters,
         });
     } catch (error) {
         console.error('Get resources error:', error);
@@ -92,7 +102,7 @@ export async function POST(request: NextRequest) {
         if (error) throw error;
 
         return NextResponse.json(
-            { data, message: 'Resource created successfully' },
+            { message: 'Resource created successfully', data },
             { status: 201 }
         );
     } catch (error) {

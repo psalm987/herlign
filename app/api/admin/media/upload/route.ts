@@ -87,8 +87,8 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json(
             {
-                data,
                 message: 'File uploaded successfully',
+                data,
                 quota: {
                     used: quota.used + uploadResult.size!,
                     percentUsed: ((quota.used + uploadResult.size!) / quota.limit) * 100,

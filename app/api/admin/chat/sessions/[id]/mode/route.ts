@@ -35,8 +35,8 @@ export async function POST(
         );
 
         return NextResponse.json({
-            data: updatedSession,
             message: `Chat mode switched to ${mode}`,
+            data: updatedSession,
         });
     } catch (error) {
         console.error('Switch mode error:', error);

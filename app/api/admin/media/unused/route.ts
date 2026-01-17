@@ -21,7 +21,10 @@ export async function GET() {
 
         if (error) throw error;
 
-        return NextResponse.json({ data: data || [] });
+        return NextResponse.json({
+            message: `Successfully retrieved ${data?.length || 0} unused media file(s)`,
+            data: data || []
+        });
     } catch (error) {
         console.error('Get unused media error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {

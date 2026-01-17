@@ -263,23 +263,46 @@ export async function listActiveSessions(filters?: {
 }
 
 /**
- * Cleans up expired chat sessions
+ * Cleans up expired chat sessions and their messages
  * Should be run via cron job daily
  * 
- * @returns Number of sessions deleted
+ * @returns Object with number of sessions and messages deleted
  */
-export async function cleanupExpiredSessions(): Promise<number> {
+export async function cleanupExpiredSessions(): Promise<{ sessions: number; messages: number }> {
     const supabase = createAdminClient();
 
-    const { data, error } = await supabase
+    // Get expired session IDs
+    const { data: expiredSessions, error: fetchError } = await supabase
         .from('chat_sessions')
-        .delete()
-        .lt('expires_at', new Date().toISOString())
-        .select();
+        .select('id')
+        .lt('expires_at', new Date().toISOString());
 
-    if (error) {
-        return 0;
+    if (fetchError || !expiredSessions || expiredSessions.length === 0) {
+        return { sessions: 0, messages: 0 };
     }
 
-    return data?.length || 0;
+    const sessionIds = expiredSessions.map((s: Record<string, unknown>) => s.id);
+
+    // Delete messages for expired sessions
+    const { data: deletedMessages, error: messagesError } = await supabase
+        .from('chat_messages')
+        .delete()
+        .in('session_id', sessionIds)
+        .select();
+
+    // Delete expired sessions
+    const { data: deletedSessions, error: sessionsError } = await supabase
+        .from('chat_sessions')
+        .delete()
+        .in('id', sessionIds)
+        .select();
+
+    if (messagesError || sessionsError) {
+        console.error('Cleanup error:', { messagesError, sessionsError });
+    }
+
+    return {
+        sessions: deletedSessions?.length || 0,
+        messages: deletedMessages?.length || 0,
+    };
 }

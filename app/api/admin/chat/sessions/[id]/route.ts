@@ -17,19 +17,22 @@ export async function GET(
         await requireAuth();
         const session = await getSession(params.id);
         if (!session) {
-            return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+            return NextResponse.json({ message: 'Session not found', data: null }, { status: 404 });
         }
 
         const messages = await getSessionMessages(params.id);
 
         return NextResponse.json({
-            session,
-            messages: messages.map((msg) => ({
-                id: msg.id,
-                sender: msg.sender_type,
-                content: msg.content,
-                timestamp: msg.created_at,
-            })),
+            message: 'Successfully retrieved chat session',
+            data: {
+                session,
+                messages: messages.map((msg) => ({
+                    id: msg.id,
+                    sender: msg.sender_type,
+                    content: msg.content,
+                    timestamp: msg.created_at,
+                })),
+            },
         });
     } catch (error) {
         console.error('Get session error:', error);
@@ -68,7 +71,7 @@ export async function POST(
         // Add admin message
         await addMessage(params.id, 'admin', message);
 
-        return NextResponse.json({ message: 'Message sent successfully' });
+        return NextResponse.json({ message: 'Message sent successfully', data: null });
     } catch (error) {
         console.error('Send message error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {

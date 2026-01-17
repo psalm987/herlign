@@ -22,10 +22,10 @@ export async function GET(
             .single();
 
         if (error || !data) {
-            return NextResponse.json({ error: 'Link not found' }, { status: 404 });
+            return NextResponse.json({ message: 'Link not found', data: null }, { status: 404 });
         }
 
-        return NextResponse.json({ data });
+        return NextResponse.json({ message: 'Successfully retrieved link', data });
     } catch (error) {
         console.error('Get link error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {
@@ -63,12 +63,12 @@ export async function PUT(
 
         if (error || !data) {
             return NextResponse.json(
-                { error: 'Link not found or unauthorized' },
+                { message: 'Link not found or unauthorized', data: null },
                 { status: 404 }
             );
         }
 
-        return NextResponse.json({ data, message: 'Link updated successfully' });
+        return NextResponse.json({ message: 'Link updated successfully', data });
     } catch (error) {
         console.error('Update link error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {

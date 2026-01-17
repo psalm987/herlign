@@ -24,10 +24,10 @@ export async function POST(
             .single();
 
         if (error || !data) {
-            return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
+            return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
         }
 
-        return NextResponse.json({ data, message: 'Testimonial approved successfully' });
+        return NextResponse.json({ message: 'Testimonial approved successfully', data });
     } catch (error) {
         console.error('Approve testimonial error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {

@@ -43,14 +43,23 @@ export async function GET(request: NextRequest) {
 
         if (error) throw error;
 
+        const total = count || 0;
+        const totalPages = Math.ceil(total / limit);
+        const appliedFilters: Record<string, string | number | boolean> = {};
+        if (rating !== undefined) appliedFilters.rating = rating;
+        if (is_approved !== undefined) appliedFilters.is_approved = is_approved;
+
         return NextResponse.json({
+            message: `Successfully retrieved ${data?.length || 0} testimonial(s)`,
             data: data || [],
             pagination: {
                 page,
                 limit,
-                total: count || 0,
-                totalPages: Math.ceil((count || 0) / limit),
+                total,
+                totalPages,
+                hasNext: page < totalPages,
             },
+            filters: appliedFilters,
         });
     } catch (error) {
         console.error('Get testimonials error:', error);
@@ -87,7 +96,7 @@ export async function POST(request: NextRequest) {
         if (error) throw error;
 
         return NextResponse.json(
-            { data, message: 'Testimonial created successfully' },
+            { message: 'Testimonial created successfully', data },
             { status: 201 }
         );
     } catch (error) {

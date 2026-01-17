@@ -21,10 +21,10 @@ export async function GET(
             .single();
 
         if (error || !data) {
-            return NextResponse.json({ error: 'Resource not found' }, { status: 404 });
+            return NextResponse.json({ message: 'Resource not found', data: null }, { status: 404 });
         }
 
-        return NextResponse.json({ data });
+        return NextResponse.json({ message: 'Successfully retrieved resource', data });
     } catch (error) {
         console.error('Get resource error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {
@@ -62,12 +62,12 @@ export async function PUT(
 
         if (error || !data) {
             return NextResponse.json(
-                { error: 'Resource not found or unauthorized' },
+                { message: 'Resource not found or unauthorized', data: null },
                 { status: 404 }
             );
         }
 
-        return NextResponse.json({ data, message: 'Resource updated successfully' });
+        return NextResponse.json({ message: 'Resource updated successfully', data });
     } catch (error) {
         console.error('Update resource error:', error);
         if (error instanceof Error && error.message === 'Unauthorized') {

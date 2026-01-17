@@ -56,14 +56,24 @@ export async function GET(request: NextRequest) {
             throw error;
         }
 
+        const total = count || 0;
+        const totalPages = Math.ceil(total / limit);
+        const appliedFilters: Record<string, string> = {};
+        if (type) appliedFilters.type = type;
+        if (mode) appliedFilters.mode = mode;
+        if (status) appliedFilters.status = status;
+
         return NextResponse.json({
+            message: `Successfully retrieved ${data?.length || 0} event(s)`,
             data: data || [],
             pagination: {
                 page,
                 limit,
-                total: count || 0,
-                totalPages: Math.ceil((count || 0) / limit),
+                total,
+                totalPages,
+                hasNext: page < totalPages,
             },
+            filters: appliedFilters,
         });
     } catch (error) {
         console.error('Get events error:', error);
@@ -112,7 +122,7 @@ export async function POST(request: NextRequest) {
         }
 
         return NextResponse.json(
-            { data, message: 'Event created successfully' },
+            { message: 'Event created successfully', data },
             { status: 201 }
         );
     } catch (error) {

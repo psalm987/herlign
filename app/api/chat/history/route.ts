@@ -24,6 +24,7 @@ export async function GET(request: NextRequest) {
         const messages = await getSessionMessages(session.id);
 
         return NextResponse.json({
+            message: `Successfully retrieved ${messages.length} message(s) from chat history`,
             sessionId: session.id,
             mode: session.current_mode,
             messages: messages.map((msg) => ({

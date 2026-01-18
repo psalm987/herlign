@@ -67,7 +67,7 @@ export default function EventDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-grin-50 to-white py-12">
+    <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Back Button */}
         <Link

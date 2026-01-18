@@ -7,7 +7,7 @@ import { Check } from "lucide-react";
 const WhoThisIsForSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { isInViewport } = useViewport(ref, {
-    threshold: 0.3,
+    threshold: 0.5,
     direction: "both",
   });
 
@@ -20,7 +20,7 @@ const WhoThisIsForSection = () => {
 
   return (
     <section className="py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4">
         <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 mb-4 text-center">
           Who{" "}
           <span className="font-handwriting text-ohrange-500 text-5xl md:text-6xl lg:text-7xl">
@@ -32,7 +32,10 @@ const WhoThisIsForSection = () => {
           &quot;Start Anyway&quot; is for women who:
         </p>
 
-        <div className="lg:grid lg:grid-cols-2 lg:gap-8 space-y-6 lg:space-y-0">
+        <div
+          ref={ref}
+          className="lg:grid lg:grid-cols-2 lg:gap-8 space-y-6 lg:space-y-0"
+        >
           {/* Left Card */}
           <div
             className={cn(
@@ -76,20 +79,23 @@ const WhoThisIsForSection = () => {
               ))}
             </div>
           </div>
-        </div>
-
-        <div
-          className={cn(
-            "mt-8 bg-linear-to-br from-ohrange-50 to-peenk-50 border border-ohrange-100 p-8 rounded-3xl text-center",
-            "transition-transform duration-500",
-            isInViewport && "lg:scale-105",
-          )}
-        >
-          <p className="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
-            No matter your background, schedule, or stage in life, this is a
-            toolkit designed for you to take your next step{" "}
-            <span className="font-semibold text-perple-600">without fear</span>.
-          </p>
+          <div
+            className={cn(
+              "mt-8 bg-linear-to-br from-ohrange-50 to-peenk-50 border border-ohrange-100 p-8 rounded-3xl text-center",
+              "transition-transform duration-500",
+              //   isInViewport && "lg:scale-105",
+              "col-span-2",
+            )}
+          >
+            <p className="text-xl md:text-2xl text-gray-800 leading-relaxed italic">
+              No matter your background, schedule, or stage in life, this is a
+              toolkit designed for you to take your next step{" "}
+              <span className="font-semibold text-perple-600">
+                without fear
+              </span>
+              .
+            </p>
+          </div>
         </div>
       </div>
     </section>

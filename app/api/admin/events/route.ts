@@ -7,6 +7,7 @@
 import { requireAuth } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { eventSchema, eventQuerySchema } from '@/lib/validators/events';
+import { generateUniqueSlug } from '@/lib/utils/slug';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -130,7 +131,27 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const eventData = { ...validation.data, admin_id: user.id };
+        // Generate unique slug if not provided
+        let slug = validation.data.slug;
+        if (!slug) {
+            slug = await generateUniqueSlug(validation.data.title);
+        } else {
+            // Verify slug is unique if provided by admin
+            const { data: existingEvent } = await supabase
+                .from('events')
+                .select('id')
+                .eq('slug', slug)
+                .single();
+
+            if (existingEvent) {
+                return NextResponse.json(
+                    { error: 'Slug already exists', details: 'Please choose a different slug' },
+                    { status: 400 }
+                );
+            }
+        }
+
+        const eventData = { ...validation.data, slug, admin_id: user.id };
 
         // Create event
         const { data, error } = await supabase

@@ -31,7 +31,7 @@ const GOALS = [
 const OurStorySection = () => {
   return (
     <section className="py-8 sm:py-20 md:py-28 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-4 max-w-xl mx-auto ">
             Our Story
@@ -57,7 +57,7 @@ const OurStorySection = () => {
                     peenk: " text-peenk-500",
                     grin: " text-grin-500",
                     lermorn: "text-lermorn-500",
-                  }[goal.color]
+                  }[goal.color],
                 )}
               >
                 <goal.icon className="size-8" />

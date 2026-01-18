@@ -26,6 +26,7 @@ export interface Database {
                     type: 'event' | 'workshop';
                     mode: 'live' | 'online';
                     title: string;
+                    slug: string;
                     description: string;
                     external_link: string | null;
                     start_date: string;
@@ -45,6 +46,7 @@ export interface Database {
                     type: 'event' | 'workshop';
                     mode: 'live' | 'online';
                     title: string;
+                    slug?: string;
                     description: string;
                     external_link?: string | null;
                     start_date: string;
@@ -64,6 +66,7 @@ export interface Database {
                     type?: 'event' | 'workshop';
                     mode?: 'live' | 'online';
                     title?: string;
+                    slug?: string;
                     description?: string;
                     external_link?: string | null;
                     start_date?: string;

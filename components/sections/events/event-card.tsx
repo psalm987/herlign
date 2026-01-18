@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { Event } from "@/lib/tanstack/types";
 import Image from "next/image";
+import Link from "next/link";
 
 interface EventCardProps {
   event: Event;
@@ -42,10 +43,26 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
     });
   };
 
+  const statusBadge = (
+    <div className="absolute left-3 top-3">
+      <span
+        className={cn(
+          "rounded-full px-3 py-1 text-xs font-medium",
+          isUpcoming && "bg-grin-600 text-white",
+          isPast && "bg-gray-600 text-white",
+          !isUpcoming && !isPast && "bg-perple-600 text-white",
+        )}
+      >
+        {isPast ? "Past" : isUpcoming ? "Upcoming" : "Ongoing"}
+      </span>
+    </div>
+  );
+
   return (
-    <div
+    <Link
+      href={`/events/${event.slug}`}
       className={cn(
-        "group relative flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 transition-all hover:shadow-lg md:flex-row md:gap-6",
+        " group relative flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 transition-all hover:outline-lermorn-500 hover:outline-2 hover:border-lermorn-600 hover:shadow-2xl hover:shadow-lermorn-700/20 cursor-pointer md:flex-row md:gap-6",
         isPast && "opacity-60",
       )}
     >
@@ -58,23 +75,12 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
             alt={event.title}
             className="h-full w-full object-cover transition-transform group-hover:scale-105"
           />
-          {/* Status Badge */}
-          <div className="absolute left-3 top-3">
-            <span
-              className={cn(
-                "rounded-full px-3 py-1 text-xs font-medium",
-                isUpcoming && "bg-grin-500 text-white",
-                isPast && "bg-gray-500 text-white",
-                !isUpcoming && !isPast && "bg-perple-500 text-white",
-              )}
-            >
-              {isPast ? "Past" : isUpcoming ? "Upcoming" : "Ongoing"}
-            </span>
-          </div>
+          {statusBadge}
         </div>
       ) : (
-        <div className="flex h-48 w-full items-center justify-center rounded-lg bg-linear-to-br from-grin-100 to-lermorn-100 md:h-auto md:w-64 shrink-0">
-          <Calendar className="size-16 text-grin-500" />
+        <div className="relative flex h-48 w-full items-center justify-center rounded-lg bg-linear-to-br from-grin-500 to-grin-600 md:h-auto md:w-64 shrink-0">
+          <Calendar className="size-16 text-grin-100" />
+          {statusBadge}
         </div>
       )}
 
@@ -106,7 +112,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
           </div>
 
           {/* Title and Description */}
-          <h3 className="mb-2 font-heading text-xl font-semibold text-gray-900 group-hover:text-grin-600 transition-colors">
+          <h3 className="mb-2 font-heading text-xl font-semibold text-gray-900">
             {event.title}
           </h3>
           <p className="mb-4 line-clamp-2 text-sm text-gray-600">
@@ -161,11 +167,11 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
             </Button>
           ) : (
             <Button disabled className="bg-gray-400">
-              Registration Closed
+              {isUpcoming ? "Anticipate!" : "Registration Closed"}
             </Button>
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

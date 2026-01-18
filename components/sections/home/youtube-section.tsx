@@ -6,7 +6,7 @@ import LINKS from "@/components/constants/links";
 export default function YoutubeSection() {
   return (
     <section className="py-20 md:py-28 bg-peenk-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-center items-center gap-10">
           <div className="flex-1 aspect-video overflow-x-hidden md:min-h-80 w-full">
             <YouTubeEmbed

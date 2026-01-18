@@ -89,7 +89,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
 
   return (
     <section className="w-full py-8">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Search Bar with Filter Button */}
         <div className="relative">
           <TextField
@@ -102,6 +102,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
             variant="grin"
             startDecoration={<Search className="size-5" />}
             className="pr-14"
+            inputSize="lg"
           />
 
           {/* Filter Popover Trigger */}

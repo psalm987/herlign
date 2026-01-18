@@ -32,7 +32,7 @@ const WHO_WE_SERVE = [
 const WhoWeServeSection = () => {
   return (
     <section className="py-8 sm:py-20 md:py-28 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-4 max-w-xl mx-auto ">
             Who We Serve
@@ -46,14 +46,14 @@ const WhoWeServeSection = () => {
             <div
               key={who.title}
               className={
-                "relative aspect-2/3 w-full rounded-4xl overflow-hidden group"
+                "relative aspect-2/3 w-full rounded-4xl overflow-hidden group cursor-none"
               }
             >
               <Image
                 src={who.image}
                 alt=""
                 fill
-                className="absolute h-full w-full object-cover group-hover:scale-120 transition-transform duration-300"
+                className="absolute h-full w-full object-cover group-hover:scale-120 group-hover:blur-xs  transition-transform duration-300"
               />
               <span className="absolute bg-linear-to-b from-transparent to-black h-48 bottom-0 w-full" />
               <div className="p-8 absolute bottom-0 ">

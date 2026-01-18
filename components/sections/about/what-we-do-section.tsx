@@ -39,7 +39,7 @@ const WhatWeDoSection = () => {
     <section className="py-8 sm:py-20 md:py-28 relative overflow-hidden bg-white">
       {/* Decorative background elements */}
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-6xl font-semibold text-gray-900 mb-4">
             What We Do

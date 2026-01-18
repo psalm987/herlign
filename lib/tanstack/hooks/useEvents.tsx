@@ -13,6 +13,7 @@ import type {
   Event,
   EventQuery,
   PaginatedResponse,
+  ApiResponse,
 } from "@/lib/tanstack/types";
 
 // =====================================================
@@ -32,6 +33,24 @@ export function useEvents(
   return useQuery<PaginatedResponse<Event>, Error>({
     queryKey: eventKeys.list(params),
     queryFn: () => eventActions.getEvents(params),
+    ...options,
+  });
+}
+
+/**
+ * Hook to get a single event by slug (public)
+ */
+export function useEventBySlug(
+  slug: string,
+  options?: Omit<
+    UseQueryOptions<ApiResponse<Event>, Error>,
+    "queryKey" | "queryFn"
+  >,
+) {
+  return useQuery<ApiResponse<Event>, Error>({
+    queryKey: eventKeys.detail(slug, "slug"),
+    queryFn: () => eventActions.getEventBySlug(slug),
+    enabled: !!slug, // Only fetch if slug is provided
     ...options,
   });
 }

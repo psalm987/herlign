@@ -26,6 +26,13 @@ export async function getEvents(
     return api.get<PaginatedResponse<Event>>('/api/events', params);
 }
 
+/**
+ * Get single event by slug (public)
+ */
+export async function getEventBySlug(slug: string): Promise<ApiResponse<Event>> {
+    return api.get<ApiResponse<Event>>(`/api/events/${slug}`);
+}
+
 // =====================================================
 // Admin Actions
 // =====================================================

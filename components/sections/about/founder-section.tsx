@@ -4,7 +4,7 @@ import Link from "next/link";
 const FounderSection = () => {
   return (
     <section className="py-8 sm:py-20 md:py-28 bg-ohrange-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-2 gap-12">
         <div className="h-full">
           <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-4 md:text-left sticky top-28">
             Meet the Woman Behind{" "}
@@ -21,8 +21,8 @@ const FounderSection = () => {
             </span>
             , the heart behind <strong>Herlign Female Creatives</strong>. I
             started this community because I was tired of seeing brilliant women
-            with world-changing ideas get stuck in the planning phase. Herlign FC
-            is the space I wish I had when I was figuring out my own creative
+            with world-changing ideas get stuck in the planning phase. Herlign
+            FC is the space I wish I had when I was figuring out my own creative
             path.
             <br />
             <br />

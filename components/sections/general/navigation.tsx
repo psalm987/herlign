@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Logo from "@/components/svg/logo";
@@ -15,6 +15,7 @@ const navLinks: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/start-anyway", label: "Start Anyway" },
   { href: "/events", label: "Events" },
+  { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -22,47 +23,65 @@ interface HeaderColorConfig {
   header: string;
   logo: string;
   bg: string;
+  path: string;
 }
 
-interface HeaderColorConfigMap {
-  [key: string]: HeaderColorConfig;
-}
-
-const headerColorConfig: HeaderColorConfigMap = {
-  "/": {
+const headerColorConfig: HeaderColorConfig[] = [
+  {
+    path: "/",
     header: "bg-peenk-500/50 text-gray-900 border-peenk-300",
     bg: "bg-peenk-500",
     logo: "fill-ohrange-500",
   },
-  "/about": {
+  {
+    path: "/about",
     header: "bg-perple-500/90 text-white border-perple-400",
     bg: "bg-perple-500",
     logo: "fill-ohrange-500",
   },
-  "/start-anyway": {
+  {
+    path: "/start-anyway",
     header: "bg-peenk-500/50 text-gray-700 border-peenk-300",
     bg: "bg-peenk-500",
     logo: "fill-ohrange-500",
   },
-  "/contact": {
+  {
+    path: "/contact",
     header: "bg-ohrange-500/50 text-white border-ohrange-400",
     bg: "bg-ohrange-500",
     logo: "fill-white",
   },
-  "/events": {
+  {
+    path: "/events",
     header: "bg-grin-500/50 text-white border-grin-400",
     bg: "bg-grin-500",
     logo: "fill-lermorn-500",
   },
-};
+];
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const pathname = usePathname();
 
-  const headerColor =
-    headerColorConfig[pathname || "/"] || headerColorConfig["/"];
+  const checkCurrentPath = useCallback(
+    (path?: string) => {
+      return path === "/"
+        ? pathname === "/"
+        : !!path &&
+            pathname?.toLocaleLowerCase()?.includes(path?.toLocaleLowerCase());
+    },
+    [pathname],
+  );
+
+  const headerColor = useMemo(
+    () =>
+      headerColorConfig.find((config) => {
+        console.log({ path: config?.path, pathname });
+        return checkCurrentPath(config?.path);
+      }) || headerColorConfig[0],
+    [checkCurrentPath, pathname],
+  );
 
   return (
     <>
@@ -71,7 +90,7 @@ export function Navigation() {
         className={cn(
           "sticky top-0 z-50 w-full",
           "backdrop-blur-sm border-b",
-          headerColor.header
+          headerColor.header,
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -111,8 +130,8 @@ export function Navigation() {
                     href={link.href}
                     className={cn(
                       "text-sm font-bold transition-colors uppercase",
-                      pathname?.toLowerCase() !== link.href?.toLowerCase() &&
-                        "font-medium opacity-70 hover:opacity-100"
+                      !checkCurrentPath(link.href?.toLocaleLowerCase()) &&
+                        "font-medium opacity-70 hover:opacity-100",
                     )}
                   >
                     {link.label}
@@ -130,7 +149,7 @@ export function Navigation() {
         <nav
           className={cn(
             "md:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out",
-            mobileMenuOpen ? "max-h-96" : "max-h-0"
+            mobileMenuOpen ? "max-h-96" : "max-h-0",
           )}
         >
           <div className="px-4 py-4 space-y-3">
@@ -139,7 +158,7 @@ export function Navigation() {
               onClick={() => setMobileMenuOpen(false)}
               className={cn(
                 "block font-sans text-base text-gray-700 font-medium py-2 transition-colors",
-                pathname?.toLowerCase() === "/" && "font-bold"
+                pathname?.toLowerCase() === "/" && "font-bold",
               )}
             >
               Home
@@ -152,7 +171,7 @@ export function Navigation() {
                 className={cn(
                   "block font-sans text-base text-gray-700 font-medium py-2 transition-colors",
                   pathname?.toLowerCase() === link.href?.toLowerCase() &&
-                    "font-bold"
+                    "font-bold",
                 )}
               >
                 {link.label}

@@ -91,7 +91,7 @@ export const FeaturedCarouselSection: React.FC<
                 className="h-full w-full object-cover"
               />
             ) : (
-              <div className="h-full w-full bg-linear-to-br from-grin-500 via-perple-500 to-peenk-500" />
+              <div className="h-full w-full bg-linear-to-br from-grin-400 via-perple-500 to-peenk-800" />
             )}
             <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-black/20" />
           </div>
@@ -108,8 +108,8 @@ export const FeaturedCarouselSection: React.FC<
                   className={cn(
                     "rounded-full px-3 py-1 text-xs font-medium text-white",
                     currentEvent.type === "workshop"
-                      ? "bg-ohrange-500"
-                      : "bg-peenk-500",
+                      ? "bg-ohrange-500/50"
+                      : "bg-peenk-500/50",
                   )}
                 >
                   {currentEvent.type === "workshop" ? "Workshop" : "Event"}
@@ -118,8 +118,8 @@ export const FeaturedCarouselSection: React.FC<
                   className={cn(
                     "rounded-full px-3 py-1 text-xs font-medium text-white",
                     currentEvent.mode === "online"
-                      ? "bg-perple-500"
-                      : "bg-lermorn-500",
+                      ? "bg-perple-500/50 "
+                      : "bg-lermorn-500/50",
                   )}
                 >
                   {currentEvent.mode === "online" ? "Online" : "Live"}

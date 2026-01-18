@@ -10,7 +10,7 @@ const AboutHeroSection = () => {
         alt=""
         priority
       />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <h2 className="font-heading text-3xl sm:text-5xl  md:text-7xl font-semibold text-white mb-4 text-center max-w-xl mx-auto">
           Inside Every Hero is a{" "}
           <span className="font-handwriting text-ohrange-500 text-4xl sm:text-6xl md:text-8xl">

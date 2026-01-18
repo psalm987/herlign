@@ -47,7 +47,7 @@ const ValuesSection = () => {
 
   return (
     <section className="py-8 sm:py-20 md:py-28 bg-gray-800">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-24">
           <h2 className="font-heading text-4xl md:text-6xl font-semibold text-white mb-4">
             Our Values

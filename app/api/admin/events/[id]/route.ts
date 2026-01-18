@@ -7,6 +7,7 @@
 import { requireAuth } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { eventUpdateSchema } from '@/lib/validators/events';
+import { isValidSlug } from '@/lib/utils/slug';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -69,6 +70,31 @@ export async function PUT(
                 { error: 'Validation failed', details: validation.error.message },
                 { status: 400 }
             );
+        }
+
+        // If slug is being updated, validate it and check uniqueness
+        if (validation.data.slug) {
+            if (!isValidSlug(validation.data.slug)) {
+                return NextResponse.json(
+                    { error: 'Invalid slug format', details: 'Slug must be 6-20 characters, lowercase letters, numbers, and hyphens only' },
+                    { status: 400 }
+                );
+            }
+
+            // Check if slug already exists (excluding current event)
+            const { data: existingEvent } = await supabase
+                .from('events')
+                .select('id')
+                .eq('slug', validation.data.slug)
+                .neq('id', id)
+                .single();
+
+            if (existingEvent) {
+                return NextResponse.json(
+                    { error: 'Slug already exists', details: 'Please choose a different slug' },
+                    { status: 400 }
+                );
+            }
         }
 
         // Update event

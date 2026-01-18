@@ -18,6 +18,11 @@ const baseEventSchema = z.object({
     title: z.string()
         .min(1, 'Title is required')
         .max(255, 'Title must be less than 255 characters'),
+    slug: z.string()
+        .min(6, 'Slug must be at least 6 characters')
+        .max(20, 'Slug must be less than 20 characters')
+        .regex(/^[a-z0-9-]+$/, 'Slug must contain only lowercase letters, numbers, and hyphens')
+        .optional(),
     description: z.string()
         .min(10, 'Description must be at least 10 characters')
         .max(5000, 'Description must be less than 5000 characters'),

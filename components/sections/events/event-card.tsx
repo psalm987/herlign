@@ -62,7 +62,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
     <Link
       href={`/events/${event.slug}`}
       className={cn(
-        " group relative flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 transition-all hover:outline-lermorn-500 hover:outline-2 hover:border-lermorn-600 hover:shadow-2xl hover:shadow-lermorn-700/20 cursor-pointer md:flex-row md:gap-6",
+        " group relative flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 transition-all hover:outline-lermorn-500 hover:outline-2 hover:border-lermorn-600 focus:outline-lermorn-500 focus:outline-2 focus:border-lermorn-600 cursor-pointer md:flex-row md:gap-6",
         isPast && "opacity-60",
       )}
     >

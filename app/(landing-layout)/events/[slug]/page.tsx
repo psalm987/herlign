@@ -22,17 +22,17 @@ export default function EventDetailPage() {
   // Handle loading state
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-linear-to-b from-grin-50 to-white py-12">
+      <div className="min-h-screen bg-white py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="animate-pulse">
-            <div className="h-8 w-32 bg-grin-200 rounded mb-8" />
-            <div className="h-96 bg-grin-100 rounded-lg mb-6" />
-            <div className="h-12 w-3/4 bg-grin-200 rounded mb-4" />
-            <div className="h-6 w-1/2 bg-grin-100 rounded mb-8" />
+            <div className="h-8 w-32 bg-gray-200 rounded mb-8" />
+            <div className="h-96 bg-gray-200 rounded-lg mb-6" />
+            <div className="h-12 w-3/4 bg-gray-200 rounded mb-4" />
+            <div className="h-6 w-1/2 bg-gray-200 rounded mb-8" />
             <div className="space-y-3">
-              <div className="h-4 bg-grin-100 rounded w-full" />
-              <div className="h-4 bg-grin-100 rounded w-5/6" />
-              <div className="h-4 bg-grin-100 rounded w-4/6" />
+              <div className="h-4 bg-gray-200 rounded w-full" />
+              <div className="h-4 bg-gray-200 rounded w-5/6" />
+              <div className="h-4 bg-gray-200 rounded w-4/6" />
             </div>
           </div>
         </div>

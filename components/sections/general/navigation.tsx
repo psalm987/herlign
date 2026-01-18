@@ -53,9 +53,15 @@ const headerColorConfig: HeaderColorConfig[] = [
   },
   {
     path: "/events",
-    header: "bg-grin-500/50 text-white border-grin-400",
+    header: "bg-grin-500/70 text-white border-grin-400",
     bg: "bg-grin-500",
     logo: "fill-lermorn-500",
+  },
+  {
+    path: "/resources",
+    header: "bg-lermorn-500/70 text-gray-900 border-lermorn-400",
+    bg: "bg-lermorn-500",
+    logo: "fill-grin-500",
   },
 ];
 

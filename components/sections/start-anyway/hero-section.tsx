@@ -3,16 +3,18 @@ import Image from "next/image";
 
 const StartAnywayHeroSection = () => {
   return (
-    <section className="bg-peenk-500 relative overflow-hidden">
+    <section className="bg-peenk-500 relative overflow-hidden group ">
       <Image
         src="/images/png/patterns/ohrange-500-mini.png"
         alt=""
         fill
-        className="absolute h-auto w-screen object-cover"
+        className="absolute h-auto w-screen object-cover scale-200 group-hover:blur-2xl transition-all duration-700 "
         priority
       />
+      <span className=" inset-0 bg-ohrange-800 h-full w-full absolute opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
       <div className="py-20 md:py-28 px-8 relative flex flex-col max-w-4xl mx-auto text-white text-center md:text-left">
         <Logo
+          animate
           size={150}
           className="fill-white self-end mb-12 hidden md:inline"
         />

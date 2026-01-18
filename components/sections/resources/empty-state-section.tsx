@@ -1,6 +1,6 @@
 /**
- * Empty State Section
- * Displays when no events match filters
+ * Empty State Section for Resources
+ * Displays when no resources match filters
  */
 
 import React from "react";
@@ -8,32 +8,24 @@ import Empty from "@/components/svg/empty";
 import { Button } from "@/components/ui/button";
 
 interface EmptyStateSectionProps {
-  error?: boolean;
   hasFilters?: boolean;
   onClearFilters?: () => void;
 }
 
 export const EmptyStateSection: React.FC<EmptyStateSectionProps> = ({
   hasFilters = false,
-  error = false,
   onClearFilters,
 }) => {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4">
       <Empty size={300} />
       <h3 className="mt-6 font-heading text-2xl font-semibold text-gray-900">
-        {error
-          ? "Error loading events"
-          : hasFilters
-            ? "No events found"
-            : "No events yet"}
+        {hasFilters ? "No resources found" : "No resources yet"}
       </h3>
       <p className="mt-2 max-w-md text-center text-gray-600">
-        {error
-          ? "Failed to load events. Please try again later."
-          : hasFilters
-            ? "We couldn't find any events matching your filters. Try adjusting your search criteria."
-            : "There are no events available at the moment. Check back soon for upcoming events and workshops!"}
+        {hasFilters
+          ? "We couldn't find any resources matching your filters. Try adjusting your search criteria."
+          : "There are no resources available at the moment. Check back soon for new ebooks, guides, and templates!"}
       </p>
       {hasFilters && onClearFilters && (
         <Button

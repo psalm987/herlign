@@ -136,12 +136,11 @@ function EventsPage() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="font-heading text-2xl font-semibold text-gray-900 mb-2">
-            Oops! Something went wrong
-          </h2>
-          <p className="text-gray-600">{error.message}</p>
-        </div>
+        <EmptyStateSection
+          error
+          hasFilters={hasActiveFilters}
+          onClearFilters={handleClearFilters}
+        />
       </div>
     );
   }
@@ -152,7 +151,7 @@ function EventsPage() {
   return (
     <div className="min-h-screen bg-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-4">
+        <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-8">
           Events/Workshops
         </h2>
       </div>
@@ -188,6 +187,14 @@ function EventsPage() {
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
+      ) : !!error ? (
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
+            <p className="text-red-600">
+              Failed to load events. Please try again later.
+            </p>
+          </div>
+        </div>
       ) : (
         <EmptyStateSection
           hasFilters={hasActiveFilters}

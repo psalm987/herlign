@@ -2,10 +2,10 @@ import Image from "next/image";
 
 const AboutHeroSection = () => {
   return (
-    <section className="py-8 sm:py-20 md:py-28 bg-perple-700 relative">
+    <section className="py-8 sm:py-20 md:py-28 bg-perple-700 relative overflow-hidden">
       <Image
         fill
-        className="absolute inset-0 h-full w-auto object-cover md:object-fill 2xl:object-contain "
+        className="absolute inset-0 h-full w-auto object-cover md:object-fill 2xl:object-contain lg:scale-100 2xl:scale-230"
         src="/images/png/perple-bound-left.png"
         alt=""
         priority

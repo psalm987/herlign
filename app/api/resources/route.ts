@@ -17,11 +17,12 @@ export async function GET(request: NextRequest) {
 
         const searchParams = request.nextUrl.searchParams;
         const queryValidation = resourceQuerySchema.safeParse({
-            format: searchParams.get('format'),
-            category: searchParams.get('category'),
-            tags: searchParams.get('tags'),
-            page: searchParams.get('page'),
-            limit: searchParams.get('limit'),
+            format: searchParams.get('format') || undefined,
+            category: searchParams.get('category') || undefined,
+            tags: searchParams.get('tags') || undefined,
+            search: searchParams.get('search') || undefined,
+            page: searchParams.get('page') || undefined,
+            limit: searchParams.get('limit') || undefined,
         });
 
         if (!queryValidation.success) {
@@ -31,7 +32,7 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        const { format, category, tags, page, limit } = queryValidation.data;
+        const { format, category, tags, search, page, limit } = queryValidation.data;
         const offset = (page - 1) * limit;
 
         let query = supabase.from('resources').select('*', { count: 'exact' });
@@ -41,6 +42,11 @@ export async function GET(request: NextRequest) {
         if (tags) {
             const tagArray = tags.split(',').map(t => t.trim());
             query = query.overlaps('tags', tagArray);
+        }
+
+        // Text search - search in title and description
+        if (search) {
+            query = query.or(`title.ilike.%${search}%,description.ilike.%${search}%`);
         }
 
         query = query
@@ -57,6 +63,7 @@ export async function GET(request: NextRequest) {
         if (format) appliedFilters.format = format;
         if (category) appliedFilters.category = category;
         if (tags) appliedFilters.tags = tags;
+        if (search) appliedFilters.search = search;
 
         return NextResponse.json(
             {

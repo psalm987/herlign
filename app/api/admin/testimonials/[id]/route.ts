@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/server';
 import { testimonialUpdateSchema } from '@/lib/validators/testimonials';
 import { updateMediaUseCounts, decrementMediaUseCount } from '@/lib/utils/media-count';
 import { NextRequest, NextResponse } from 'next/server';
+import { Testimonial } from '@/lib/tanstack/types';
 
 export async function GET(
     request: NextRequest,
@@ -82,7 +83,7 @@ export async function PUT(
         if (validation.data.avatar_url !== undefined) {
             await updateMediaUseCounts(
                 supabase,
-                currentTestimonial.avatar_url,
+                (currentTestimonial as Testimonial)?.avatar_url,
                 validation.data.avatar_url
             );
         }
@@ -127,8 +128,8 @@ export async function DELETE(
         }
 
         // Decrement media use_count if avatar_url exists
-        if (currentTestimonial.avatar_url) {
-            await decrementMediaUseCount(supabase, currentTestimonial.avatar_url);
+        if ((currentTestimonial as Testimonial)?.avatar_url) {
+            await decrementMediaUseCount(supabase, (currentTestimonial as Testimonial).avatar_url);
         }
 
         return NextResponse.json({ message: 'Testimonial deleted successfully' });

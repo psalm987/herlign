@@ -10,6 +10,7 @@ import { eventUpdateSchema } from '@/lib/validators/events';
 import { isValidSlug } from '@/lib/utils/slug';
 import { updateMediaUseCounts, decrementMediaUseCount } from '@/lib/utils/media-count';
 import { NextRequest, NextResponse } from 'next/server';
+import { Event } from '@/lib/tanstack/types';
 
 /**
  * GET - Get single event by ID
@@ -133,8 +134,7 @@ export async function PUT(
         if (validation.data.image_url !== undefined) {
             await updateMediaUseCounts(
                 supabase,
-                // @ts-expect-error - currentEvent should have image_url
-                currentEvent.image_url,
+                (currentEvent as Event)?.image_url,
                 validation.data.image_url
             );
         }
@@ -195,10 +195,8 @@ export async function DELETE(
         }
 
         // Decrement media use_count if image_url exists
-        // @ts-expect-error - currentEvent should have image_url
-        if (currentEvent.image_url) {
-            // @ts-expect-error - currentEvent should have image_url
-            await decrementMediaUseCount(supabase, currentEvent.image_url);
+        if ((currentEvent as Event)?.image_url) {
+            await decrementMediaUseCount(supabase, (currentEvent as Event)?.image_url);
         }
 
         return NextResponse.json({ message: 'Event deleted successfully' });

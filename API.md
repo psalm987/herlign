@@ -315,7 +315,7 @@ Response 200:
 **List Media**
 
 ```http
-GET /api/admin/media?is_used=false&page=1&limit=20
+GET /api/admin/media?use_count=0&page=1&limit=20
 
 Response 200:
 {
@@ -327,7 +327,7 @@ Response 200:
       "alt_text": "Workshop banner image",
       "size": 245760,
       "mime_type": "image/jpeg",
-      "is_used": true,
+      "use_count": 3,
       "created_at": "2026-01-17T00:00:00Z"
     }
   ],

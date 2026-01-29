@@ -192,7 +192,7 @@ export interface Database {
                     alt_text: string | null;
                     size: number;
                     mime_type: string;
-                    is_used: boolean;
+                    use_count: number;
                     admin_id: string;
                     created_at: string;
                 };
@@ -203,7 +203,7 @@ export interface Database {
                     alt_text?: string | null;
                     size: number;
                     mime_type: string;
-                    is_used?: boolean;
+                    use_count?: number;
                     admin_id: string;
                     created_at?: string;
                 };
@@ -214,7 +214,7 @@ export interface Database {
                     alt_text?: string | null;
                     size?: number;
                     mime_type?: string;
-                    is_used?: boolean;
+                    use_count?: number;
                     admin_id?: string;
                     created_at?: string;
                 };

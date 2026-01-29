@@ -81,7 +81,7 @@ CREATE TABLE media (
   alt_text VARCHAR(500),
   size INTEGER NOT NULL,
   mime_type VARCHAR(100) NOT NULL,
-  is_used BOOLEAN DEFAULT FALSE,
+  use_count SMALLINT DEFAULT 0 CHECK (use_count >= 0),
   admin_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   CONSTRAINT valid_size CHECK (size > 0 AND size <= 5242880) -- 5MB max
@@ -336,7 +336,7 @@ CREATE INDEX idx_testimonials_rating ON testimonials(rating);
 CREATE INDEX idx_links_category ON links(category);
 
 -- Media
-CREATE INDEX idx_media_is_used ON media(is_used);
+CREATE INDEX idx_media_use_count ON media(use_count);
 CREATE INDEX idx_media_admin_id ON media(admin_id);
 
 -- =====================================================

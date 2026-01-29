@@ -116,11 +116,11 @@ export default function AdminDashboard() {
                         <p className="text-sm font-medium text-gray-600">
                           {stat.name}
                         </p>
-                        <p className="mt-2 font-heading text-3xl font-bold text-gray-900">
-                          {total}
-                        </p>
-                        <p className="mt-1 text-xs text-gray-500">
-                          {active} active
+                        <p className="mt-2  text-3xl font-bold text-gray-900">
+                          {active}{" "}
+                          <span className="text-gray-500 text-base">
+                            / {total}
+                          </span>
                         </p>
                       </div>
                       <div className={`rounded-lg p-3 ${stat.color}`}>

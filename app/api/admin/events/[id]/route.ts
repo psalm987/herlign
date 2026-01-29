@@ -8,6 +8,7 @@ import { requireAuth } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { eventUpdateSchema } from '@/lib/validators/events';
 import { isValidSlug } from '@/lib/utils/slug';
+import { updateMediaUseCounts, decrementMediaUseCount } from '@/lib/utils/media-count';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -97,6 +98,21 @@ export async function PUT(
             }
         }
 
+        // Get current event to track old image_url
+        const { data: currentEvent } = await supabase
+            .from('events')
+            .select('image_url')
+            .eq('id', id)
+            .eq('admin_id', user.id)
+            .single();
+
+        if (!currentEvent) {
+            return NextResponse.json(
+                { message: 'Event not found or unauthorized', data: null },
+                { status: 404 }
+            );
+        }
+
         // Update event
         const { data, error } = await supabase
             .from('events')
@@ -110,6 +126,16 @@ export async function PUT(
             return NextResponse.json(
                 { message: 'Event not found or unauthorized', data: null },
                 { status: 404 }
+            );
+        }
+
+        // Update media use_count if image_url changed
+        if (validation.data.image_url !== undefined) {
+            await updateMediaUseCounts(
+                supabase,
+                // @ts-expect-error - currentEvent should have image_url
+                currentEvent.image_url,
+                validation.data.image_url
             );
         }
 
@@ -140,6 +166,21 @@ export async function DELETE(
         const supabase = await createClient();
         const { id } = await params;
 
+        // Get current event to track image_url before deletion
+        const { data: currentEvent } = await supabase
+            .from('events')
+            .select('image_url')
+            .eq('id', id)
+            .eq('admin_id', user.id)
+            .single();
+
+        if (!currentEvent) {
+            return NextResponse.json(
+                { error: 'Event not found or unauthorized' },
+                { status: 404 }
+            );
+        }
+
         const { error } = await supabase
             .from('events')
             .delete()
@@ -151,6 +192,13 @@ export async function DELETE(
                 { error: 'Event not found or unauthorized' },
                 { status: 404 }
             );
+        }
+
+        // Decrement media use_count if image_url exists
+        // @ts-expect-error - currentEvent should have image_url
+        if (currentEvent.image_url) {
+            // @ts-expect-error - currentEvent should have image_url
+            await decrementMediaUseCount(supabase, currentEvent.image_url);
         }
 
         return NextResponse.json({ message: 'Event deleted successfully' });

@@ -5,6 +5,7 @@
 import { requireAuth } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { testimonialUpdateSchema } from '@/lib/validators/testimonials';
+import { updateMediaUseCounts, decrementMediaUseCount } from '@/lib/utils/media-count';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
@@ -55,6 +56,17 @@ export async function PUT(
             );
         }
 
+        // Get current testimonial to track old avatar_url
+        const { data: currentTestimonial } = await supabase
+            .from('testimonials')
+            .select('avatar_url')
+            .eq('id', id)
+            .single();
+
+        if (!currentTestimonial) {
+            return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
+        }
+
         const { data, error } = await supabase
             .from('testimonials')
             .update(validation.data as never)
@@ -64,6 +76,15 @@ export async function PUT(
 
         if (error || !data) {
             return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
+        }
+
+        // Update media use_count if avatar_url changed
+        if (validation.data.avatar_url !== undefined) {
+            await updateMediaUseCounts(
+                supabase,
+                currentTestimonial.avatar_url,
+                validation.data.avatar_url
+            );
         }
 
         return NextResponse.json({ message: 'Testimonial updated successfully', data });
@@ -85,6 +106,17 @@ export async function DELETE(
         const supabase = await createClient();
         const { id } = await params;
 
+        // Get current testimonial to track avatar_url before deletion
+        const { data: currentTestimonial } = await supabase
+            .from('testimonials')
+            .select('avatar_url')
+            .eq('id', id)
+            .single();
+
+        if (!currentTestimonial) {
+            return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
+        }
+
         const { error } = await supabase
             .from('testimonials')
             .delete()
@@ -92,6 +124,11 @@ export async function DELETE(
 
         if (error) {
             return NextResponse.json({ message: 'Testimonial not found', data: null }, { status: 404 });
+        }
+
+        // Decrement media use_count if avatar_url exists
+        if (currentTestimonial.avatar_url) {
+            await decrementMediaUseCount(supabase, currentTestimonial.avatar_url);
         }
 
         return NextResponse.json({ message: 'Testimonial deleted successfully' });

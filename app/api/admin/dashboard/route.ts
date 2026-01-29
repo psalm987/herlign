@@ -51,7 +51,7 @@ export async function GET() {
         const { count: activeMedia } = await supabase
             .from('media')
             .select('*', { count: 'exact', head: true })
-            .eq('is_used', true);
+            .gt('use_count', 0);
 
         // Get chat sessions stats (total vs active in last 24 hours)
         const { count: totalChats } = await supabase

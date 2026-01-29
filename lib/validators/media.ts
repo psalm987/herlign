@@ -25,7 +25,7 @@ export const mediaMetadataSchema = z.object({
 });
 
 export const mediaQuerySchema = z.object({
-    is_used: z.coerce.boolean().optional(),
+    use_count: z.coerce.number().int().min(0).optional(),
     page: z.coerce.number().int().positive().default(1),
     limit: z.coerce.number().int().positive().max(100).default(20),
 });

@@ -8,6 +8,7 @@ import { requireAuth } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { eventSchema, eventQuerySchema } from '@/lib/validators/events';
 import { generateUniqueSlug } from '@/lib/utils/slug';
+import { updateMediaUseCounts } from '@/lib/utils/media-count';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -162,6 +163,11 @@ export async function POST(request: NextRequest) {
 
         if (error) {
             throw error;
+        }
+
+        // Update media use_count if image_url is provided
+        if (validation.data.image_url) {
+            await updateMediaUseCounts(supabase, null, validation.data.image_url);
         }
 
         return NextResponse.json(

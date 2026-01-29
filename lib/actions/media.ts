@@ -20,7 +20,7 @@ import type {
  * Get all media files (admin)
  */
 export async function getAdminMedia(params?: {
-    is_used?: boolean;
+    use_count?: number;
     page?: number;
     limit?: number;
 }): Promise<PaginatedResponse<Media>> {

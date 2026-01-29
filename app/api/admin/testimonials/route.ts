@@ -5,6 +5,7 @@
 import { requireAuth } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { testimonialSchema, testimonialQuerySchema } from '@/lib/validators/testimonials';
+import { updateMediaUseCounts } from '@/lib/utils/media-count';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -94,6 +95,11 @@ export async function POST(request: NextRequest) {
             .single();
 
         if (error) throw error;
+
+        // Update media use_count if avatar_url is provided
+        if (validation.data.avatar_url) {
+            await updateMediaUseCounts(supabase, null, validation.data.avatar_url);
+        }
 
         return NextResponse.json(
             { message: 'Testimonial created successfully', data },

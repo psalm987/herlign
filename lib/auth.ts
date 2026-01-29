@@ -104,6 +104,35 @@ export async function sendMagicLink(email: string): Promise<void> {
 }
 
 /**
+ * Verifies an email OTP (one-time password)
+ * 
+ * @param email - Email address
+ * @param token - OTP token received via email
+ * @param type - OTP type ('email' for verification, 'magiclink' for magic link)
+ * @returns Session data if successful
+ * @throws Error if verification fails
+ */
+export async function verifyEmailOtp(
+    email: string,
+    token: string,
+    type: 'email' | 'magiclink' = 'email'
+) {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.verifyOtp({
+        email,
+        token,
+        type,
+    });
+
+    if (error) {
+        throw error;
+    }
+
+    return data;
+}
+
+/**
  * Sends a password reset email to the user
  * 
  * @param email - Email address to send reset link to

@@ -62,13 +62,13 @@ export default function ChatSessionPage() {
               Chat Session
             </h1>
             <p className="mt-1 text-sm text-gray-600">
-              Session ID: {sessionData.session.id}
+              Session ID: {sessionData?.session?.id}
             </p>
           </div>
           <div className="flex gap-2">
             <Button
               variant={
-                sessionData.session.current_mode === "auto"
+                sessionData?.session?.current_mode === "auto"
                   ? "default"
                   : "outline"
               }
@@ -80,7 +80,7 @@ export default function ChatSessionPage() {
             </Button>
             <Button
               variant={
-                sessionData.session.current_mode === "live"
+                sessionData?.session?.current_mode === "live"
                   ? "default"
                   : "outline"
               }
@@ -97,7 +97,7 @@ export default function ChatSessionPage() {
       {/* Messages */}
       <Card className="p-6 mb-4 max-h-[600px] overflow-y-auto">
         <div className="space-y-4">
-          {sessionData.messages.map((msg) => (
+          {sessionData?.messages?.map?.((msg) => (
             <div
               key={msg.id}
               className={cn(

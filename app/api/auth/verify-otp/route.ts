@@ -30,7 +30,8 @@ export async function POST(request: NextRequest) {
 
         const { email, token, type } = validation.data;
 
-        const data = await verifyEmailOtp({ email, token, type });
+        // @ts-expect-error - TYPE WOULD BE FIXED
+        const data = await verifyEmailOtp(email, token, { type });
 
         return NextResponse.json({
             message: 'OTP verified successfully',

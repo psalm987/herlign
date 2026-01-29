@@ -136,7 +136,7 @@ export default function MediaPage() {
                   </div>
                 </div>
               </div>
-              {!media.is_used && (
+              {media.use_count === 0 && (
                 <div className="absolute top-2 right-2 rounded-full bg-yellow-500 p-1">
                   <AlertTriangle className="h-3 w-3 text-white" />
                 </div>

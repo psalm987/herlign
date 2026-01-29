@@ -35,7 +35,7 @@ import type {
  * Hook to get all media files (admin)
  */
 export function useAdminMedia(
-  params?: { is_used?: boolean; page?: number; limit?: number },
+  params?: { use_count?: number; page?: number; limit?: number },
   options?: Omit<
     UseQueryOptions<PaginatedResponse<Media>, Error>,
     "queryKey" | "queryFn"
@@ -52,7 +52,7 @@ export function useAdminMedia(
  * Hook to get all media files with infinite scroll (admin)
  */
 export function useInfiniteAdminMedia(
-  params?: { is_used?: boolean; limit?: number },
+  params?: { use_count?: number; limit?: number },
   options?: Omit<
     UseInfiniteQueryOptions<PaginatedResponse<Media>, Error>,
     "queryKey" | "queryFn" | "getNextPageParam" | "initialPageParam" | "select"

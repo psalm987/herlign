@@ -16,9 +16,9 @@ export async function GET(request: NextRequest) {
 
         const searchParams = request.nextUrl.searchParams;
         const queryValidation = mediaQuerySchema.safeParse({
-            is_used: searchParams.get('is_used'),
-            page: searchParams.get('page'),
-            limit: searchParams.get('limit'),
+            is_used: searchParams.get('is_used') || undefined,
+            page: searchParams.get('page') ? Number(searchParams.get('page')) : 1,
+            limit: searchParams.get('limit') ? Number(searchParams.get('limit')) : 20,
         });
 
         if (!queryValidation.success) {
@@ -28,12 +28,12 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        const { is_used, page, limit } = queryValidation.data;
+        const { use_count, page, limit } = queryValidation.data;
         const offset = (page - 1) * limit;
 
         let query = supabase.from('media').select('*', { count: 'exact' });
 
-        if (is_used !== undefined) query = query.eq('is_used', is_used);
+        if (use_count !== undefined) query = query.eq('use_count', use_count);
 
         query = query
             .order('created_at', { ascending: false })
@@ -45,8 +45,8 @@ export async function GET(request: NextRequest) {
 
         const total = count || 0;
         const totalPages = Math.ceil(total / limit);
-        const appliedFilters: Record<string, boolean> = {};
-        if (is_used !== undefined) appliedFilters.is_used = is_used;
+        const appliedFilters: Record<string, string | number> = {};
+        if (use_count !== undefined) appliedFilters.use_count = use_count;
 
         return NextResponse.json({
             message: `Successfully retrieved ${data?.length || 0} media file(s)`,

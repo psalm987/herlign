@@ -14,9 +14,9 @@ export async function GET(request: NextRequest) {
         await requireAuth();
         const searchParams = request.nextUrl.searchParams;
         const queryValidation = chatSessionQuerySchema.safeParse({
-            mode: searchParams.get('mode'),
-            page: searchParams.get('page'),
-            limit: searchParams.get('limit'),
+            mode: searchParams.get('mode') || undefined,
+            page: searchParams.get('page') ? Number(searchParams.get('page')) : 1,
+            limit: searchParams.get('limit') ? Number(searchParams.get('limit')) : 20,
         });
 
         if (!queryValidation.success) {

@@ -14,6 +14,7 @@ import {
   ExternalLinkIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { formatDate, formatTime } from "@/lib/utils/date";
 
 export default function EventDetailPage() {
   const { slug } = useParams();
@@ -50,21 +51,6 @@ export default function EventDetailPage() {
   // Format dates
   const startDate = new Date(event.start_date);
   const endDate = new Date(event.end_date);
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }).format(date);
-  };
-  const formatTime = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    }).format(date);
-  };
 
   return (
     <div className="min-h-screen bg-white py-12">
@@ -80,7 +66,7 @@ export default function EventDetailPage() {
 
         {/* Event Image */}
         {event.image_url && (
-          <div className="relative w-full h-96 rounded-xl overflow-hidden mb-8 shadow-lg">
+          <div className="relative w-full h-96 rounded-xl overflow-hidden mb-8">
             <Image
               src={event.image_url}
               alt={event.title}
@@ -89,7 +75,7 @@ export default function EventDetailPage() {
               priority
             />
             {event.featured && (
-              <div className="absolute top-4 right-4 bg-perple-500 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-md">
+              <div className="absolute top-4 right-4 bg-black/20 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-md">
                 Featured
               </div>
             )}

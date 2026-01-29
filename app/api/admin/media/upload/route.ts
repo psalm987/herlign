@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
         const altText = formData.get('alt_text') as string | null;
 
         if (!file) {
+            console.error('No file provided in upload request');
             return NextResponse.json(
                 { error: 'No file provided' },
                 { status: 400 }
@@ -51,6 +52,7 @@ export async function POST(request: NextRequest) {
         if (altText) {
             const validation = mediaMetadataSchema.safeParse({ alt_text: altText });
             if (!validation.success) {
+                console.error('Alt text validation failed:', validation.error);
                 return NextResponse.json(
                     { error: 'Invalid alt text', details: validation.error.message },
                     { status: 400 }
@@ -62,6 +64,7 @@ export async function POST(request: NextRequest) {
         const uploadResult = await uploadFile(file, user.id);
 
         if (!uploadResult.success) {
+            console.error('File upload failed:', uploadResult.error);
             return NextResponse.json(
                 { error: uploadResult.error },
                 { status: 400 }
@@ -84,6 +87,8 @@ export async function POST(request: NextRequest) {
             .single();
 
         if (error) throw error;
+
+        console.log('File metadata saved successfully:', data);
 
         return NextResponse.json(
             {

@@ -14,10 +14,10 @@ export async function GET(request: NextRequest) {
 
         const searchParams = request.nextUrl.searchParams;
         const queryValidation = testimonialQuerySchema.safeParse({
-            rating: searchParams.get('rating'),
-            is_approved: searchParams.get('is_approved'),
-            page: searchParams.get('page'),
-            limit: searchParams.get('limit'),
+            rating: searchParams.get('rating') || undefined,
+            is_approved: searchParams.get('is_approved') || undefined,
+            page: searchParams.get('page') || undefined,
+            limit: searchParams.get('limit') || undefined,
         });
 
         if (!queryValidation.success) {

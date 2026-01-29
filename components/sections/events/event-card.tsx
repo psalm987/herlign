@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import type { Event } from "@/lib/tanstack/types";
 import Image from "next/image";
 import Link from "next/link";
+import { formatDate, formatTime } from "@/lib/utils/date";
 
 interface EventCardProps {
   event: Event;
@@ -26,22 +27,6 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const endDate = new Date(event.end_date);
   const isUpcoming = startDate > new Date();
   const isPast = endDate < new Date();
-
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
 
   const statusBadge = (
     <div className="absolute left-3 top-3">

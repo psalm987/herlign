@@ -21,10 +21,7 @@ import { Database } from './database.types';
  */
 export async function createClient() {
     const cookieStore = await cookies();
-    console.log({
-        url: process.env.NEXT_PUBLIC_SUPABASE_URL,
-        key: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY,
-    })
+
     return createServerClient<Database>(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,
@@ -36,17 +33,17 @@ export async function createClient() {
                 set(name: string, value: string, options: CookieOptions) {
                     try {
                         cookieStore.set({ name, value, ...options });
-                    } catch (error: unknown) {
-                        // Handle cookie setting errors (e.g., in middleware)
-                        console.error('Cookie set error:', error);
+                    } catch {
+                        // Cookies can only be modified in Server Actions or Route Handlers
+                        // Ignore errors in other contexts (e.g., server components)
                     }
                 },
                 remove(name: string, options: CookieOptions) {
                     try {
                         cookieStore.set({ name, value: '', ...options });
-                    } catch (error: unknown) {
-                        // Handle cookie removal errors
-                        console.error('Cookie remove error:', error);
+                    } catch {
+                        // Cookies can only be modified in Server Actions or Route Handlers
+                        // Ignore errors in other contexts (e.g., server components)
                     }
                 },
             },
@@ -66,10 +63,6 @@ export async function createClient() {
  * @returns Supabase admin client instance
  */
 export function createAdminClient() {
-    console.log({
-        url: process.env.NEXT_PUBLIC_SUPABASE_URL,
-        key: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY,
-    })
     return createServerClient<Database>(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,

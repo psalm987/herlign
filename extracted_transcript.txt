@@ -1,0 +1,300 @@
+Samuel Seibidor:
+  Hello, good morning, can anyone hear me now?
+
+Maaz Junior:
+  Monuments here.
+
+Samuel Seibidor:
+  Okay. My speaker my my mic on my system since beauty so it's not to switch to my phone. Good morning everyone. Yusuf are you on the meeting? Hello Yusuf. Hello.
+
+Yusuf Sani:
+  Hello.
+
+Samuel Seibidor:
+  up and this week we should have started working on the bots? I would The bots. The AI bots. That would handle all the logic for analytics, as well as for For the brainstorming sessions. So Yusuf, what's up? What's the update on that?
+
+Yusuf Sani:
+  A. It's a mission brimstone.
+
+Samuel Seibidor:
+  Sorry.
+
+Yusuf Sani:
+  And I mean, I'm here but
+
+Samuel Seibidor:
+  I didn't get you. I didn't go, he said Yusuf.
+
+Yusuf Sani:
+  You said this week, we're going to do, should be getting it. Instead of you said, Princeton
+
+Samuel Seibidor:
+  should not be having repeats brainstorm messages like in terms of the way we're having, only one message from the brainstorm charts and then the analytics to a point should be Giving us values not just 0 0. I think that we have right now. So I'm asking, Do you have a contrary plan or what's your like Give a an opinion on that because that's your primary and Does your primary prerogative? I put it away.
+  Yes.
+
+Yusuf Sani:
+  Hmm. The brainstorm, I thought Moussard finished. The first time.
+
+Samuel Seibidor:
+  Okay. You're hearing it for the first time.
+
+Yusuf Sani:
+  It was analysis and I already depends. Tom is for user interactions and measurement and all that stuff. But then again I told him so I was doing with the brainstorm.
+
+Samuel Seibidor:
+  Okay.
+
+Yusuf Sani:
+  unless,
+
+Samuel Seibidor:
+  Okay, I'll go over everything again. Are you on your system right now? Share a figure.
+
+Yusuf Sani:
+  Now, I'm not on my system.
+
+Samuel Seibidor:
+  I'm on roots but let's not be like you normal. Thing. So that's just one just there so that we know that they know the rules understands. So now I'll go over the AI thing again, including the brainstorm, making sure that everything that you find, making sure that everything is clear please.
+  Let's see if we can pay and very wrapped attention and ask questions as possible. Give me a second. Let me see if I can share my screen. Let me see, my system should be up now. So give me a few minutes. Let me set up my screen. How often do you look at the Sigma file to check flows.
+  Not just like what you're working on. Okay, he's out. He's out of there. Must have forwards your Any updates or any issues.
+
+Maaz Junior:
+  Oh no, not so far. I think my major at night for the week is you know, finish update. You know, the community endpoint is quite big, right? so finishing up the endpoints inshallah that God's grace, then checking out, you know, some stuff that I could, I can implement on setting Then once I don't want once I got once, I did that I'll check out some other things that needs to be tied in up right now.
+  If everything goes well by the end of the reaction, be able to, you know, provide you that this thing we're talking
+
+Samuel Seibidor:
+  Oh, awesome. Thank you. Thank you so much. So,
+
+Maaz Junior:
+  about you that day the music again, if there's ubon to write, So that you can try to check it out. So everything goes where I think Yeah, that's just my one. Also got can I connect, Can I tipping something?
+
+Samuel Seibidor:
+  Oh sure.
+
+Maaz Junior:
+  Okay, so basically right, it's kind of missing, you know, ideally shouldn't even be more than 15 minutes, you know, it's just like damaging where everybody share
+
+Samuel Seibidor:
+  No that yeah that's Julie noted the reason why I'm trying to add this is because
+
+Maaz Junior:
+  their update. What's just like we're asking for about scenery for the week or for the day, right? Any other meeting if you're trying to like do or have a demo or something, it could be after the meeting like, okay? And guys, let's By this time or Yusuf. Let's be ready time, guys.
+  If you have a look we've enjoyed you can join the code, right? So that we don't even get through feel of our room from standard meeting. So before they even starts.
+
+Samuel Seibidor:
+  this is kind of like, how would I put it one? It's key. To, I want us to totally eliminate the points of Okay, I have not had this.
+
+Maaz Junior:
+  Oh, this is the first time I'm hearing about this. So I want you get, so let's eliminate that now because we've had him a lot of
+
+Samuel Seibidor:
+  Mmm, things like we're I'm basically our the Points of action was supposed to be we should be reviewing the Sigma file periodically to be able to see for like flows and all of that. So and then most of the time we just talk over. Like for example, I know I've talked about sports, Before but not detailed, you get so let it be detailed now so that it's everything everything is clarified.
+  So let's just do it basic Prayer of Okay, so we'll just take, I won't spend time. I won't even because even I have a lot to do like a whole lot to do. So I wouldn't even spend time. Well, let's just do a brief run through. Okay, so authentications they are all clarified.
+  The only thing is that Forgot password is misbehaving so I'll check what the problem is. And homepage is done all the bots and clicks. So I will go through every section and what needs to be updated Yusufion call. Now Okay so I'll go through every section and point out what is done and what isn't done? I think I should have done this.
+  Then boy probably he didn't. So let me get to remove all doubts. Let me go through it. Now, the UI and the endpoints for this is done, okay? But there's a problem. The algorithm for trending. The algorithm for suggested for you. The algorithm for who to follow is not refined in.
+  What do I mean training and suggested for you? Just returns all the posts like all the sessions, all the there's no Logic behind it, like there's no intelligence behind it at all. And we, you do. You have a great grasp of how trending on suggested for you are supposed to work, right? Like from using Twitter and all that, you have a like a basic peripheral knowledge of how trending our suggested should respond.
+  Hello Yusuf.
+
+Yusuf Sani:
+  Social.
+
+Samuel Seibidor:
+  Okay, so that's one part. So the part that has not been refined on this first page is the algorithm behind trending and suggested for you. For now they just return chronologically, There's no intelligence to it who to follow. Same thing, returns everybody there's no logic behind it. So those are one of the things.
+  Are you taking down notes? So that we don't have to go over this again? Or do I do I wait for you to bring out a note sticker? Yusuf.
+
+Yusuf Sani:
+  oh, I might
+
+Samuel Seibidor:
+  Say, Turn into this for you. Yes, the logic behind them is not intelligent, it's just chronological. So, please take down notes of that, okay? So that's one. Now, that's from you, that's for the home section, mass. Also this some of these things might benefit you so it's not just them Yusuf but Yusuf is the primary person so some things might get clearer and this is so maybe if you want to take notes too, you can't now for the brainstorm section.
+  The UI part of it is done in terms of call response, you send the message, the apple send you back a message. But the thing is the app, Currently the app, only sends you one message every single time. So for example, let me give an instance, let me see if I can share my effect on demonstrates properly.
+  Please give me a second. Yeah, I need to work on this login block I think. Okay. So Sarah, what's wrong? We're doing is wrong on the several. Why is something wrong when we set up? Not education to confound. Something has changed again. Oh, but I have to be focused in again, something has changed, Okay, login is not working right now.
+  I'll have to debug it's this morning before. I'm starting that tries to login and it's giving issues. but basically, this place that you're supposed to have, Oh sorry this place you're supposed to always have like responses like in this case I really what topic would you like to install about today and then okay? And then you, you asked What are some quick and healthy breakfast ideas and then it replies are very well class.
+  So like this intelligent answer part has not been implemented in terms of Oh all response give an actual answer. It hasn't been implemented but things like the message.
+
+Yusuf Sani:
+  Um, what?
+
+Samuel Seibidor:
+  Yes.
+
+Yusuf Sani:
+  Let me, let me. Interject. You need the IT function, but that's what if there's, no, there's not paid for it. No, no.
+
+Samuel Seibidor:
+  That's what we're seeing now. So If there's something that,
+
+Yusuf Sani:
+  Llogic is there is just because there's no there's nothing to call it.
+
+Samuel Seibidor:
+  And that's what we're saying now. So if there's if there's anything you need, that's why that's why we're having the meeting. There's anything you need forward, it's to Mr. Bigger now. Oh, we need payment for these boats. You see. The only thing is, if the responses are, Oh, I forwarded something to Mr.
+  Binga, and he hasn't giving me answer. You're doing your work. Like you've done your job, it's nothing nobody query for that. Nobody who respond to you for that. But if we're having conversations and the conversations is centered around. Oh, I even know that this is all you're not bringing up the issues during conversation.
+  That's where they a little bit of, you know, this parity like Mars. Now for example, when Mars and give an instance of food, listen immediately says you like this thing is always being up. Nobody asks him about it. They added this thing to DP. Keep adding things to this UI.
+  They keep adding things to this UI. Now, what's this one for now? What's this one for? Anyway, just ignore all of that. So we said somebody get this part the Response parts. Or the both part of the logic parts. Felicia.
+
+Yusuf Sani:
+  Yeah, I get no. I'm just seeing before you can looking for something that has to be. That's what I'm trying to see.
+
+Samuel Seibidor:
+  But you and people, that's why I told you what you need. Oh we need to get it's watching. Once we do that, you cannot be expecting to find responses for he's not dead. That's what I'm saying. But it's not logically. It's just the pattern because that's why it's not.
+  Okay, yeah, that's that's one.
+
+Yusuf Sani:
+  so once we pay once you pay for it, then, oh, now we kind of
+
+Samuel Seibidor:
+  Okay. So, and what what we also trying to explain is The from from your end recommendations for things like this. To also come from your end. For example, if things just go up, like, for example, when versa went off, I had to recommend, Oh, this is this, This is that this is that.
+  But when they said, I had vessel became to expensive. I said, Okay Musa could now recommend something. So basically recommendations for Um, good. Well I put it departments or your Your staff. Exactly. So recommendations for your staff should come from the engineer. So let's not just leave it to chance.
+  That all the bots is not working with no paid for it all that. So, you're supposed to recommend and then follow it up for in terms of if there's a subscription that is needed for something, you should have we should have a recommendation from the engineer in charge. Of that stock and then that engineer should try and follow it up it.
+  If you followed up like frequently and I still like, Okay, hold on for a while then good, you've done your own part of it but any other things should be based on recommendation If anything is going to be changed on your stack, it should be based on recommendation. From you as the engineer.
+  So that's that. I think on Brainstorm. So for us, we've done all of this, I think. Yes. For us, basically. Okay, I think they've already done all the logic for that, for source control, hold on, post on debates on hold. Explore. So the same thing I said about trending and Suggested for you.
+  so, this is like, The first 10 entries also are being filled on the sides. This is now a more extended infinity. So this has more entries and all of that. Same logic, same endpoints drive, both of them. So if you can't get the logic for the outside, is the same logic.
+  I'll be used on this other endpoint. So, basically, I think it's the same endpoint that we're going to use for all of that. So that's for the food and the explore parts. The search we haven't done such history, for now, just look out who's let's not use that to take time.
+  For search history. So for now, use localhost Boy. Later I'm have to work on something that persists. Be beyond. Logic and rise and beyond logins. Sorry, give me a second, let me at that to be tasks. So search History. Search history. Should. Look out, host storage. For now. Okay.
+  So that's for search for communities. I think you have a grasp of communities because you're the one working on that. However yeah, for now we're keeping media on you, because media is not Hundred percent kids with an implementing media right now. Might be a breaking change for inbox. The sockets is not working.
+  For inbox. The socket is not working. I'm ranting. Is there any part of it that is. That you missed like I'm just flowing through, is any part of it? I've missed. Okay. So that's inbox inbox, the socket is not working so that needs to be addressed. Notification, I'm guessing the socket or that drive the inbox also driving notification so that needs to be fixed.
+  Then from the what. Least as marketplace and section. I think major thing that is not done. That is meant to be done. Is. Top candidates. so basically, top candidates should Be, that's all those Top 10 performer. If the person is often perform my personal candidates all those details, Should be understand, what is the project requirements for top candidates? Is it and What what criteria would you see by purchase or is he by performance? What performance just get all the metrics down.
+  It's having able to give you all the metrics and I don't have the details of that. Yes. Now, the next thing that we need to discuss is the AI. Insights for every applicant, as if on their profile has an AI. Details in terms of like AI insights in terms of.
+  How will their communication? Speed, accuracy and problem Solving skills are determined as well as a, I think. I'm sure it's not an average. I think it's I think it's a weighted average but you ask is a finger for the details on how to calculate this total Performance in. So all the metrics and the index here are going to be determined first of all by The one by interactions.
+  So Based on what the person. How, well, the person interacts. Okay. So who interacts a lot, communication could be high? I'm just saying you might need. You will need to have a sit down because I mean, not really understand this, but I don't even understand it myself. And I think, Well, that's asked for details because This is back in part of it.
+  So, Basically the communication thing, there are things that you do now, increase your communication, the accuracy thing, to get things, you do without increase your accuracy and all that. So they will determine oh, this is Here we determine. This is the metrics we're tracking and that is that, and that is that I can implement it.
+  So I think this is part of the profile of the user. So apart from the interactions and AI bought also analyze your I think there's an AI part of it, he would explain how that works. You explain how that works because he's the one to understand where that's supposed to be the same thing for here.
+  These are the analytics for this. Same thing for here, the analytics for this. Profile. I think profile. Is profile. Same thing here, the analytics, I think on the professional profile for each. Professional profile. This will be placed here. So now another clarification you might need to have is Most of the Interaction.
+  For the hourly budgets most of the interaction is tied to one social profile. But there are some things here that might also be tied to an individual. Professional Profile. First of all you do know that one person could have only one social profile where you have multiple professional profiles, you understand that right? Yusuf
+
+Yusuf Sani:
+  Actually concrete supervisors and candidates. Well, done kids to provide us included. but,
+
+Samuel Seibidor:
+  Okay, let me go by that again. As a person. Now even Job, even in job. Our leposite's job, as a job seeker you can have multiple profiles. I'll explain everything. No. As yeah, let's see contractor or staff contractor? In their multiple companies. So some has the social, like posts on the timeline and all of that, that will show up on Timeline and all those other interactions even in brainstorming too.
+  And message he starts will show up for those interactions. Not Samuel. No Samuel now creates multiple profiles for his different skill sets so let's
+
+Maaz Junior:
+  say Samuel is a product. What is it for? Yeah, those are jobs. Very different. Fast. And so far. Elations. Hello. Must. Hello, can you hear me now? Yeah, Network. Yeah. I get a good network. Yeah, can you hear me now?
+
+Samuel Seibidor:
+  Okay. So, and where did I, where did I disconnect?
+
+Maaz Junior:
+  I don't even mind. I forgotten.
+
+Samuel Seibidor:
+  We forgotten Yusuf. Where did I disconnected?
+
+Yusuf Sani:
+  Like that.
+
+Samuel Seibidor:
+  Profile. Okay, so I said, let me let me
+
+Yusuf Sani:
+  But then again, well not actually before you continue.
+
+Samuel Seibidor:
+  Yeah.
+
+Yusuf Sani:
+  Okay, just is the perfect. Not done yet. That's one of.
+
+Samuel Seibidor:
+  Places. Sorry, I miss the question. Please.
+
+Yusuf Sani:
+  Okay.
+
+Samuel Seibidor:
+  Yes, I can hear.
+
+Yusuf Sani:
+  I, I
+
+Samuel Seibidor:
+  The analysis part of the AND profile is not done. It shows values, but the values are not complete.
+
+Maaz Junior:
+  If I,
+
+Yusuf Sani:
+  You know, again, anything because you complaining has to be active as to not know the paramas In our thinking about this one. I think about the most school, professor,
+
+Samuel Seibidor:
+  No, that is done but I'm saying I'm giving I'm giving the
+
+Yusuf Sani:
+  That's exactly that should have already been done.
+
+Samuel Seibidor:
+  I'm giving the scenario so that in case there's something in future that's maybe. Oh you know, let's just move right from that. Where is Profile, completion. I think that needs to be refined. It's something wrong with our competition. It doesn't show properly, so maybe check it out later. Then what else? What else hotels, what else? Settings is done.
+  Other user profile. Same thing. Analytics and all that. I think that part is done.
+
+Yusuf Sani:
+  so let me see that part that you've done analytics you showed on you apart from here plus especially
+
+Samuel Seibidor:
+  What part? Exactly.
+
+Yusuf Sani:
+  There was one of the propellers, the video actually.
+
+Samuel Seibidor:
+  Let me jump in. Which part exactly.
+
+Yusuf Sani:
+  Yeah. Okay.
+
+Samuel Seibidor:
+  Job application. This one is my profile social interactions.
+
+Yusuf Sani:
+  I,
+
+Samuel Seibidor:
+  this one is professional profile for Professional interactions then your last one is job application.
+
+Maaz Junior:
+  Probably.
+
+Samuel Seibidor:
+  I, I
+
+Maaz Junior:
+  And probably with and probably will release.
+
+Samuel Seibidor:
+  Can't please Mom here, please. Yeah, job application. So, this you shouldn't recruiters is this where you're talking about, Hello Yusuf.
+
+Yusuf Sani:
+  I'm trying to see. These are the inside. The communication problem solving is from the
+
+Samuel Seibidor:
+  There's also a list of analysis things, so just go to the figma file. This is an atur at your spare time. Just go to like the market district and profiles, both, professional and social. You should be able to see all those everything you need from there honestly matha. So we don't spend more time on the meeting.
+  So Let's also send in our weeks agenda. for based on what has been done and What we hope to achieve before the end of this week. By back, end standards, everything concerning and going live should be refined.
+
+Maaz Junior:
+  Feel.
+
+Samuel Seibidor:
+  This week. Front End. Also I'll send in mind and agenda, Maaz Your own updates. Should be sensing. But at least by this week, oh yeah, at the end of this January, at least someone else should be able to test the mobile app because this is like
+
+Maaz Junior:
+  Okay.
+
+Samuel Seibidor:
+  elastic in January. So someone of the best mobile app without having to even if you only login guys, working, but at least the fact that someone is able to actually use the app on your phone. To test is something something. So, let's have that in our Listen. In our agenda.
+  Yusuf please follow up with Mr. Binga to handle the payments. and like, give updates on the payments for Whatever. Bought would be used. So let's have like a detailed reports on that in terms of Oh this is what we're using. And this has not been paid for that has not been paid for, so just get everything that you need required from him.
+  In terms of payment. Unless he's the one that says, okay, chill. Then YouTube, that's it. So let's have that done. I think that's the That's the thing. That's the everything. Is there anything that we're missing? Is there any question, any confusion, any? Any question on any confusion, anything?
+
+Maaz Junior:
+  but he knows how
+
+Samuel Seibidor:
+  Okay, so everyone is good on this.
+
+Maaz Junior:
+  Alright.
+
+Samuel Seibidor:
+  Okay, no problem. So I think that's that's on that hope so, at least before noon, let's have our agenda for the week properly spelled out, Let's not forget our tasks for this week. I should be updates in our to be giving our task updates at the end of the day.
+  And then let's also am I forgetting anything? Yeah, I'll handle most of the test and issues that are on the front end so that those work properly. Okay, I think that's that's on that. We'll see. Also during the day, we have any issues. I think that's all for now.
+  Okay, no problem, Nathan. Mmm.

@@ -28,7 +28,7 @@ export const testimonialSchema = z.object({
         .optional()
         .nullable(),
     is_approved: z.boolean()
-        .default(false),
+        .default(false).optional(),
 });
 
 export const testimonialUpdateSchema = testimonialSchema.partial();

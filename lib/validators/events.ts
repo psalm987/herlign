@@ -4,6 +4,7 @@
  * Zod schemas for validating event/workshop data
  */
 
+import { getDateTimeLocalValue } from '@/components/ui/input';
 import { z } from 'zod';
 
 const baseEventSchema = z.object({
@@ -30,10 +31,8 @@ const baseEventSchema = z.object({
         .url('Invalid URL format')
         .optional()
         .nullable(),
-    start_date: z.string()
-        .datetime('Invalid start date format'),
-    end_date: z.string()
-        .datetime('Invalid end date format'),
+    start_date: z.string().transform((str) => getDateTimeLocalValue(str)).optional(),
+    end_date: z.string().transform((str) => getDateTimeLocalValue(str)).optional(),
     max_attendees: z.number()
         .int('Max attendees must be an integer')
         .positive('Max attendees must be positive')
@@ -45,24 +44,27 @@ const baseEventSchema = z.object({
         .nullable(),
     price: z.number()
         .nonnegative('Price must be non-negative')
-        .default(0),
+        .default(0).optional(),
     is_paid: z.boolean()
-        .default(false),
+        .default(false).optional(),
     status: z.enum(['draft', 'published', 'cancelled'])
-        .default('draft'),
+        .default('draft').optional(),
     featured: z.boolean()
-        .default(false),
+        .default(false).optional(),
 });
 
 export const eventSchema = baseEventSchema.refine(
-    (data) => new Date(data.end_date) >= new Date(data.start_date),
+    (data) => (data.start_date && data.end_date) ? new Date(data?.end_date) >= new Date(data.start_date) : true,
     {
         message: 'End date must be after or equal to start date',
         path: ['end_date'],
     }
-);
+).refine((data) => (data?.is_paid ? !!data?.price : true), {
+    message: 'Price must be set for paid events',
+    path: ['price'],
+});
 
-export const eventUpdateSchema = baseEventSchema.partial();
+export const eventUpdateSchema = eventSchema;
 
 export const eventQuerySchema = z.object({
     type: z.enum(['event', 'workshop']).optional(),

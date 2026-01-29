@@ -147,7 +147,7 @@ export interface AuthUser {
 
 export interface SessionResponse {
     authenticated: boolean;
-    user?: AuthUser;
+    user: AuthUser | null;
 }
 
 // =====================================================

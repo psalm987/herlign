@@ -86,3 +86,58 @@ export function isAllowedAdminEmail(email: string): boolean {
     // Option 2: Allow all (less restrictive - rely on manual user creation in Supabase)
     return true;
 }
+
+export async function sendMagicLink(email: string): Promise<void> {
+    const supabase = await createClient();
+
+    const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+            shouldCreateUser: false,
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`,
+        },
+    });
+
+    if (error) {
+        throw error;
+    }
+}
+
+/**
+ * Sends a password reset email to the user
+ * 
+ * @param email - Email address to send reset link to
+ * @throws Error if email sending fails
+ */
+export async function sendPasswordResetEmail(email: string): Promise<void> {
+    const supabase = await createClient();
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`,
+    });
+
+    if (error) {
+        throw error;
+    }
+}
+
+/**
+ * Updates the password for the currently authenticated user
+ * 
+ * @param password - New password
+ * @returns Updated user data
+ * @throws Error if password update fails
+ */
+export async function updatePassword(password: string) {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.updateUser({
+        password,
+    });
+
+    if (error) {
+        throw error;
+    }
+
+    return data;
+}

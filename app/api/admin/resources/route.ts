@@ -14,11 +14,11 @@ export async function GET(request: NextRequest) {
 
         const searchParams = request.nextUrl.searchParams;
         const queryValidation = resourceQuerySchema.safeParse({
-            format: searchParams.get('format'),
-            category: searchParams.get('category'),
-            tags: searchParams.get('tags'),
-            page: searchParams.get('page'),
-            limit: searchParams.get('limit'),
+            format: searchParams.get('format') || undefined,
+            category: searchParams.get('category') || undefined,
+            tags: searchParams.get('tags') || undefined,
+            page: searchParams.get('page') || undefined,
+            limit: searchParams.get('limit') || undefined,
         });
 
         if (!queryValidation.success) {

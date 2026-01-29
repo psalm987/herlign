@@ -5,10 +5,16 @@
 
 "use client";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQuery,
+  useInfiniteQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import type {
   UseMutationOptions,
   UseQueryOptions,
+  UseInfiniteQueryOptions,
 } from "@tanstack/react-query";
 import * as mediaActions from "@/lib/actions/media";
 import { mediaKeys, invalidationGroups } from "@/lib/tanstack/keys";
@@ -39,6 +45,31 @@ export function useAdminMedia(
     queryKey: mediaKeys.list(params),
     queryFn: () => mediaActions.getAdminMedia(params),
     ...options,
+  });
+}
+
+/**
+ * Hook to get all media files with infinite scroll (admin)
+ */
+export function useInfiniteAdminMedia(
+  params?: { is_used?: boolean; limit?: number },
+  options?: Omit<
+    UseInfiniteQueryOptions<PaginatedResponse<Media>, Error>,
+    "queryKey" | "queryFn" | "getNextPageParam" | "initialPageParam" | "select"
+  >,
+) {
+  return useInfiniteQuery<PaginatedResponse<Media>, Error>({
+    ...options,
+    queryKey: mediaKeys.list({ ...params, infinite: true }),
+    queryFn: ({ pageParam = 1 }) =>
+      mediaActions.getAdminMedia({ ...params, page: pageParam as number }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      if (lastPage.pagination.hasNext) {
+        return lastPage.pagination.page + 1;
+      }
+      return undefined;
+    },
   });
 }
 

@@ -1,0 +1,168 @@
+"use client";
+
+import { useState } from "react";
+import { useParams } from "next/navigation";
+import {
+  useAdminChatSession,
+  useSendAdminChatMessage,
+  useSwitchChatMode,
+} from "@/lib/tanstack/hooks/admin/useChat";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { ArrowLeft, Send, Bot, User, Shield } from "lucide-react";
+import Link from "next/link";
+import { toast } from "sonner";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
+
+export default function ChatSessionPage() {
+  const { id } = useParams() as { id: string };
+  const [message, setMessage] = useState("");
+
+  const { data: sessionData } = useAdminChatSession(id);
+  const { mutate: sendMessage, isPending } = useSendAdminChatMessage({
+    onSuccess: () => {
+      toast.success("Message sent");
+      setMessage("");
+    },
+  });
+  const { mutate: switchMode } = useSwitchChatMode({
+    onSuccess: () => toast.success("Chat mode switched"),
+  });
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+    sendMessage({ sessionId: id, message });
+  };
+
+  if (!sessionData) {
+    return (
+      <div className="p-6">
+        <div className="flex items-center justify-center py-12">
+          <p className="text-gray-600">Loading session...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6">
+      <div className="mb-6">
+        <Link
+          href="/admin/chat"
+          className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Chat Sessions
+        </Link>
+        <div className="mt-4 flex items-center justify-between">
+          <div>
+            <h1 className="font-heading text-3xl font-bold text-gray-900">
+              Chat Session
+            </h1>
+            <p className="mt-1 text-sm text-gray-600">
+              Session ID: {sessionData.session.id}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant={
+                sessionData.session.current_mode === "auto"
+                  ? "default"
+                  : "outline"
+              }
+              onClick={() => switchMode({ sessionId: id, mode: "auto" })}
+              className="gap-2"
+            >
+              <Bot className="h-4 w-4" />
+              Auto Mode
+            </Button>
+            <Button
+              variant={
+                sessionData.session.current_mode === "live"
+                  ? "default"
+                  : "outline"
+              }
+              onClick={() => switchMode({ sessionId: id, mode: "live" })}
+              className="gap-2"
+            >
+              <Shield className="h-4 w-4" />
+              Live Mode
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Messages */}
+      <Card className="p-6 mb-4 max-h-[600px] overflow-y-auto">
+        <div className="space-y-4">
+          {sessionData.messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={cn(
+                "flex gap-3",
+                msg.sender === "admin" && "flex-row-reverse",
+              )}
+            >
+              <div
+                className={cn(
+                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
+                  msg.sender === "guest" && "bg-blue-100",
+                  msg.sender === "bot" && "bg-purple-100",
+                  msg.sender === "admin" && "bg-grin-100",
+                )}
+              >
+                {msg.sender === "guest" && (
+                  <User className="h-4 w-4 text-blue-600" />
+                )}
+                {msg.sender === "bot" && (
+                  <Bot className="h-4 w-4 text-purple-600" />
+                )}
+                {msg.sender === "admin" && (
+                  <Shield className="h-4 w-4 text-grin-600" />
+                )}
+              </div>
+              <div
+                className={cn("flex-1", msg.sender === "admin" && "text-right")}
+              >
+                <div
+                  className={cn(
+                    "inline-block rounded-lg px-4 py-2 max-w-lg",
+                    msg.sender === "guest" && "bg-gray-100",
+                    msg.sender === "bot" && "bg-purple-50",
+                    msg.sender === "admin" && "bg-grin-600 text-white",
+                  )}
+                >
+                  <p className="text-sm">{msg.content}</p>
+                </div>
+                <p className="mt-1 text-xs text-gray-500">
+                  {format(new Date(msg.timestamp), "HH:mm")}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {/* Message Input */}
+      <div className="flex gap-2">
+        <Input
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          placeholder="Type your message..."
+          disabled={isPending}
+        />
+        <Button
+          onClick={handleSend}
+          disabled={isPending || !message.trim()}
+          className="gap-2"
+        >
+          <Send className="h-4 w-4" />
+          Send
+        </Button>
+      </div>
+    </div>
+  );
+}

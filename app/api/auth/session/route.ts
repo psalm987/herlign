@@ -12,27 +12,24 @@ export async function GET() {
         const user = await getAuthUser();
 
         if (!user) {
-            return NextResponse.json(
-                { message: 'Not authenticated', data: null },
-                { status: 401 }
-            );
+            return NextResponse.json({
+                authenticated: false,
+                user: null,
+            });
         }
 
         return NextResponse.json({
-            message: 'Authenticated',
-            data: {
-                authenticated: true,
-                user: {
-                    id: user.id,
-                    email: user.email,
-                },
+            authenticated: true,
+            user: {
+                id: user.id,
+                email: user.email,
             },
         });
     } catch (error) {
         console.error('Session check error:', error);
         return NextResponse.json(
-            { error: 'Internal server error' },
-            { status: 500 }
+            { authenticated: false, user: null },
+            { status: 200 }
         );
     }
 }

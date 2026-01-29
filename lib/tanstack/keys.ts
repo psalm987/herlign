@@ -108,7 +108,7 @@ export const adminLinkKeys = {
 export const mediaKeys = {
     all: ['admin', 'media'] as const,
     lists: () => [...mediaKeys.all, 'list'] as const,
-    list: (filters?: { is_used?: boolean; page?: number; limit?: number }) =>
+    list: (filters?: { is_used?: boolean; page?: number; limit?: number, infinite?: boolean }) =>
         [...mediaKeys.lists(), filters] as const,
     unused: () => [...mediaKeys.all, 'unused'] as const,
 };

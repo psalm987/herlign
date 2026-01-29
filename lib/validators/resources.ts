@@ -27,9 +27,9 @@ export const resourceSchema = z.object({
         .optional(),
     price: z.number()
         .nonnegative('Price must be non-negative')
-        .default(0),
+        .default(0).optional(),
     is_paid: z.boolean()
-        .default(false),
+        .default(false).optional(),
 });
 
 export const resourceUpdateSchema = resourceSchema.partial();

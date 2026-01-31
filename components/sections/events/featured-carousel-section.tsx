@@ -93,7 +93,7 @@ export const FeaturedCarouselSection: React.FC<
             ) : (
               <div className="h-full w-full bg-linear-to-br from-grin-400 via-perple-500 to-peenk-800" />
             )}
-            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-black/20" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-black/20 to-85%" />
           </div>
 
           {/* Content */}

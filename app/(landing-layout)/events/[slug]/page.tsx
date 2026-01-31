@@ -58,7 +58,7 @@ export default function EventDetailPage() {
         {/* Back Button */}
         <Link
           href="/events"
-          className="inline-flex items-center gap-2 text-grin-700 hover:text-grin-800 mb-8 group"
+          className="inline-flex items-center gap-2 text-gray-700 hover:font-semibold mb-8 group"
         >
           <ArrowLeftIcon className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
           <span className="font-medium">Back to Events</span>
@@ -75,7 +75,7 @@ export default function EventDetailPage() {
               priority
             />
             {event.featured && (
-              <div className="absolute top-4 right-4 bg-black/20 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-md">
+              <div className="absolute top-4 right-4 bg-black/20 text-white px-4 py-2 rounded-full font-semibold text-sm">
                 Featured
               </div>
             )}
@@ -85,30 +85,29 @@ export default function EventDetailPage() {
         {/* Event Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <span className="px-3 py-1 bg-grin-100 text-grin-800 rounded-full text-sm font-medium">
+            <span className="px-3 py-1 bg-grin-100 text-ohrange-800 rounded-full text-sm font-medium">
               {event.type === "event" ? "Event" : "Workshop"}
             </span>
             <span className="px-3 py-1 bg-ohrange-100 text-ohrange-800 rounded-full text-sm font-medium">
               {event.mode === "live" ? "In-Person" : "Online"}
             </span>
             {event.is_paid && (
-              <span className="px-3 py-1 bg-peenk-100 text-peenk-800 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-ohrange-100 text-ohrange-800 rounded-full text-sm font-medium">
                 ${event.price.toFixed(2)}
               </span>
             )}
           </div>
 
-          <h1 className="font-heading text-4xl md:text-5xl text-grin-900 mb-4">
+          <h1 className="font-heading text-4xl md:text-5xl text-gray-900 mb-4">
             {event.title}
           </h1>
         </div>
-
         {/* Event Details Card */}
         <Card className="p-6 mb-8  bg-lermorn-50 shadow-none border border-grin-100">
           <div className="grid gap-4">
             {/* Date & Time */}
             <div className="flex items-start gap-3">
-              <CalendarIcon className="w-5 h-5 text-grin-600 mt-1 shrink-0" />
+              <CalendarIcon className="w-5 h-5 text-ohrange-600 mt-1 shrink-0" />
               <div>
                 <p className="font-semibold text-gray-900">
                   {formatDate(startDate)}
@@ -121,7 +120,7 @@ export default function EventDetailPage() {
 
             {/* Location/Mode */}
             <div className="flex items-start gap-3">
-              <MapPinIcon className="w-5 h-5 text-grin-600 mt-1 shrink-0" />
+              <MapPinIcon className="w-5 h-5 text-ohrange-600 mt-1 shrink-0" />
               <div>
                 <p className="font-semibold text-gray-900">
                   {event.mode === "live" ? "In-Person Event" : "Online Event"}
@@ -137,7 +136,7 @@ export default function EventDetailPage() {
             {/* Max Attendees */}
             {event.max_attendees && (
               <div className="flex items-start gap-3">
-                <UsersIcon className="w-5 h-5 text-grin-600 mt-1 shrink-0" />
+                <UsersIcon className="w-5 h-5 text-ohrange-600 mt-1 shrink-0" />
                 <div>
                   <p className="font-semibold text-gray-900">
                     Limited to {event.max_attendees} attendees
@@ -153,7 +152,7 @@ export default function EventDetailPage() {
 
         {/* Description */}
         <div className="prose prose-lg max-w-none mb-8">
-          <h2 className="font-heading text-2xl text-grin-900 mb-4">
+          <h2 className="font-heading text-2xl text-gray-900 mb-4">
             About This {event.type === "event" ? "Event" : "Workshop"}
           </h2>
           <div className="text-gray-700 whitespace-pre-wrap leading-relaxed">
@@ -166,8 +165,8 @@ export default function EventDetailPage() {
           <div className="flex justify-center">
             <Button
               asChild
-              size="lg"
-              className="bg-grin-600 hover:bg-grin-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+              size="2xl"
+              className="bg-ohrange-600 hover:bg-ohrange-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
             >
               <a
                 href={event.external_link}
@@ -184,8 +183,8 @@ export default function EventDetailPage() {
 
         {/* Additional Info */}
         {event.is_paid && (
-          <div className="mt-8 p-4 bg-peenk-50 border border-peenk-200 rounded-lg">
-            <p className="text-center text-peenk-900">
+          <div className="mt-8 p-4 bg-ohrange-50 border border-ohrange-200 rounded-lg">
+            <p className="text-center text-ohrange-900">
               <span className="font-semibold">Registration Fee:</span> $
               {event.price.toFixed(2)}
             </p>

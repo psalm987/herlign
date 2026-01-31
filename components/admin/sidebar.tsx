@@ -10,6 +10,7 @@ import {
   Link2,
   Image,
   MessagesSquare,
+  Video,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 // import Logo from "@/components/svg/logo";
@@ -17,6 +18,7 @@ import { cn } from "@/lib/utils";
 const navigation = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Events", href: "/admin/events", icon: Calendar },
+  { name: "Podcasts", href: "/admin/podcasts", icon: Video },
   { name: "Resources", href: "/admin/resources", icon: BookOpen },
   { name: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
   { name: "Links", href: "/admin/links", icon: Link2 },
@@ -31,7 +33,7 @@ export function Sidebar() {
     <div className="flex h-full w-64 flex-col border-r border-grin-200 bg-white">
       {/* Logo */}
       <div className="flex h-16 items-center border-b border-grin-200 px-6">
-        <Link href="/admin" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           {/* <Logo className="h-8 w-8" /> */}
           <span className="font-heading text-xl font-semibold text-grin-700">
             Herlign Admin

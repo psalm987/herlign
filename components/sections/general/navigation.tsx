@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import Logo from "@/components/svg/logo";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import LINKS from "@/components/constants/links";
 
 interface NavLink {
   href: string;
@@ -15,6 +16,7 @@ const navLinks: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/start-anyway", label: "Start Anyway" },
   { href: "/events", label: "Events" },
+  { href: "/podcasts", label: "Podcasts" },
   { href: "/resources", label: "Resources" },
   { href: "/contact", label: "Contact" },
 ];
@@ -28,37 +30,43 @@ interface HeaderColorConfig {
 
 const headerColorConfig: HeaderColorConfig[] = [
   {
-    path: "/",
+    path: LINKS.home,
     header: "bg-peenk-500/50 text-gray-900 border-peenk-300",
     bg: "bg-peenk-500",
     logo: "fill-ohrange-500",
   },
   {
-    path: "/about",
+    path: LINKS.about,
     header: "bg-perple-500/90 text-white border-perple-400",
     bg: "bg-perple-500",
     logo: "fill-ohrange-500",
   },
   {
-    path: "/start-anyway",
+    path: LINKS.start_anyway,
     header: "bg-peenk-500/50 text-gray-700 border-peenk-300",
     bg: "bg-peenk-500",
     logo: "fill-ohrange-500",
   },
   {
-    path: "/contact",
+    path: LINKS.contact,
     header: "bg-ohrange-500/50 text-white border-ohrange-400",
     bg: "bg-ohrange-500",
     logo: "fill-white",
   },
   {
-    path: "/events",
-    header: "bg-grin-500/70 text-white border-grin-400",
-    bg: "bg-grin-500",
-    logo: "fill-lermorn-500",
+    path: LINKS.events,
+    header: "bg-gray-800/80 text-white border-gray-400",
+    bg: "bg-gray-900",
+    logo: "fill-white",
   },
   {
-    path: "/resources",
+    path: LINKS.podcasts,
+    header: "bg-peenk-500/70 text-white border-peenk-400",
+    bg: "bg-peenk-500",
+    logo: "fill-ohrange-500",
+  },
+  {
+    path: LINKS.resources,
     header: "bg-lermorn-500/70 text-gray-900 border-lermorn-400",
     bg: "bg-lermorn-500",
     logo: "fill-grin-500",

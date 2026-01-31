@@ -1,5 +1,6 @@
+import LINKS from "@/components/constants/links";
 import ActivityCard from "@/components/ui/activity";
-import { Calendar, Mic2, GraduationCap, Users } from "lucide-react";
+import { Calendar, Mic2, GraduationCap, Users, Heart } from "lucide-react";
 
 const ACTIVITIES = [
   // First row: 2 cards
@@ -8,6 +9,7 @@ const ACTIVITIES = [
     description: "Hands-on experiences to spark creativity",
     icon: Calendar,
     color: "grin" as const,
+    href: LINKS.events,
   },
   {
     title: "Seminars & Masterclasses",
@@ -15,6 +17,7 @@ const ACTIVITIES = [
     icon: GraduationCap,
     color: "lermorn" as const,
     featured: true,
+    href: LINKS.start_anyway,
   },
 
   // Second row: 2 cards
@@ -25,12 +28,14 @@ const ACTIVITIES = [
     color: "lermorn" as const,
     featured: true,
     image: "/images/jpeg/herlign1.jpeg",
+    href: LINKS.podcasts,
   },
   {
     title: "Community Conversations",
     description: "Support, feedback, and connection with your tribe",
     icon: Users,
     color: "grin" as const,
+    href: LINKS.external.join_whatsapp_community,
   },
 ];
 
@@ -72,6 +77,9 @@ const WhatWeDoSection = () => {
                 <span className="text-ohrange-600 font-bold">unstoppable</span>.
               </p>
             </div>
+            <span className="flex items-center justify-center size-14 bg-ohrange-600 text-lermorn-200 absolute -top-4 -right-4 rounded-full ">
+              <Heart />
+            </span>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ActivityCardProps {
   title: string;
@@ -8,6 +9,7 @@ interface ActivityCardProps {
   color: "grin" | "peenk" | "perple" | "ohrange" | "lermorn";
   featured?: boolean;
   image?: string;
+  href: string;
 }
 
 const BACKGROUND_COLORS = {
@@ -41,15 +43,18 @@ const ActivityCard = ({
   color,
   featured,
   image,
+  href,
 }: ActivityCardProps) => {
   return (
-    <div
+    <Link
+      target={href.startsWith("http") ? "_blank" : "_self"}
+      href={href}
       className={cn(
-        "group h-full flex flex-col justify-end relative rounded-2xl transition-all duration-300 overflow-hidden",
+        "group h-full flex flex-col justify-end relative rounded-2xl transition-all duration-300 overflow-hidden lg:hover:scale-105",
         featured ? "p-8 md:p-10 min-h-64" : "p-6 md:p-8 min-h-56",
         image
           ? "after:absolute after:inset-0 after:bg-linear-to-b after:from-transparent after:to-black"
-          : BACKGROUND_COLORS[color]
+          : BACKGROUND_COLORS[color],
       )}
     >
       {image && (
@@ -71,7 +76,7 @@ const ActivityCard = ({
       <div
         className={cn(
           "relative z-10",
-          image ? "text-white" : TEXT_COLORS[color]
+          image ? "text-white" : TEXT_COLORS[color],
         )}
       >
         {/* <div
@@ -98,7 +103,7 @@ const ActivityCard = ({
           className={cn(
             "font-heading font-semibold mb-3",
 
-            featured ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
+            featured ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
           )}
         >
           {title}
@@ -107,13 +112,13 @@ const ActivityCard = ({
         <p
           className={cn(
             "opacity-60 leading-relaxed",
-            featured ? "text-base md:text-lg" : "text-sm md:text-base"
+            featured ? "text-base md:text-lg" : "text-sm md:text-base",
           )}
         >
           {description}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

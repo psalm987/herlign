@@ -64,9 +64,12 @@ const WhoWeServeSection = () => {
               </div>
             </div>
           ))}
-          <p className="aspect-2/3 bg-ohrange-500 text-ohrange-100 text-center flex items-center rounded-4xl p-8 font-medium text-4xl">
-            No matter where you are in your journey, Herlign FC is your creative
-            home.
+          <p className="aspect-2/3 bg-ohrange-50 border border-ohrange-100 text-gray-700 text-center flex items-center rounded-4xl p-8 font-medium text-4xl">
+            <span className="block">
+              No matter where you are in your journey,
+              <span className="text-ohrange-600 font-bold">Herlign FC</span> is
+              your creative home.
+            </span>
           </p>
         </div>
       </div>

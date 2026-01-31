@@ -33,7 +33,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
       <span
         className={cn(
           "rounded-full px-3 py-1 text-xs font-medium",
-          isUpcoming && "bg-grin-600 text-white",
+          isUpcoming && "bg-gray-600/20 text-white",
           isPast && "bg-gray-600 text-white",
           !isUpcoming && !isPast && "bg-perple-600 text-white",
         )}
@@ -47,7 +47,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
     <Link
       href={`/events/${event.slug}`}
       className={cn(
-        " group relative flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 transition-all hover:outline-lermorn-500 hover:outline-2 hover:border-lermorn-600 focus:outline-lermorn-500 focus:outline-2 focus:border-lermorn-600 cursor-pointer md:flex-row md:gap-6",
+        "group relative flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 transition-all hover:border-ohrange-100  hover:bg-ohrange-50/80 cursor-pointer md:flex-row md:gap-6",
         isPast && "opacity-60",
       )}
     >
@@ -79,7 +79,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
                 "rounded-full px-3 py-1 text-xs font-medium",
                 event.type === "workshop"
                   ? "bg-ohrange-100 text-ohrange-700"
-                  : "bg-peenk-100 text-peenk-700",
+                  : "bg-ohrange-100 text-ohrange-700",
               )}
             >
               {event.type === "workshop" ? "Workshop" : "Event"}
@@ -107,7 +107,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
           {/* Event Meta Information */}
           <div className="grid gap-2 text-sm text-gray-600 sm:grid-cols-2">
             <div className="flex items-center gap-2">
-              <Calendar className="size-4 text-grin-500" />
+              <Calendar className="size-4 text-ohrange-500" />
               <span>
                 {formatDate(startDate)}
                 {startDate.toDateString() !== endDate.toDateString() &&
@@ -115,20 +115,20 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="size-4 text-grin-500" />
+              <Clock className="size-4 text-ohrange-500" />
               <span>
                 {formatTime(startDate)} - {formatTime(endDate)}
               </span>
             </div>
             {event.max_attendees && (
               <div className="flex items-center gap-2">
-                <Users className="size-4 text-grin-500" />
+                <Users className="size-4 text-ohrange-500" />
                 <span>Max {event.max_attendees} attendees</span>
               </div>
             )}
             {event.is_paid && (
               <div className="flex items-center gap-2">
-                <DollarSign className="size-4 text-grin-500" />
+                <DollarSign className="size-4 text-ohrange-500" />
                 <span>${event.price.toFixed(2)}</span>
               </div>
             )}
@@ -140,7 +140,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
           {event.external_link ? (
             <Button
               asChild
-              className="bg-grin-600 hover:bg-grin-700 text-white"
+              className="bg-ohrange-600 hover:bg-ohrange-700 text-white w-full md:w-auto"
             >
               <a
                 href={event.external_link}
@@ -151,7 +151,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
               </a>
             </Button>
           ) : (
-            <Button disabled className="bg-gray-400">
+            <Button disabled className="bg-gray-400 w-full md:w-auto">
               {isUpcoming ? "Anticipate!" : "Registration Closed"}
             </Button>
           )}

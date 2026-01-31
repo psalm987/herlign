@@ -15,6 +15,7 @@ const selectVariants = cva(
       variant: {
         default:
           "border-input focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        gray: "border-gray-300 focus-visible:border-gray-500 focus-visible:ring-2 focus-visible:ring-gray-500/20",
         grin: "border-gray-300 focus-visible:border-grin-500 focus-visible:ring-2 focus-visible:ring-grin-500/20",
         peenk:
           "border-gray-300 focus-visible:border-peenk-500 focus-visible:ring-2 focus-visible:ring-peenk-500/20",
@@ -48,6 +49,7 @@ const labelVariants = cva(
     variants: {
       variant: {
         default: "text-foreground",
+        gray: "text-foreground",
         grin: "text-gray-700",
         peenk: "text-gray-700",
         ohrange: "text-gray-700",

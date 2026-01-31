@@ -141,6 +141,30 @@ export const authKeys = {
 };
 
 /**
+ * Query key factory for podcasts
+ */
+export const podcastKeys = {
+    all: ['podcasts'] as const,
+    lists: () => [...podcastKeys.all, 'list'] as const,
+    list: (filters?: import('@/lib/validators/podcasts').PodcastQuery) =>
+        [...podcastKeys.lists(), filters] as const,
+    details: () => [...podcastKeys.all, 'detail'] as const,
+    detail: (id: string) => [...podcastKeys.details(), id] as const,
+};
+
+/**
+ * Query key factory for admin podcasts
+ */
+export const adminPodcastKeys = {
+    all: ['admin', 'podcasts'] as const,
+    lists: () => [...adminPodcastKeys.all, 'list'] as const,
+    list: (filters?: import('@/lib/validators/podcasts').PodcastQuery) =>
+        [...adminPodcastKeys.lists(), filters] as const,
+    details: () => [...adminPodcastKeys.all, 'detail'] as const,
+    detail: (id: string) => [...adminPodcastKeys.details(), id] as const,
+};
+
+/**
  * Helper to invalidate all related queries when an entity changes
  */
 export const invalidationGroups = {
@@ -164,6 +188,10 @@ export const invalidationGroups = {
     chat: {
         public: chatKeys.all,
         admin: adminChatKeys.all,
+    },
+    podcasts: {
+        public: podcastKeys.all,
+        admin: adminPodcastKeys.all,
     },
     auth: authKeys.all,
 };

@@ -99,7 +99,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
             onChange={(e) =>
               onFilterChange({ ...filters, search: e.target.value })
             }
-            variant="grin"
+            variant="gray"
             startDecoration={<Search className="size-5" />}
             className="pr-14"
             inputSize="lg"
@@ -112,14 +112,14 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 aria-label="Open filters"
               >
-                <div className="relative">
+                <span className="relative">
                   <Filter className="size-5" />
                   {activeFilterCount > 0 && (
-                    <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-grin-600 text-[10px] font-semibold text-white">
+                    <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-gray-700 text-[10px] font-semibold text-white">
                       {activeFilterCount}
                     </span>
                   )}
-                </div>
+                </span>
               </button>
             </PopoverTrigger>
             <PopoverContent align="end" className="w-80 p-4" sideOffset={8}>
@@ -138,7 +138,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
                   label="Type"
                   value={tempFilters.type}
                   onChange={(e) => updateTempFilter("type", e.target.value)}
-                  variant="grin"
+                  variant="gray"
                   options={[
                     { value: "", label: "All" },
                     { value: "event", label: "Events" },
@@ -151,7 +151,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
                   label="Mode"
                   value={tempFilters.mode}
                   onChange={(e) => updateTempFilter("mode", e.target.value)}
-                  variant="grin"
+                  variant="gray"
                   options={[
                     { value: "", label: "All" },
                     { value: "live", label: "Live" },
@@ -172,7 +172,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
                       onChange={(e) =>
                         updateTempFilter("dateFrom", e.target.value)
                       }
-                      variant="grin"
+                      variant="gray"
                     />
                     <TextField
                       type="date"
@@ -181,7 +181,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
                       onChange={(e) =>
                         updateTempFilter("dateTo", e.target.value)
                       }
-                      variant="grin"
+                      variant="gray"
                     />
                   </div>
                 </div>
@@ -204,7 +204,7 @@ export const SearchFiltersSection: React.FC<SearchFiltersSectionProps> = ({
                   <Button
                     onClick={handleApply}
                     size="sm"
-                    className="flex-1 bg-grin-600 hover:bg-grin-700 text-white"
+                    className="flex-1 bg-gray-800 hover:bg-gray-900 text-white"
                   >
                     Apply
                   </Button>

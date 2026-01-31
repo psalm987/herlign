@@ -15,6 +15,7 @@ const textFieldVariants = cva(
       variant: {
         default:
           "border-input focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        gray: "border-gray-300 focus-visible:border-gray-500 focus-visible:ring-2 focus-visible:ring-gray-500/20",
         grin: "border-gray-300 focus-visible:border-grin-500 focus-visible:ring-2 focus-visible:ring-grin-500/20",
         peenk:
           "border-gray-300 focus-visible:border-peenk-500 focus-visible:ring-2 focus-visible:ring-peenk-500/20",
@@ -48,6 +49,7 @@ const labelVariants = cva(
     variants: {
       variant: {
         default: "text-foreground",
+        gray: "text-foreground",
         grin: "text-gray-700",
         peenk: "text-gray-700",
         ohrange: "text-gray-700",
@@ -147,6 +149,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             disabled={disabled || isLoading}
             required={required}
             className={cn(
+              "justify-center",
               textFieldVariants({ variant, inputSize, hasError }),
               startDecoration && inputSize === "sm" && "pl-8",
               startDecoration && inputSize === "md" && "pl-10",
@@ -160,7 +163,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           />
 
           {/* End Decoration / Loading */}
-          {(endDecoration || isLoading) && (
+          {!!(endDecoration || isLoading) && (
             <div
               className={cn(
                 "absolute right-3 top-1/2 -translate-y-1/2 text-gray-400",

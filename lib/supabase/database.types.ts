@@ -274,6 +274,65 @@ export interface Database {
                     created_at?: string;
                 };
             };
+            podcasts: {
+                Row: {
+                    id: string;
+                    youtube_video_id: string;
+                    title: string;
+                    description: string | null;
+                    thumbnail_url: string | null;
+                    published_at: string;
+                    duration: string | null;
+                    view_count: number;
+                    like_count: number;
+                    comment_count: number;
+                    channel_title: string | null;
+                    tags: string[];
+                    category_id: string | null;
+                    is_visible: boolean;
+                    admin_id: string | null;
+                    created_at: string;
+                    updated_at: string;
+                };
+                Insert: {
+                    id?: string;
+                    youtube_video_id: string;
+                    title: string;
+                    description?: string | null;
+                    thumbnail_url?: string | null;
+                    published_at: string;
+                    duration?: string | null;
+                    view_count?: number;
+                    like_count?: number;
+                    comment_count?: number;
+                    channel_title?: string | null;
+                    tags?: string[];
+                    category_id?: string | null;
+                    is_visible?: boolean;
+                    admin_id?: string | null;
+                    created_at?: string;
+                    updated_at?: string;
+                };
+                Update: {
+                    id?: string;
+                    youtube_video_id?: string;
+                    title?: string;
+                    description?: string | null;
+                    thumbnail_url?: string | null;
+                    published_at?: string;
+                    duration?: string | null;
+                    view_count?: number;
+                    like_count?: number;
+                    comment_count?: number;
+                    channel_title?: string | null;
+                    tags?: string[];
+                    category_id?: string | null;
+                    is_visible?: boolean;
+                    admin_id?: string | null;
+                    created_at?: string;
+                    updated_at?: string;
+                };
+            };
         };
         Views: {
             [_ in never]: never;

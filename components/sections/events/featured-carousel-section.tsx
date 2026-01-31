@@ -161,7 +161,7 @@ export const FeaturedCarouselSection: React.FC<
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-grin-700 hover:bg-white/90"
+                  className="bg-black text-white hover:bg-black/60"
                 >
                   <a
                     href={currentEvent.external_link}

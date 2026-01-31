@@ -55,8 +55,8 @@ const headerColorConfig: HeaderColorConfig[] = [
   },
   {
     path: LINKS.events,
-    header: "bg-gray-800/80 text-white border-gray-400",
-    bg: "bg-gray-900",
+    header: "bg-black/80 text-white border-gray-400",
+    bg: "bg-black",
     logo: "fill-white",
   },
   {

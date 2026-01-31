@@ -5,15 +5,15 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-20 md:pt-32 pb-0 bg-linear-to-b from-peenk-500 via-peenk-400 lg:via-30% to-peenk-100">
-      <Image
+    <section className="relative pt-30 md:pt-20 pb-0 bg-linear-to-b bg-white ">
+      {/* <Image
         src="/images/png/patterns/peenk-500-mini.png"
         alt=""
         fill
         className="absolute h-auto w-screen object-cover"
         priority
-      />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      /> */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-30 md:mb-0">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-gray-900 mb-6 text-pretty">
             A Home for{" "}
@@ -45,9 +45,10 @@ export default function HeroSection() {
         alt=""
         width={1500}
         height={500}
-        className="relative mx-auto mt-10 md:mt-16"
+        className="relative mx-auto mt-10 md:mt-16 "
         priority
       />
+      <span className="absolute bottom-0 left-0 w-full bg-linear-to-b from-transparent to-peenk-50 h-10 md:h-25" />
     </section>
   );
 }

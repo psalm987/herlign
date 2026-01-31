@@ -12,7 +12,7 @@ import {
   Clock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import type { Event } from "@/lib/tanstack/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,6 +28,9 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const isUpcoming = startDate > new Date();
   const isPast = endDate < new Date();
 
+  const soon =
+    startDate.getTime() - new Date().getTime() < 7 * 24 * 60 * 60 * 1000;
+
   const statusBadge = (
     <div className="absolute left-3 top-3">
       <span
@@ -38,7 +41,13 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
           !isUpcoming && !isPast && "bg-perple-600 text-white",
         )}
       >
-        {isPast ? "Past" : isUpcoming ? "Upcoming" : "Ongoing"}
+        {isPast
+          ? "Past"
+          : isUpcoming
+            ? soon
+              ? "Soon"
+              : "Upcoming"
+            : "Ongoing"}
       </span>
     </div>
   );
@@ -136,7 +145,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
         </div>
 
         {/* Action Button */}
-        <div className="mt-4 flex items-center justify-between">
+        {/* <div className="mt-4 flex items-center justify-between">
           {event.external_link ? (
             <Button
               asChild
@@ -155,7 +164,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
               {isUpcoming ? "Anticipate!" : "Registration Closed"}
             </Button>
           )}
-        </div>
+        </div> */}
       </div>
     </Link>
   );

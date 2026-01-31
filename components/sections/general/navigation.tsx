@@ -31,8 +31,8 @@ interface HeaderColorConfig {
 const headerColorConfig: HeaderColorConfig[] = [
   {
     path: LINKS.home,
-    header: "bg-peenk-500/50 text-gray-900 border-peenk-300",
-    bg: "bg-peenk-500",
+    header: "bg-white/50 text-gray-900 border-transparent",
+    bg: "bg-white",
     logo: "fill-ohrange-500",
   },
   {
@@ -61,7 +61,7 @@ const headerColorConfig: HeaderColorConfig[] = [
   },
   {
     path: LINKS.podcasts,
-    header: "bg-peenk-500/70 text-white border-peenk-400",
+    header: "bg-peenk-500/70 text-gray-800 border-peenk-400",
     bg: "bg-peenk-500",
     logo: "fill-ohrange-500",
   },

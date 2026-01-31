@@ -7,10 +7,10 @@ import {
   type PodcastUpdate,
 } from "@/lib/validators/podcasts";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { UnsavedChangesWarning } from "@/components/admin/unsaved-changes-warning";
 import { Checkbox } from "@/components/ui/checkbox";
+import { TextField } from "@/components/ui/text-field";
 
 interface PodcastFormProps {
   defaultValues?: Partial<PodcastUpdate> & {
@@ -52,70 +52,72 @@ export function PodcastForm({
           <h2 className="font-heading text-xl font-semibold mb-4">
             Podcast Information
           </h2>
-          <div className="space-y-4">
+          <div className="gap-4 flex flex-col lg:grid lg:grid-cols-2">
             {/* Title (Read-only in edit mode) */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Title
-              </label>
-              <Input
-                value={defaultValues?.title || ""}
-                disabled
-                className="bg-gray-50"
-              />
-              <p className="mt-1 text-xs text-gray-500">
-                Title is synced from YouTube
-              </p>
-            </div>
+            <Controller
+              control={control}
+              name="title"
+              render={({ field }) => (
+                <TextField
+                  label="Title"
+                  value={field.value || ""}
+                  onChange={field.onChange}
+                  disabled={true}
+                  errorMessage={errors?.title?.message}
+                />
+              )}
+            />
 
             {/* YouTube Video ID (Read-only) */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                YouTube Video ID
-              </label>
-              <Input
-                value={defaultValues?.youtube_video_id || ""}
-                disabled
-                className="bg-gray-50"
-              />
-              <p className="mt-1 text-xs text-gray-500">
-                {defaultValues?.youtube_video_id && (
-                  <a
-                    href={`https://youtube.com/watch?v=${defaultValues.youtube_video_id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-perple-600 hover:underline"
-                  >
-                    View on YouTube →
-                  </a>
-                )}
-              </p>
-            </div>
+            <Controller
+              control={control}
+              name="youtube_video_id"
+              render={({ field }) => (
+                <TextField
+                  label="YouTube Video ID"
+                  value={field.value || ""}
+                  onChange={field.onChange}
+                  disabled={true}
+                  helperText={
+                    field.value && (
+                      <a
+                        href={`https://youtube.com/watch?v=${field.value}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-perple-600 hover:underline"
+                      >
+                        View on YouTube →
+                      </a>
+                    )
+                  }
+                  errorMessage={errors?.youtube_video_id?.message}
+                />
+              )}
+            />
 
             {/* Description (Read-only) */}
-            {defaultValues?.description && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Description
-                </label>
-                <textarea
-                  value={defaultValues.description}
-                  disabled
-                  rows={4}
-                  className="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm"
+            <Controller
+              control={control}
+              name="description"
+              render={({ field }) => (
+                <TextField
+                  label="Description"
+                  value={field.value || ""}
+                  onChange={field.onChange}
+                  disabled={true}
+                  containerClassName="col-span-2"
+                  errorMessage={errors?.description?.message}
                 />
-                <p className="mt-1 text-xs text-gray-500">
-                  Description is synced from YouTube
-                </p>
-              </div>
-            )}
+              )}
+            />
 
             {/* Visibility Toggle (Editable) */}
             <Controller
               control={control}
               name="is_visible"
+              disabled={isSubmitting}
               render={({ field }) => (
-                <div className="flex items-start gap-3 rounded-lg border border-gray-200 p-4">
+                <div className="flex items-start gap-3 rounded-lg border border-gray-200 p-4 shrink-0 flex-1">
                   <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
@@ -142,7 +144,7 @@ export function PodcastForm({
               )}
             />
 
-            <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-900">
+            {/* <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-900 shrink-0 flex-1">
               <p className="font-medium mb-2">ℹ️ About Podcast Sync</p>
               <ul className="list-disc list-inside space-y-1 text-blue-800">
                 <li>
@@ -155,7 +157,7 @@ export function PodcastForm({
                   to update all podcasts
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </Card>
 

@@ -154,7 +154,7 @@ export default function PodcastsListPage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -168,7 +168,7 @@ export default function PodcastsListPage() {
         <div className="flex gap-3">
           <Button
             onClick={() => syncPodcasts()}
-            disabled={isSyncing}
+            disabled={true}
             variant="outline"
             className="gap-2"
           >

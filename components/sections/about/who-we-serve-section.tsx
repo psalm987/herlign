@@ -41,12 +41,12 @@ const WhoWeServeSection = () => {
             We welcome women who are:
           </p>
         </div>
-        <div className=" mt-12 grid gap-8 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full mt-12 grid gap-8 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {WHO_WE_SERVE.map((who) => (
             <div
               key={who.title}
               className={
-                "relative aspect-2/3 w-full rounded-4xl overflow-hidden group cursor-none"
+                "relative aspect-2/3 w-full h-auto rounded-4xl overflow-hidden group cursor-none"
               }
             >
               <Image
@@ -66,7 +66,7 @@ const WhoWeServeSection = () => {
           ))}
           <p className="aspect-2/3 bg-ohrange-50 border border-ohrange-100 text-gray-700 text-center flex items-center rounded-4xl p-8 font-medium text-4xl">
             <span className="block">
-              No matter where you are in your journey,
+              No matter where you are in your journey,{" "}
               <span className="text-ohrange-600 font-bold">Herlign FC</span> is
               your creative home.
             </span>

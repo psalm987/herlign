@@ -4,7 +4,7 @@ import {
   Calendar,
   BookOpen,
   MessageSquare,
-  Link2,
+  // Link2,
   Image as ImageIcon,
   MessagesSquare,
 } from "lucide-react";
@@ -35,13 +35,13 @@ const statConfig = [
     href: "/admin/testimonials",
     color: "text-ohrange-600 bg-ohrange-100",
   },
-  {
-    key: "links" as const,
-    name: "Links",
-    icon: Link2,
-    href: "/admin/links",
-    color: "text-perple-600 bg-perple-100",
-  },
+  // {
+  //   key: "links" as const,
+  //   name: "Links",
+  //   icon: Link2,
+  //   href: "/admin/links",
+  //   color: "text-perple-600 bg-perple-100",
+  // },
   {
     key: "media" as const,
     name: "Media Files",

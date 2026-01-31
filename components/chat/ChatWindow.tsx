@@ -87,8 +87,8 @@ export function ChatWindow({ isOpen, onClose, onNewMessage }: ChatWindowProps) {
     <>
       <div
         className={cn(
-          "fixed bottom-20 right-4 z-50 w-[380px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 fade-in duration-300",
-          "sm:w-[400px] sm:h-[600px]",
+          "fixed bottom-20 right-4 z-50 max-w-[380px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-4 fade-in duration-300",
+          "w-[80vw] sm:w-full sm:max-w-[400px] sm:h-[600px]",
         )}
       >
         {/* Header */}

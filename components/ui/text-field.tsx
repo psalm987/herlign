@@ -76,7 +76,7 @@ export interface TextFieldProps
     Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof textFieldVariants> {
   label?: string;
-  helperText?: string;
+  helperText?: string | React.ReactNode;
   errorMessage?: string;
   startDecoration?: React.ReactNode;
   endDecoration?: React.ReactNode;

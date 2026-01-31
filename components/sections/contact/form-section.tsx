@@ -14,12 +14,12 @@ const ContactFormSection = () => {
     message: "",
   });
   const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(
-    null
+    null,
   );
   const [error, setError] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -51,7 +51,7 @@ const ContactFormSection = () => {
           headers: {
             Accept: "application/json",
           },
-        }
+        },
       );
       console.log("response", response);
 
@@ -143,7 +143,7 @@ const ContactFormSection = () => {
             {/* Success Message */}
             {submitStatus === "success" && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded">
-                Success! Now check your email to confirm your subscription.
+                Thank you, boo! You should hear back from the team soon.
               </div>
             )}
 

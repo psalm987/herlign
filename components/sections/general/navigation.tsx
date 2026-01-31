@@ -131,7 +131,7 @@ export function Navigation() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center "
               >
-                <Logo animate className={headerColor.logo} />
+                <Logo animate className={cn("md:pl-12", headerColor.logo)} />
               </Link>
             </div>
 

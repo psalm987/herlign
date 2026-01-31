@@ -29,7 +29,7 @@ const MissionSection = () => {
           </div>
           <div
             className={cn(
-              "w-full lg:w-auto contain-content lg:absolute right-16 -top-8  transition-transform duration-500 lg:after:content-[''] lg:after:absolute lg:after:inset-0 lg:after:bg-linear-to-b lg:after:from-transparent lg:after:via-transparent lg:after:to-black lg:after:rounded-lg",
+              "w-full lg:w-auto contain-content lg:absolute right-16 -top-8  transition-transform duration-500 //lg:after:content-[''] //lg:after:absolute //lg:after:inset-0 //lg:after:bg-linear-to-b //lg:after:from-transparent //lg:after:via-transparent //lg:after:to-black //lg:after:rounded-lg",
               isInViewport ? "lg:rotate-6" : "",
             )}
           >

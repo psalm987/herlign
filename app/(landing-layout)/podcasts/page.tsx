@@ -148,11 +148,13 @@ export default function PodcastsPage() {
           {isLoading && (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="rounded-lg border bg-white p-4">
-                  <Skeleton className="aspect-video w-full rounded-lg" />
-                  <Skeleton className="mt-4 h-6 w-3/4" />
-                  <Skeleton className="mt-2 h-4 w-full" />
-                  <Skeleton className="mt-2 h-4 w-2/3" />
+                <div key={i} className="flex flex-col gap-3">
+                  <Skeleton className="aspect-video w-full rounded-xl" />
+                  <div className="flex flex-col gap-2">
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-3/4" />
+                  </div>
                 </div>
               ))}
             </div>

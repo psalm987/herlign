@@ -44,19 +44,19 @@ export default function NewPodcastPage() {
           Add New Podcast
         </h1>
         <p className="mt-1 text-sm text-gray-600">
-          Manually add a podcast video (or use &quot;Sync from YouTube&quot;
-          instead)
+          Manually add a podcast video (&quot;Sync from YouTube&quot; is
+          currently not available)
         </p>
       </div>
 
-      <div className="rounded-lg bg-yellow-50 border border-yellow-200 p-4 mb-6">
+      {/* <div className="rounded-lg bg-yellow-50 border border-yellow-200 p-4 mb-6">
         <p className="text-sm text-yellow-900">
           <strong>Tip:</strong> It&apos;s recommended to use the &quot;Sync from
           YouTube&quot; button on the podcasts list page instead of manually
           creating podcasts. The sync will automatically fetch all videos from
           your configured YouTube channel.
         </p>
-      </div>
+      </div> */}
 
       <PodcastForm
         onSubmit={handleSubmit}

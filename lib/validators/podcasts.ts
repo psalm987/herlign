@@ -14,7 +14,7 @@ export const podcastSchema = z.object({
     title: z.string().min(1, 'Title is required').max(500, 'Title too long'),
     description: z.string().optional().nullable(),
     thumbnail_url: z.string().url('Invalid thumbnail URL').optional().nullable(),
-    published_at: z.string().datetime('Invalid published date'),
+    published_at: z.string().datetime('Invalid published date').optional(),
     duration: z.string().optional().nullable(),
     view_count: z.number().int().min(0).default(0),
     like_count: z.number().int().min(0).default(0),

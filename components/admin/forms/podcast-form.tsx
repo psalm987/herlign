@@ -56,13 +56,12 @@ export function PodcastForm({
             {/* Title (Read-only in edit mode) */}
             <Controller
               control={control}
+              disabled={isSubmitting}
               name="title"
               render={({ field }) => (
                 <TextField
                   label="Title"
-                  value={field.value || ""}
-                  onChange={field.onChange}
-                  disabled={true}
+                  {...field}
                   errorMessage={errors?.title?.message}
                 />
               )}
@@ -72,14 +71,14 @@ export function PodcastForm({
             <Controller
               control={control}
               name="youtube_video_id"
+              disabled={isSubmitting}
               render={({ field }) => (
                 <TextField
                   label="YouTube Video ID"
-                  value={field.value || ""}
-                  onChange={field.onChange}
-                  disabled={true}
+                  {...field}
                   helperText={
-                    field.value && (
+                    field.value &&
+                    field.value.length === 11 && (
                       <a
                         href={`https://youtube.com/watch?v=${field.value}`}
                         target="_blank"
@@ -99,12 +98,12 @@ export function PodcastForm({
             <Controller
               control={control}
               name="description"
+              disabled={isSubmitting}
               render={({ field }) => (
                 <TextField
                   label="Description"
+                  {...field}
                   value={field.value || ""}
-                  onChange={field.onChange}
-                  disabled={true}
                   containerClassName="col-span-2"
                   errorMessage={errors?.description?.message}
                 />

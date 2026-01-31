@@ -6,6 +6,7 @@ import Logo from "@/components/svg/logo";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import LINKS from "@/components/constants/links";
+import { Button } from "@/components/ui/button";
 
 interface NavLink {
   href: string;
@@ -73,7 +74,11 @@ const headerColorConfig: HeaderColorConfig[] = [
   },
 ];
 
-export function Navigation() {
+interface NavigationProps {
+  isAdmin?: boolean;
+}
+
+export function Navigation({ isAdmin }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const pathname = usePathname();
@@ -154,6 +159,12 @@ export function Navigation() {
               </div>
             </nav>
 
+            {isAdmin && (
+              <Button className="hidden lg:inline-flex" asChild>
+                <Link href="/admin">Dashboard</Link>
+              </Button>
+            )}
+
             {/* Right side spacer for mobile to keep logo centered */}
             <div className="flex md:hidden w-10" />
           </div>
@@ -163,7 +174,7 @@ export function Navigation() {
         <nav
           className={cn(
             "md:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out",
-            mobileMenuOpen ? "max-h-96" : "max-h-0",
+            mobileMenuOpen ? "max-h-120" : "max-h-0",
           )}
         >
           <div className="px-4 py-4 space-y-3">
@@ -191,6 +202,20 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
+            {isAdmin && (
+              <>
+                <span className="block border-t border-gray-200" />
+                <Link
+                  href="/admin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "block font-sans text-base text-gray-700 font-medium py-2 transition-colors",
+                  )}
+                >
+                  Dashboard
+                </Link>
+              </>
+            )}
           </div>
         </nav>
       </header>

@@ -28,13 +28,13 @@ const statConfig = [
     href: "/admin/resources",
     color: "text-peenk-600 bg-peenk-100",
   },
-  {
-    key: "testimonials" as const,
-    name: "Testimonials",
-    icon: MessageSquare,
-    href: "/admin/testimonials",
-    color: "text-ohrange-600 bg-ohrange-100",
-  },
+  // {
+  // key: "testimonials" as const,
+  // name: "Testimonials",
+  // icon: MessageSquare,
+  // href: "/admin/testimonials",
+  // color: "text-ohrange-600 bg-ohrange-100",
+  // },
   // {
   //   key: "links" as const,
   //   name: "Links",
@@ -100,7 +100,7 @@ export default function AdminDashboard() {
       {/* Stats Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {isLoading
-          ? Array.from({ length: 6 }).map((_, i) => (
+          ? Array.from({ length: statConfig?.length }).map((_, i) => (
               <StatCardSkeleton key={i} />
             ))
           : statConfig.map((stat) => {

@@ -1,5 +1,6 @@
 import { Footer } from "@/components/sections/general/footer";
 import { Navigation } from "@/components/sections/general/navigation";
+import { ChatWidget } from "@/components/chat";
 import React from "react";
 
 const LandingLayout = ({ children }: { children: React.ReactNode }) => {
@@ -8,6 +9,7 @@ const LandingLayout = ({ children }: { children: React.ReactNode }) => {
       <Navigation />
       {children}
       <Footer />
+      <ChatWidget />
     </div>
   );
 };

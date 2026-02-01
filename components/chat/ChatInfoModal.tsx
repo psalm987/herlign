@@ -21,8 +21,8 @@ interface ChatInfoModalProps {
 export function ChatInfoModal({ open, onOpenChange }: ChatInfoModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
+      <DialogContent className="max-w-[80vw] sm:max-w-md max-h-[80vh] rounded-2xl overflow-y-scroll">
+        <DialogHeader className="h-full flex flex-col">
           <DialogTitle className="text-2xl font-heading text-peenk-600">
             About Herligna
           </DialogTitle>

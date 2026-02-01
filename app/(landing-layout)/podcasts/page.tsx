@@ -50,15 +50,15 @@ export default function PodcastsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-linear-to-br from-peenk-500 to-perple-600 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-white">
-            <h1 className="font-heading text-4xl font-bold sm:text-5xl md:text-6xl">
+      <section className="bg-white py-16 overflow-hidden relative">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center">
+            <h1 className="font-heading text-4xl font-semibold sm:text-5xl md:text-6xl text-gray-900">
               Herlign Voices
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg md:text-xl">
+            <p className="mx-auto mt-4 max-w-2xl text-lg md:text-xl text-gray-600">
               Get your daily dose of inspiration from women who are building
               stuff. Watch honest conversations and stories from ambitious
               women.

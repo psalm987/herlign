@@ -20,7 +20,7 @@ export function ChatFAB({ onClick, hasUnread }: ChatFABProps) {
       onClick={onClick}
       size="icon"
       className={cn(
-        "fixed bottom-4 right-4 z-40 size-14 rounded-full shadow-2xl",
+        "fixed bottom-4 right-4 z-40 size-14 md:size-20 rounded-full shadow-2xl",
         "bg-linear-to-br from-peenk-500 to-peenk-600 hover:from-peenk-600 hover:to-peenk-700",
         "transition-all duration-300 hover:scale-110 active:scale-95",
         "animate-in slide-in-from-bottom-4 fade-in",

@@ -1,13 +1,11 @@
-"use client";
 import React from "react";
-import { useEventBySlug } from "@/lib/tanstack/hooks/useEvents";
-import { notFound, useParams } from "next/navigation";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   CalendarIcon,
-  // Clock,ßßß
   MapPinIcon,
   UsersIcon,
   ArrowLeftIcon,
@@ -15,38 +13,80 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { formatDate, formatTime } from "@/lib/utils/date";
+import { createClient } from "@/lib/supabase/server";
+import { Event } from "@/lib/tanstack/types";
 
-export default function EventDetailPage() {
-  const { slug } = useParams();
-  const { data, isLoading, error } = useEventBySlug(slug as string);
+/**
+ * Generate metadata for event page
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
 
-  // Handle loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white py-12">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="animate-pulse">
-            <div className="h-8 w-32 bg-gray-200 rounded mb-8" />
-            <div className="h-96 bg-gray-200 rounded-lg mb-6" />
-            <div className="h-12 w-3/4 bg-gray-200 rounded mb-4" />
-            <div className="h-6 w-1/2 bg-gray-200 rounded mb-8" />
-            <div className="space-y-3">
-              <div className="h-4 bg-gray-200 rounded w-full" />
-              <div className="h-4 bg-gray-200 rounded w-5/6" />
-              <div className="h-4 bg-gray-200 rounded w-4/6" />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+  const { data: event }: { data: Event | null } = await supabase
+    .from("events")
+    .select("title, description, type, mode, start_date, image_url")
+    .eq("slug", slug)
+    .eq("status", "published")
+    .single();
+
+  if (!event) {
+    return {
+      title: "Event Not Found | Herlign FC",
+      description: "The event you are looking for could not be found.",
+    };
   }
+
+  const eventType = event.type === "event" ? "Event" : "Workshop";
+  const eventMode = event.mode === "live" ? "In-Person" : "Online";
+  const eventDate = new Date(event.start_date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  return {
+    title: `${event.title} | Herlign FC ${eventType}`,
+    description: `${event.description.slice(0, 155)}... Join us for this ${eventMode.toLowerCase()} ${eventType.toLowerCase()} on ${eventDate}.`,
+    openGraph: {
+      title: event.title,
+      description: event.description,
+      type: "website",
+      images: event.image_url ? [{ url: event.image_url }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: event.title,
+      description: event.description,
+      images: event.image_url ? [event.image_url] : [],
+    },
+  };
+}
+
+export default async function EventDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const supabase = await createClient();
+
+  const { data: event, error }: { data: Event | null; error: Error | null } =
+    await supabase
+      .from("events")
+      .select("*")
+      .eq("slug", slug)
+      .eq("status", "published")
+      .single();
 
   // Handle error or not found
-  if (error || !data?.data) {
+  if (error || !event) {
     notFound();
   }
-
-  const event = data.data;
 
   // Format dates
   const startDate = new Date(event.start_date);

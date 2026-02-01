@@ -24,8 +24,8 @@ export default function RootLayout({
           {children}
           <Toaster position="top-right" />
         </QueryProvider>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
     </html>
   );
 }

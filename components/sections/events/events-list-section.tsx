@@ -123,7 +123,7 @@ export const EventsListSection: React.FC<EventsListSectionProps> = ({
                   variant={isActive ? "default" : "outline"}
                   size="icon"
                   className={cn(
-                    isActive && "bg-grin-600 hover:bg-grin-700 text-white",
+                    isActive && "bg-gray-800 hover:bg-gray-900 text-white",
                   )}
                 >
                   {pageNum}

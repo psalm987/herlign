@@ -150,23 +150,24 @@ function EventsPage() {
 
   return (
     <div className="min-h-screen bg-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-8">
-          Events/&#8203;Workshops
-        </h2>
-      </div>
-      {/* Featured Carousel */}
-      <div className="">
-        {featuredLoading ? (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <FeaturedCarouselSkeleton />
-          </div>
-        ) : (
-          featuredEvents.length > 0 && (
+      {!featuredEvents.length ? (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-4xl  md:text-6xl font-semibold text-gray-900 mb-8">
+            Events/&#8203;Workshops
+          </h2>
+        </div>
+      ) : (
+        // Featured carousel
+        <div className="">
+          {featuredLoading ? (
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <FeaturedCarouselSkeleton />
+            </div>
+          ) : (
             <FeaturedCarouselSection events={featuredEvents} />
-          )
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       {/* Search and Filters */}
       <SearchFiltersSection

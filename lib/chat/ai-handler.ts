@@ -122,29 +122,83 @@ async function getOpenAIResponse(messages: AIMessage[], dynamicContext: string):
 }
 
 /**
- * Gets AI response using Google Gemini
+ * Gets AI response using Google Gemini with Function Calling
  * 
  * @param messages - Conversation history
- * @param dynamicContext - Dynamic context from database
+ * @param _dynamicContext - Dynamic context from database (not used with function calling)
  * @returns AI response
  */
-async function getGeminiResponse(messages: AIMessage[], dynamicContext: string): Promise<AIResponse> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function getGeminiResponse(messages: AIMessage[], _dynamicContext: string): Promise<AIResponse> {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
         return { content: '', error: 'Gemini API key not configured' };
     }
 
     try {
-        // Add dynamic context to system prompt if available
-        const systemPrompt = dynamicContext
-            ? `${SYSTEM_PROMPT}\n\nCONTEXT FOR THIS QUERY:${dynamicContext}`
-            : SYSTEM_PROMPT;
+        // Import context functions dynamically to avoid circular deps
+        const { getPublishedEvents, getResources, getPodcasts, HERLIGN_KNOWLEDGE } = await import('./context-builder');
 
-        // Combine system prompt with conversation
-        const prompt = `${systemPrompt}\n\n${messages
-            .map((m) => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`)
-            .join('\n')}\n\nAssistant:`;
+        // Define function declarations for Gemini
+        const tools = [{
+            functionDeclarations: [
+                {
+                    name: 'get_upcoming_events',
+                    description: 'Fetches upcoming published events and workshops from the database. Use this when users ask about events, workshops, or upcoming activities.',
+                    parameters: {
+                        type: 'object',
+                        properties: {
+                            limit: {
+                                type: 'integer',
+                                description: 'Maximum number of events to return (default: 5)',
+                            },
+                        },
+                    },
+                },
+                {
+                    name: 'get_resources',
+                    description: 'Fetches career resources including eBooks, guides, and templates. Use this when users ask about resources, guides, or downloadable content.',
+                    parameters: {
+                        type: 'object',
+                        properties: {
+                            limit: {
+                                type: 'integer',
+                                description: 'Maximum number of resources to return (default: 5)',
+                            },
+                        },
+                    },
+                },
+                {
+                    name: 'get_podcasts',
+                    description: 'Fetches visible podcast episodes. Use this when users ask about podcasts, videos, or YouTube content.',
+                    parameters: {
+                        type: 'object',
+                        properties: {
+                            limit: {
+                                type: 'integer',
+                                description: 'Maximum number of podcasts to return (default: 5)',
+                            },
+                        },
+                    },
+                },
+                {
+                    name: 'get_herlign_info',
+                    description: 'Gets information about Herlign FC including mission, values, story, and audience. Use this when users ask about what Herlign is, our values, or our community.',
+                    parameters: {
+                        type: 'object',
+                        properties: {},
+                    },
+                },
+            ],
+        }];
 
+        // Convert messages to Gemini format
+        const contents = messages.map((m) => ({
+            role: m.role === 'user' ? 'user' : 'model',
+            parts: [{ text: m.content }],
+        }));
+
+        // Initial API call with function declarations
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
             {
@@ -153,11 +207,11 @@ async function getGeminiResponse(messages: AIMessage[], dynamicContext: string):
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    contents: [
-                        {
-                            parts: [{ text: prompt }],
-                        },
-                    ],
+                    contents,
+                    tools,
+                    systemInstruction: {
+                        parts: [{ text: SYSTEM_PROMPT }],
+                    },
                     generationConfig: {
                         temperature: 0.7,
                         maxOutputTokens: 500,
@@ -167,16 +221,169 @@ async function getGeminiResponse(messages: AIMessage[], dynamicContext: string):
         );
 
         if (!response.ok) {
-            const error = await response.text();
-            return { content: '', error: `Gemini error: ${error}` };
+            const errorText = await response.text();
+            console.error('Gemini API error:', errorText);
+            return { content: '', error: `Gemini error: ${errorText}` };
         }
 
-        const data = await response.json();
-        return {
-            content:
-                data.candidates?.[0]?.content?.parts?.[0]?.text ||
-                'No response generated',
-        };
+        let data = await response.json();
+        const candidate = data.candidates?.[0];
+
+        if (!candidate) {
+            return { content: '', error: 'No response generated' };
+        }
+
+        // Check if there's a safety rating blocking the response
+        if (candidate.finishReason === 'SAFETY') {
+            console.error('Response blocked by safety filters:', candidate.safetyRatings);
+            return { content: '', error: 'Response blocked by safety filters' };
+        }
+
+        // Check if Gemini wants to call a function
+        const functionCallPart = candidate.content?.parts?.find(
+            (part: { functionCall?: { name: string; args?: Record<string, number> } }) => part.functionCall
+        );
+
+        if (functionCallPart?.functionCall) {
+            const { name, args = {} } = functionCallPart.functionCall;
+
+            try {
+                let functionResponseContent: Record<string, unknown>;
+
+                // Execute the requested function
+                switch (name) {
+                    case 'get_upcoming_events': {
+                        const events = await getPublishedEvents(args.limit || 5);
+                        functionResponseContent = {
+                            events: events.map(e => ({
+                                title: e.title,
+                                type: e.type,
+                                mode: e.mode,
+                                date: new Date(e.start_date).toLocaleDateString('en-US', {
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                }),
+                                link: `${HERLIGN_KNOWLEDGE.siteUrl}/events/${e.slug}`,
+                                description: e.description.slice(0, 150),
+                                featured: e.featured,
+                            })),
+                        };
+                        break;
+                    }
+
+                    case 'get_resources': {
+                        const resources = await getResources(args.limit || 5);
+                        functionResponseContent = {
+                            resources: resources.map(r => ({
+                                title: r.title,
+                                format: r.format,
+                                category: r.category,
+                                link: r.external_link,
+                                description: r.description.slice(0, 150),
+                                tags: r.tags,
+                            })),
+                        };
+                        break;
+                    }
+
+                    case 'get_podcasts': {
+                        const podcasts = await getPodcasts(args.limit || 5);
+                        functionResponseContent = {
+                            podcasts: podcasts.map(p => ({
+                                title: p.title,
+                                link: `https://youtube.com/watch?v=${p.youtube_video_id}`,
+                                description: p.description?.slice(0, 150) || 'No description available',
+                            })),
+                        };
+                        break;
+                    }
+
+                    case 'get_herlign_info': {
+                        functionResponseContent = {
+                            mission: HERLIGN_KNOWLEDGE.mission,
+                            tagline: HERLIGN_KNOWLEDGE.tagline,
+                            values: HERLIGN_KNOWLEDGE.values,
+                            audience: HERLIGN_KNOWLEDGE.audience,
+                            website: HERLIGN_KNOWLEDGE.siteUrl,
+                            story: HERLIGN_KNOWLEDGE.story,
+                            goals: HERLIGN_KNOWLEDGE.goals,
+                        };
+                        break;
+                    }
+
+                    default:
+                        functionResponseContent = { error: `Unknown function: ${name}` };
+                }
+
+                // Send function response back to Gemini for final answer
+                const secondResponse = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            contents: [
+                                ...contents,
+                                {
+                                    role: 'model',
+                                    parts: [{ functionCall: functionCallPart.functionCall }],
+                                },
+                                {
+                                    role: 'function',
+                                    parts: [{
+                                        functionResponse: {
+                                            name,
+                                            response: functionResponseContent,
+                                        },
+                                    }],
+                                },
+                            ],
+                            tools,
+                            systemInstruction: {
+                                parts: [{ text: SYSTEM_PROMPT }],
+                            },
+                            generationConfig: {
+                                temperature: 0.7,
+                                maxOutputTokens: 500,
+                            },
+                        }),
+                    }
+                );
+
+                if (!secondResponse.ok) {
+                    const errorText = await secondResponse.text();
+                    console.error('Gemini second API call error:', errorText);
+                    return { content: '', error: `Gemini error: ${errorText}` };
+                }
+
+                data = await secondResponse.json();
+
+                // Check second response for safety issues
+                if (data.candidates?.[0]?.finishReason === 'SAFETY') {
+                    console.error('Second response blocked by safety filters');
+                    return { content: '', error: 'Response blocked by safety filters' };
+                }
+            } catch (functionError) {
+                console.error('Function execution error:', functionError);
+                return {
+                    content: '',
+                    error: `Function execution failed: ${functionError instanceof Error ? functionError.message : 'Unknown error'}`,
+                };
+            }
+        }
+
+        // Extract final response
+        const finalText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!finalText) {
+            console.error('No text in final response:', JSON.stringify(data, null, 2));
+            return { content: '', error: 'No response text generated' };
+        }
+
+        return { content: finalText };
     } catch (error) {
         return {
             content: '',

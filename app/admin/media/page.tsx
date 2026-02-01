@@ -63,8 +63,8 @@ export default function MediaPage() {
       </div>
 
       {/* Actions */}
-      <div className="mb-6 flex items-center gap-4">
-        <div className="relative flex-1 max-w-sm">
+      <div className="mb-6 items-center gap-4 grid grid-cols-2 lg:flex">
+        <div className="relative flex-1 max-w-sm col-span-2">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
           <Input
             placeholder="Search media..."

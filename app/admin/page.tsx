@@ -3,7 +3,7 @@
 import {
   Calendar,
   BookOpen,
-  MessageSquare,
+  // MessageSquare,
   // Link2,
   Image as ImageIcon,
   MessagesSquare,
@@ -151,12 +151,12 @@ export default function AdminDashboard() {
               <p className="text-sm font-medium">Add Resource</p>
             </Card>
           </Link>
-          <Link href="/admin/testimonials">
+          {/* <Link href="/admin/testimonials">
             <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
               <MessageSquare className="h-5 w-5 text-ohrange-600 mb-2" />
               <p className="text-sm font-medium">Review Testimonials</p>
             </Card>
-          </Link>
+          </Link> */}
           <Link href="/admin/media">
             <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
               <ImageIcon className="h-5 w-5 text-perple-600 mb-2" />

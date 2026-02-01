@@ -1,12 +1,16 @@
 "use client";
 
 import { useSession, useLogout } from "@/lib/tanstack/hooks/useAuth";
-import { LogOut, User } from "lucide-react";
+import { LogOut, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-export function Topbar() {
+interface TopbarProps {
+  onMenuClick: () => void;
+}
+
+export function Topbar({ onMenuClick }: TopbarProps) {
   const { data: session } = useSession();
   const router = useRouter();
   const { mutate: logout, isPending } = useLogout({
@@ -20,7 +24,17 @@ export function Topbar() {
   });
 
   return (
-    <div className="flex h-16 items-center justify-between border-b border-grin-200 bg-white px-6">
+    <div className="flex h-16 items-center justify-between border-b border-grin-200 bg-white px-4 md:px-6">
+      {/* Mobile Menu Button */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={onMenuClick}
+        className="md:hidden"
+      >
+        <Menu className="h-5 w-5" />
+      </Button>
+
       <div className="flex-1" />
 
       <div className="flex items-center gap-4">

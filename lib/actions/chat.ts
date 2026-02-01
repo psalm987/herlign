@@ -58,7 +58,8 @@ export async function getAdminChatSessions(params?: {
 export async function getAdminChatSession(
     id: string
 ): Promise<ChatSessionDetail> {
-    return api.get<ChatSessionDetail>(`/api/admin/chat/sessions/${id}`);
+    const response = await api.get<ApiResponse<ChatSessionDetail>>(`/api/admin/chat/sessions/${id}`);
+    return response.data!;
 }
 
 /**

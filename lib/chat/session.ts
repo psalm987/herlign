@@ -210,6 +210,7 @@ export async function switchChatMode(
         .single();
 
     if (error || !data) {
+        console.error(`Switch mode error for session ${sessionId}:`, error);
         throw new Error('Failed to switch chat mode');
     }
 

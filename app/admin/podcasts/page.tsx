@@ -156,7 +156,7 @@ export default function PodcastsListPage() {
   return (
     <div className="space-y-6 p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
         <div>
           <h1 className="text-3xl font-heading font-bold text-gray-900">
             Podcasts

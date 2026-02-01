@@ -20,7 +20,7 @@ export default function ChatSessionPage() {
   const { id } = useParams() as { id: string };
   const [message, setMessage] = useState("");
 
-  const { data: sessionData } = useAdminChatSession(id);
+  const { data: sessionData, isLoading } = useAdminChatSession(id);
   const { mutate: sendMessage, isPending } = useSendAdminChatMessage({
     onSuccess: () => {
       toast.success("Message sent");
@@ -36,15 +36,18 @@ export default function ChatSessionPage() {
     sendMessage({ sessionId: id, message });
   };
 
-  if (!sessionData) {
+  if (isLoading || !sessionData) {
     return (
       <div className="p-6">
         <div className="flex items-center justify-center py-12">
-          <p className="text-gray-600">Loading session...</p>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-grin-200 border-t-grin-600" />
         </div>
       </div>
     );
   }
+
+  const session = sessionData.session;
+  const messages = sessionData.messages || [];
 
   return (
     <div className="p-6">
@@ -62,30 +65,24 @@ export default function ChatSessionPage() {
               Chat Session
             </h1>
             <p className="mt-1 text-sm text-gray-600">
-              Session ID: {sessionData?.session?.id}
+              Session ID: {session.id}
             </p>
           </div>
           <div className="flex gap-2">
             <Button
-              variant={
-                sessionData?.session?.current_mode === "auto"
-                  ? "default"
-                  : "outline"
-              }
+              variant={session.current_mode === "auto" ? "default" : "outline"}
               onClick={() => switchMode({ sessionId: id, mode: "auto" })}
               className="gap-2"
+              disabled={session.current_mode === "auto"}
             >
               <Bot className="h-4 w-4" />
               Auto Mode
             </Button>
             <Button
-              variant={
-                sessionData?.session?.current_mode === "live"
-                  ? "default"
-                  : "outline"
-              }
+              variant={session.current_mode === "live" ? "default" : "outline"}
               onClick={() => switchMode({ sessionId: id, mode: "live" })}
               className="gap-2"
+              disabled={session.current_mode === "live"}
             >
               <Shield className="h-4 w-4" />
               Live Mode
@@ -95,53 +92,62 @@ export default function ChatSessionPage() {
       </div>
 
       {/* Messages */}
-      <Card className="p-6 mb-4 max-h-[600px] overflow-y-auto">
+      <Card className="p-6 mb-4 max-h-[60vh] overflow-y-auto">
         <div className="space-y-4">
-          {sessionData?.messages?.map?.((msg) => (
-            <div
-              key={msg.id}
-              className={cn(
-                "flex gap-3",
-                msg.sender === "admin" && "flex-row-reverse",
-              )}
-            >
+          {messages.length === 0 ? (
+            <p className="text-center text-gray-500 py-8">
+              No messages yet. Start the conversation!
+            </p>
+          ) : (
+            messages.map((msg) => (
               <div
+                key={msg.id}
                 className={cn(
-                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
-                  msg.sender === "guest" && "bg-blue-100",
-                  msg.sender === "bot" && "bg-purple-100",
-                  msg.sender === "admin" && "bg-grin-100",
+                  "flex gap-3",
+                  msg.sender === "admin" && "flex-row-reverse",
                 )}
-              >
-                {msg.sender === "guest" && (
-                  <User className="h-4 w-4 text-blue-600" />
-                )}
-                {msg.sender === "bot" && (
-                  <Bot className="h-4 w-4 text-purple-600" />
-                )}
-                {msg.sender === "admin" && (
-                  <Shield className="h-4 w-4 text-grin-600" />
-                )}
-              </div>
-              <div
-                className={cn("flex-1", msg.sender === "admin" && "text-right")}
               >
                 <div
                   className={cn(
-                    "inline-block rounded-lg px-4 py-2 max-w-lg",
-                    msg.sender === "guest" && "bg-gray-100",
-                    msg.sender === "bot" && "bg-purple-50",
-                    msg.sender === "admin" && "bg-grin-600 text-white",
+                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
+                    msg.sender === "guest" && "bg-blue-100",
+                    msg.sender === "bot" && "bg-purple-100",
+                    msg.sender === "admin" && "bg-grin-100",
                   )}
                 >
-                  <p className="text-sm">{msg.content}</p>
+                  {msg.sender === "guest" && (
+                    <User className="h-4 w-4 text-blue-600" />
+                  )}
+                  {msg.sender === "bot" && (
+                    <Bot className="h-4 w-4 text-purple-600" />
+                  )}
+                  {msg.sender === "admin" && (
+                    <Shield className="h-4 w-4 text-grin-600" />
+                  )}
                 </div>
-                <p className="mt-1 text-xs text-gray-500">
-                  {format(new Date(msg.timestamp), "HH:mm")}
-                </p>
+                <div
+                  className={cn(
+                    "flex-1",
+                    msg.sender === "admin" && "text-right",
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "inline-block rounded-lg px-4 py-2 max-w-lg",
+                      msg.sender === "guest" && "bg-gray-100",
+                      msg.sender === "bot" && "bg-purple-50",
+                      msg.sender === "admin" && "bg-grin-600 text-white",
+                    )}
+                  >
+                    <p className="text-sm">{msg.content}</p>
+                  </div>
+                  <p className="mt-1 text-xs text-gray-500">
+                    {format(new Date(msg.timestamp), "HH:mm")}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </Card>
 

@@ -56,7 +56,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
     <Link
       href={`/events/${event.slug}`}
       className={cn(
-        "group relative flex flex-col p-8 gap-4 cursor-pointer hover:bg-gray-50 md:flex-row md:gap-6",
+        "group relative flex flex-col py-8 px-0 md:py-2 md:px-8 gap-4 cursor-pointer hover:md:bg-gray-50 md:flex-row md:gap-6",
         isPast && "opacity-60",
       )}
     >

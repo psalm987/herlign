@@ -238,6 +238,16 @@
   }
 }
 
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-long {
+  animation: draw 10s ease-in forwards 3s;
+}
+
 .ltr-linear-infinite {
   animation: move-bg-right 2s linear infinite;
   transform: scaleX(2);
@@ -256,6 +266,7 @@
 }
 
 .inner {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }

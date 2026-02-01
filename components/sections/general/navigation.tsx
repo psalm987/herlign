@@ -32,7 +32,7 @@ interface HeaderColorConfig {
 const headerColorConfig: HeaderColorConfig[] = [
   {
     path: LINKS.home,
-    header: "bg-white/50 text-gray-900 border-transparent",
+    header: "bg-white/50 text-gray-900 border-peenk-100",
     bg: "bg-white",
     logo: "fill-ohrange-500",
   },

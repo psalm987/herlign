@@ -66,7 +66,7 @@ export default function LinksListPage() {
           href={row.original.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-grin-600 hover:underline truncate max-w-md block"
+          className="text-ohrange-600 hover:underline truncate max-w-md block"
           onClick={(e) => e.stopPropagation()}
         >
           {row.original.href}

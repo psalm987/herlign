@@ -190,9 +190,9 @@ export function MediaPickerModal({
                       onOpenChange(false);
                     }}
                     className={cn(
-                      "group relative aspect-square overflow-hidden rounded-lg border-2 transition-all hover:border-grin-500",
+                      "group relative aspect-square overflow-hidden rounded-lg border-2 transition-all hover:border-ohrange-500",
                       selectedId === media.id
-                        ? "border-grin-600 ring-2 ring-grin-600 ring-offset-2"
+                        ? "border-ohrange-600 ring-2 ring-ohrange-600 ring-offset-2"
                         : "border-gray-200",
                     )}
                   >
@@ -203,8 +203,8 @@ export function MediaPickerModal({
                       className="h-full w-full object-cover"
                     />
                     {selectedId === media.id && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-grin-600/20">
-                        <div className="rounded-full bg-grin-600 p-2">
+                      <div className="absolute inset-0 flex items-center justify-center bg-ohrange-600/20">
+                        <div className="rounded-full bg-ohrange-600 p-2">
                           <Check className="h-4 w-4 text-white" />
                         </div>
                       </div>

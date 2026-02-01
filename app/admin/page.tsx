@@ -19,7 +19,7 @@ const statConfig = [
     name: "Events",
     icon: Calendar,
     href: "/admin/events",
-    color: "text-grin-600 bg-grin-100",
+    color: "text-ohrange-600 bg-ohrange-100",
   },
   {
     key: "resources" as const,
@@ -40,21 +40,21 @@ const statConfig = [
   //   name: "Links",
   //   icon: Link2,
   //   href: "/admin/links",
-  //   color: "text-perple-600 bg-perple-100",
+  //   color: "text-gray-600 bg-gray-100",
   // },
   {
     key: "media" as const,
     name: "Media Files",
     icon: ImageIcon,
     href: "/admin/media",
-    color: "text-lermorn-600 bg-lermorn-100",
+    color: "text-gray-600 bg-gray-100",
   },
   {
     key: "chats" as const,
     name: "Chat Sessions",
     icon: MessagesSquare,
     href: "/admin/chat",
-    color: "text-grin-600 bg-grin-100",
+    color: "text-ohrange-600 bg-ohrange-100",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function AdminDashboard() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Link href="/admin/events/new">
             <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
-              <Calendar className="h-5 w-5 text-grin-600 mb-2" />
+              <Calendar className="h-5 w-5 text-ohrange-600 mb-2" />
               <p className="text-sm font-medium">Create Event</p>
             </Card>
           </Link>
@@ -159,7 +159,7 @@ export default function AdminDashboard() {
           </Link> */}
           <Link href="/admin/media">
             <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
-              <ImageIcon className="h-5 w-5 text-perple-600 mb-2" />
+              <ImageIcon className="h-5 w-5 text-gray-600 mb-2" />
               <p className="text-sm font-medium">Upload Media</p>
             </Card>
           </Link>

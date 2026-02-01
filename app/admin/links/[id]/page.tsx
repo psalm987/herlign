@@ -40,7 +40,7 @@ export default function EditLinkPage({
             <p className="text-gray-600">Link not found</p>
             <Link
               href="/admin/links"
-              className="mt-4 inline-block text-grin-600"
+              className="mt-4 inline-block text-ohrange-600"
             >
               Back to Links
             </Link>

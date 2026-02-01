@@ -202,7 +202,7 @@ export function TestimonialForm({
                 <input
                   type="checkbox"
                   {...register("is_approved")}
-                  className="rounded border-gray-300 text-grin-600 focus:ring-grin-600"
+                  className="rounded border-gray-300 text-ohrange-600 focus:ring-ohrange-600"
                 />
                 <span className="text-sm font-medium text-gray-700">
                   Approved

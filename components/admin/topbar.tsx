@@ -24,7 +24,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
   });
 
   return (
-    <div className="flex h-16 items-center justify-between border-b border-grin-200 bg-white px-4 md:px-6">
+    <div className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 md:px-6">
       {/* Mobile Menu Button */}
       <Button
         variant="ghost"
@@ -40,7 +40,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
       <div className="flex items-center gap-4">
         {/* User Info */}
         <div className="flex items-center gap-2 text-sm">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-grin-100 text-grin-700">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-peenk-100 text-peenk-700">
             <User className="h-4 w-4" />
           </div>
           <span className="font-medium text-gray-700">
@@ -54,7 +54,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
           size="sm"
           onClick={() => logout()}
           disabled={isPending}
-          className="gap-2"
+          className="gap-2 border-gray-300 hover:bg-gray-100"
         >
           <LogOut className="h-4 w-4" />
           {isPending ? "Logging out..." : "Logout"}

@@ -83,7 +83,7 @@ export function PodcastForm({
                         href={`https://youtube.com/watch?v=${field.value}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-perple-600 hover:underline"
+                        className="text-ohrange-600 hover:underline"
                       >
                         View on YouTube →
                       </a>
@@ -165,7 +165,7 @@ export function PodcastForm({
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-grin-600 hover:bg-grin-700"
+            className="bg-ohrange-600 hover:bg-ohrange-700"
           >
             {isSubmitting ? "Saving..." : submitText}
           </Button>

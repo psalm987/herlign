@@ -111,7 +111,7 @@ export default function MediaPage() {
           {filteredMedia.map((media) => (
             <div
               key={media.id}
-              className="group relative aspect-square overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-50 hover:border-grin-500 transition-all"
+              className="group relative aspect-square overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-50 hover:border-ohrange-500 transition-all"
             >
               <Image
                 src={media.url}

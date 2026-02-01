@@ -81,7 +81,7 @@ export default function PodcastsListPage() {
             href={`https://youtube.com/watch?v=${row.original.youtube_video_id}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-gray-500 hover:text-perple-600"
+            className="text-xs text-gray-500 hover:text-ohrange-600"
           >
             {row.original.youtube_video_id}
           </a>
@@ -93,7 +93,7 @@ export default function PodcastsListPage() {
       header: "Visibility",
       cell: ({ row }) =>
         row.original.is_visible ? (
-          <span className="inline-flex items-center gap-1 rounded-full bg-grin-100 px-2.5 py-0.5 text-xs font-medium text-grin-800">
+          <span className="inline-flex items-center gap-1 rounded-full bg-ohrange-100 px-2.5 py-0.5 text-xs font-medium text-ohrange-800">
             <Eye className="size-3" />
             Visible
           </span>
@@ -177,7 +177,7 @@ export default function PodcastsListPage() {
             />
             {isSyncing ? "Syncing..." : "Sync from YouTube"}
           </Button>
-          <Button asChild className="gap-2 bg-grin-600 hover:bg-grin-700">
+          <Button asChild className="gap-2 bg-ohrange-600 hover:bg-ohrange-700">
             <Link href="/admin/podcasts/create">
               <Plus className="size-4" />
               Add Podcast
@@ -197,7 +197,7 @@ export default function PodcastsListPage() {
           </div>
           <div className="rounded-lg border bg-white p-4">
             <p className="text-sm text-gray-600">Visible</p>
-            <p className="text-2xl font-bold text-grin-600">
+            <p className="text-2xl font-bold text-ohrange-600">
               {podcastsData.data.filter((p) => p.is_visible).length}
             </p>
           </div>
@@ -209,7 +209,7 @@ export default function PodcastsListPage() {
           </div>
           <div className="rounded-lg border bg-white p-4">
             <p className="text-sm text-gray-600">Total Views</p>
-            <p className="text-2xl font-bold text-perple-600">
+            <p className="text-2xl font-bold text-peenk-600">
               {podcastsData.data
                 .reduce((sum, p) => sum + p.view_count, 0)
                 .toLocaleString()}

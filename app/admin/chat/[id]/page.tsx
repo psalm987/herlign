@@ -40,7 +40,7 @@ export default function ChatSessionPage() {
     return (
       <div className="p-6">
         <div className="flex items-center justify-center py-12">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-grin-200 border-t-grin-600" />
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-ohrange-200 border-t-ohrange-600" />
         </div>
       </div>
     );
@@ -110,19 +110,19 @@ export default function ChatSessionPage() {
                 <div
                   className={cn(
                     "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
-                    msg.sender === "guest" && "bg-blue-100",
-                    msg.sender === "bot" && "bg-purple-100",
-                    msg.sender === "admin" && "bg-grin-100",
+                    msg.sender === "guest" && "bg-peenk-100",
+                    msg.sender === "bot" && "bg-gray-100",
+                    msg.sender === "admin" && "bg-ohrange-100",
                   )}
                 >
                   {msg.sender === "guest" && (
-                    <User className="h-4 w-4 text-blue-600" />
+                    <User className="h-4 w-4 text-peenk-600" />
                   )}
                   {msg.sender === "bot" && (
-                    <Bot className="h-4 w-4 text-purple-600" />
+                    <Bot className="h-4 w-4 text-gray-600" />
                   )}
                   {msg.sender === "admin" && (
-                    <Shield className="h-4 w-4 text-grin-600" />
+                    <Shield className="h-4 w-4 text-ohrange-600" />
                   )}
                 </div>
                 <div
@@ -135,8 +135,8 @@ export default function ChatSessionPage() {
                     className={cn(
                       "inline-block rounded-lg px-4 py-2 max-w-lg",
                       msg.sender === "guest" && "bg-gray-100",
-                      msg.sender === "bot" && "bg-purple-50",
-                      msg.sender === "admin" && "bg-grin-600 text-white",
+                      msg.sender === "bot" && "bg-peenk-50",
+                      msg.sender === "admin" && "bg-ohrange-600 text-white",
                     )}
                   >
                     <p className="text-sm">{msg.content}</p>

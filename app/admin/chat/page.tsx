@@ -42,8 +42,8 @@ export default function ChatSessionsPage() {
         <span
           className={`capitalize inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
             row.original.current_mode === "live"
-              ? "bg-green-100 text-green-800"
-              : "bg-blue-100 text-blue-800"
+              ? "bg-ohrange-100 text-ohrange-800"
+              : "bg-peenk-100 text-peenk-800"
           }`}
         >
           {row.original.current_mode}

@@ -41,7 +41,7 @@ export default function EditEventPage() {
             <p className="text-gray-600">Event not found</p>
             <Link
               href="/admin/events"
-              className="mt-4 inline-block text-grin-600 hover:text-grin-700"
+              className="mt-4 inline-block text-ohrange-600 hover:text-ohrange-700"
             >
               Back to Events
             </Link>

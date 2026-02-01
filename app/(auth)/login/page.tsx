@@ -79,14 +79,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-grin-50 via-peenk-50 to-perple-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-50 via-peenk-50 to-ohrange-50 px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex size-20 items-center justify-center rounded-full bg-white shadow-lg">
             <Logo className="size-10" animate />
           </div>
-          <h1 className="font-heading text-3xl font-bold text-grin-900">
+          <h1 className="font-heading text-3xl font-bold text-gray-900">
             Herlign Admin
           </h1>
           <p className="mt-2 text-sm text-gray-600">
@@ -166,8 +166,8 @@ export default function LoginPage() {
                 </form>
               ) : (
                 <div className="space-y-4 py-6">
-                  <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-grin-100">
-                    <Mail className="size-8 text-grin-600" />
+                  <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-ohrange-100">
+                    <Mail className="size-8 text-ohrange-600" />
                   </div>
                   <div className="text-center space-y-2">
                     <h3 className="font-heading text-lg font-semibold text-gray-900">
@@ -229,7 +229,7 @@ export default function LoginPage() {
                     </label>
                     <Link
                       href="/forgot-password"
-                      className="text-xs text-grin-600 hover:text-grin-700 transition-colors"
+                      className="text-xs text-ohrange-600 hover:text-ohrange-700 transition-colors"
                     >
                       Forgot password?
                     </Link>

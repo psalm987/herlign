@@ -47,7 +47,10 @@ export default function EditPodcastPage({
     return (
       <div className="p-6">
         <p className="text-red-600">Podcast not found</p>
-        <Link href="/admin/podcasts" className="text-grin-600 hover:underline">
+        <Link
+          href="/admin/podcasts"
+          className="text-ohrange-600 hover:underline"
+        >
           Back to Podcasts
         </Link>
       </div>

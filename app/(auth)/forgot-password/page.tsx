@@ -44,13 +44,13 @@ export default function ForgotPasswordPage() {
 
   if (emailSent) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-grin-50 to-peenk-50 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-50 via-peenk-50 to-ohrange-50 px-4">
         <div className="w-full max-w-md">
           <div className="mb-8 text-center">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg">
               <Logo className="h-10 w-10" />
             </div>
-            <h1 className="font-heading text-3xl font-bold text-grin-900">
+            <h1 className="font-heading text-3xl font-bold text-gray-900">
               Check Your Email
             </h1>
             <p className="mt-2 text-sm text-gray-600">
@@ -76,13 +76,13 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-grin-50 to-peenk-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-50 via-peenk-50 to-ohrange-50 px-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg">
             <Logo className="h-10 w-10" />
           </div>
-          <h1 className="font-heading text-3xl font-bold text-grin-900">
+          <h1 className="font-heading text-3xl font-bold text-gray-900">
             Reset Password
           </h1>
           <p className="mt-2 text-sm text-gray-600">

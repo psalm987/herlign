@@ -348,7 +348,7 @@ export function EventForm({
                       type="checkbox"
                       checked={field.value}
                       onChange={field.onChange}
-                      className="rounded border-gray-300 text-grin-600 focus:ring-grin-600"
+                      className="rounded border-gray-300 text-ohrange-600 focus:ring-ohrange-600"
                     />
                     <span className="text-sm font-medium text-gray-700">
                       Paid Event
@@ -368,7 +368,7 @@ export function EventForm({
                       type="checkbox"
                       checked={field.value}
                       onChange={field.onChange}
-                      className="rounded border-gray-300 text-grin-600 focus:ring-grin-600"
+                      className="rounded border-gray-300 text-ohrange-600 focus:ring-ohrange-600"
                     />
                     <span className="text-sm font-medium text-gray-700">
                       Featured Event

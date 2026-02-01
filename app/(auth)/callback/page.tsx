@@ -61,19 +61,19 @@ export default function AuthCallbackPage() {
 
   if (status === "loading") {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-grin-50 to-peenk-50 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-50 via-peenk-50 to-ohrange-50 px-4">
         <div className="w-full max-w-md text-center">
           <div className="mb-8">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg">
               <Logo className="h-10 w-10" />
             </div>
-            <h1 className="font-heading text-3xl font-bold text-grin-900">
+            <h1 className="font-heading text-3xl font-bold text-gray-900">
               Signing you in...
             </h1>
           </div>
 
           <div className="rounded-2xl bg-white p-8 shadow-xl">
-            <Loader2 className="h-8 w-8 animate-spin mx-auto text-grin-600" />
+            <Loader2 className="h-8 w-8 animate-spin mx-auto text-ohrange-600" />
             <p className="mt-4 text-sm text-gray-600">
               Please wait while we verify your credentials.
             </p>
@@ -85,13 +85,13 @@ export default function AuthCallbackPage() {
 
   if (status === "error") {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-grin-50 to-peenk-50 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-50 via-peenk-50 to-ohrange-50 px-4">
         <div className="w-full max-w-md text-center">
           <div className="mb-8">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg">
               <Logo className="h-10 w-10" />
             </div>
-            <h1 className="font-heading text-3xl font-bold text-grin-900">
+            <h1 className="font-heading text-3xl font-bold text-gray-900">
               Authentication Failed
             </h1>
           </div>
@@ -111,19 +111,19 @@ export default function AuthCallbackPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-grin-50 to-peenk-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-gray-50 via-peenk-50 to-ohrange-50 px-4">
       <div className="w-full max-w-md text-center">
         <div className="mb-8">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg">
             <Logo className="h-10 w-10" />
           </div>
-          <h1 className="font-heading text-3xl font-bold text-grin-900">
+          <h1 className="font-heading text-3xl font-bold text-gray-900">
             Success!
           </h1>
         </div>
 
         <div className="rounded-2xl bg-white p-8 shadow-xl">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto text-grin-600" />
+          <Loader2 className="h-8 w-8 animate-spin mx-auto text-ohrange-600" />
           <p className="mt-4 text-sm text-gray-600">Redirecting...</p>
         </div>
       </div>

@@ -43,7 +43,7 @@ export default function EditTestimonialPage({
             <p className="text-gray-600">Testimonial not found</p>
             <Link
               href="/admin/testimonials"
-              className="mt-4 inline-block text-grin-600"
+              className="mt-4 inline-block text-ohrange-600"
             >
               Back to Testimonials
             </Link>

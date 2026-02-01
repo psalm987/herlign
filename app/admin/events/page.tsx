@@ -77,7 +77,9 @@ export default function EventsListPage() {
         <div>
           <p className="font-medium text-gray-900">{row.original.title}</p>
           {row.original.featured && (
-            <span className="text-xs text-grin-600 font-medium">Featured</span>
+            <span className="text-xs text-ohrange-600 font-medium">
+              Featured
+            </span>
           )}
         </div>
       ),
@@ -86,7 +88,7 @@ export default function EventsListPage() {
       accessorKey: "type",
       header: "Type",
       cell: ({ row }) => (
-        <span className="capitalize inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+        <span className="capitalize inline-flex items-center rounded-full bg-ohrange-100 px-2.5 py-0.5 text-xs font-medium text-ohrange-800">
           {row.original.type}
         </span>
       ),
@@ -95,7 +97,7 @@ export default function EventsListPage() {
       accessorKey: "mode",
       header: "Mode",
       cell: ({ row }) => (
-        <span className="capitalize inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800">
+        <span className="capitalize inline-flex items-center rounded-full bg-peenk-100 px-2.5 py-0.5 text-xs font-medium text-peenk-800">
           {row.original.mode}
         </span>
       ),
@@ -106,8 +108,8 @@ export default function EventsListPage() {
       cell: ({ row }) => {
         const statusColors = {
           draft: "bg-gray-100 text-gray-800",
-          published: "bg-green-100 text-green-800",
-          cancelled: "bg-red-100 text-red-800",
+          published: "bg-ohrange-100 text-ohrange-800",
+          cancelled: "bg-peenk-100 text-peenk-800",
         };
         return (
           <span
@@ -194,7 +196,7 @@ export default function EventsListPage() {
 
       {isLoading ? (
         <div className="flex items-center justify-center py-12">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-grin-200 border-t-grin-600" />
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-ohrange-200 border-t-ohrange-600" />
         </div>
       ) : (
         <DataTable

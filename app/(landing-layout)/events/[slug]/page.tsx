@@ -12,7 +12,7 @@ import {
   ExternalLinkIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { formatDate, formatTime } from "@/lib/utils/date";
+import { addDate, formatDate, formatTime } from "@/lib/utils/date";
 import { createClient } from "@/lib/supabase/server";
 import { Event } from "@/lib/tanstack/types";
 
@@ -88,9 +88,12 @@ export default async function EventDetailPage({
     notFound();
   }
 
-  // Format dates
-  const startDate = new Date(event.start_date);
-  const endDate = new Date(event.end_date);
+  const serverOffset = {
+    hours: 1,
+  };
+
+  const startDate = addDate(new Date(event.start_date), serverOffset);
+  const endDate = addDate(new Date(event.end_date), serverOffset);
 
   return (
     <div className="min-h-screen bg-white py-12">

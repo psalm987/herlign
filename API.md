@@ -4,7 +4,7 @@ Complete API reference for the Herlign women's career community platform.
 
 ## Base URL
 
-```
+```env
 Development: http://localhost:3000/api
 Production: https://herlign.com/api
 ```
@@ -48,7 +48,7 @@ Response 200:
 ### Check Session
 
 ```http
-GET /api/auth/session
+GET/POST /api/auth/session
 
 Response 200:
 {
@@ -60,11 +60,22 @@ Response 200:
 }
 ```
 
+### Get CSRF Token
+
+```http
+GET /api/auth/csrf
+
+Response 200:
+{
+  "csrfToken": "random-token-string"
+}
+```
+
 ## Public Endpoints
 
 ### Events
 
-**List Published Events**
+#### List Published Events
 
 ```http
 GET /api/events?type=workshop&mode=online&page=1&limit=20
@@ -100,7 +111,7 @@ Response 200:
 
 ### Resources
 
-**List Resources**
+#### List Resources
 
 ```http
 GET /api/resources?format=ebook&category=career&page=1&limit=20
@@ -127,7 +138,7 @@ Response 200:
 
 ### Testimonials
 
-**List Approved Testimonials**
+#### List Approved Testimonials
 
 ```http
 GET /api/testimonials?rating=5&page=1&limit=20
@@ -152,7 +163,7 @@ Response 200:
 
 ### Links
 
-**List Links**
+#### List Links
 
 ```http
 GET /api/links?category=learning&page=1&limit=20
@@ -224,7 +235,7 @@ All admin endpoints require authentication.
 
 ### Events Management
 
-**List Events (Admin)**
+#### List Events (Admin)
 
 ```http
 GET /api/admin/events?status=draft&page=1&limit=20
@@ -233,7 +244,7 @@ Authorization: Required (via cookie)
 Response 200: Same structure as public endpoint but includes all statuses
 ```
 
-**Create Event**
+#### Create Event
 
 ```http
 POST /api/admin/events
@@ -261,7 +272,7 @@ Response 201:
 }
 ```
 
-**Update Event**
+#### Update Event
 
 ```http
 PUT /api/admin/events/:id
@@ -279,7 +290,7 @@ Response 200:
 }
 ```
 
-**Delete Event**
+#### Delete Event
 
 ```http
 DELETE /api/admin/events/:id
@@ -298,7 +309,7 @@ Same CRUD pattern as Events. Endpoints:
 - `/api/admin/links`, `/api/admin/links/:id`
 - `/api/admin/testimonials`, `/api/admin/testimonials/:id`
 
-**Approve Testimonial**
+#### Approve Testimonial
 
 ```http
 POST /api/admin/testimonials/:id/approve
@@ -312,7 +323,7 @@ Response 200:
 
 ### Media Management
 
-**List Media**
+#### List Media
 
 ```http
 GET /api/admin/media?use_count=0&page=1&limit=20
@@ -335,7 +346,7 @@ Response 200:
 }
 ```
 
-**Upload Media**
+#### Upload Media
 
 ```http
 POST /api/admin/media/upload
@@ -357,7 +368,7 @@ Response 201:
 }
 ```
 
-**Delete Media**
+#### Delete Media
 
 ```http
 DELETE /api/admin/media/:id
@@ -368,7 +379,7 @@ Response 200:
 }
 ```
 
-**List Unused Media**
+#### List Unused Media
 
 ```http
 GET /api/admin/media/unused
@@ -381,7 +392,7 @@ Response 200:
 
 ### Chat Management
 
-**List Chat Sessions**
+#### List Chat Sessions
 
 ```http
 GET /api/admin/chat/sessions?mode=live&page=1&limit=20
@@ -403,7 +414,7 @@ Response 200:
 }
 ```
 
-**Get Session Details**
+#### Get Session Details
 
 ```http
 GET /api/admin/chat/sessions/:id
@@ -422,7 +433,7 @@ Response 200:
 }
 ```
 
-**Send Admin Response**
+#### Send Admin Response
 
 ```http
 POST /api/admin/chat/sessions/:id
@@ -438,7 +449,7 @@ Response 200:
 }
 ```
 
-**Switch Chat Mode**
+#### Switch Chat Mode
 
 ```http
 POST /api/admin/chat/sessions/:id/mode
@@ -466,7 +477,7 @@ All endpoints follow consistent error formatting:
 }
 ```
 
-**Common Status Codes:**
+### Common Status Codes
 
 - `400` - Bad Request (validation failed)
 - `401` - Unauthorized (authentication required)
@@ -476,14 +487,14 @@ All endpoints follow consistent error formatting:
 
 ## Rate Limits
 
-- **Chat**: 10 messages per minute
-- **Upload**: 5 uploads per minute
-- **Auth**: 5 attempts per 5 minutes
-- **General API**: 100 requests per minute
+- **Chat: 10 messages per minute**
+- **Upload: 5 uploads per minute**
+- **Auth: 5 attempts per 5 minutes**
+- **General API: 100 requests per minute**
 
 Rate limit headers:
 
-```
+```env
 X-RateLimit-Limit: 10
 X-RateLimit-Remaining: 9
 X-RateLimit-Reset: 1610000000
@@ -494,12 +505,12 @@ Retry-After: 60
 
 All list endpoints support pagination:
 
-**Query Parameters:**
+### Query Parameters
 
 - `page` - Page number (default: 1)
 - `limit` - Items per page (default: 20, max: 100)
 
-**Response Format:**
+### Response Format
 
 ```json
 {
@@ -517,7 +528,7 @@ All list endpoints support pagination:
 
 Public endpoints use HTTP caching:
 
-```
+```text
 Cache-Control: public, s-maxage=300, stale-while-revalidate=600
 ```
 

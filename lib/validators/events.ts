@@ -4,7 +4,7 @@
  * Zod schemas for validating event/workshop data
  */
 
-import { getDateTimeLocalValue } from '@/components/ui/input';
+import { getTimeServerValue } from '@/components/ui/input';
 import { z } from 'zod';
 
 const baseEventSchema = z.object({
@@ -31,8 +31,8 @@ const baseEventSchema = z.object({
         .url('Invalid URL format')
         .optional()
         .nullable(),
-    start_date: z.string().transform((str) => getDateTimeLocalValue(str)).optional(),
-    end_date: z.string().transform((str) => getDateTimeLocalValue(str)).optional(),
+    start_date: z.string().transform((str) => getTimeServerValue(str)).optional(),
+    end_date: z.string().transform((str) => getTimeServerValue(str)).optional(),
     max_attendees: z.number()
         .int('Max attendees must be an integer')
         .positive('Max attendees must be positive')

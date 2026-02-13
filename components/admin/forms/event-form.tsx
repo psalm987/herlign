@@ -14,6 +14,9 @@ import Image from "next/image";
 
 import { DevTool } from "@hookform/devtools";
 
+import { toLocalOffsetString } from "@/lib/utils/date";
+import { ForwardRefEditor } from "@/components/ui/editor/mdx-ref";
+
 interface EventFormProps {
   defaultValues?: Partial<EventInput>;
   onSubmit: (data: EventInput) => void;
@@ -64,6 +67,11 @@ export function EventForm({
     if (selectedImage) {
       data.image_url = selectedImage.url;
     }
+
+    if (data.start_date)
+      data.start_date = toLocalOffsetString(data?.start_date);
+    if (data.end_date) data.end_date = toLocalOffsetString(data?.end_date);
+    console.log("Submitting form with data:", data);
     onSubmit(data);
   };
 
@@ -107,14 +115,12 @@ export function EventForm({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Description *
                   </label>
-                  <textarea
-                    {...field}
-                    rows={4}
-                    className={`w-full rounded-md border ${
-                      errors.description ? "border-red-500" : "border-gray-300"
-                    } px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-grin-600`}
-                    placeholder="Enter event description"
-                  />
+                  <div className="w-full rounded-md border border-gray-300 p-0">
+                    <ForwardRefEditor
+                      markdown={field.value || ""}
+                      onChange={(markdown: string) => field.onChange(markdown)}
+                    />
+                  </div>
                   {errors.description && (
                     <p className="mt-1 text-xs text-red-600">
                       {errors.description.message}

@@ -101,7 +101,7 @@ USING (bucket_id = 'media' AND auth.uid()::text = (storage.foldername(name))[2])
 npm run dev
 ```
 
-Visit http://localhost:3000
+Visit <http://localhost:3000>
 
 ## API Testing
 
@@ -265,7 +265,7 @@ Then use a service like [cron-job.org](https://cron-job.org) to hit the endpoint
 
 ## Project Structure
 
-```
+```text
 herlign-website/
 ├── app/
 │   └── api/

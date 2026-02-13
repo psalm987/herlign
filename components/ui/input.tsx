@@ -1,14 +1,23 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { format } from "date-fns-tz";
+import { browserTimeZone } from "@/lib/utils/date";
 
 export const getDateTimeLocalValue = (
   dateString: string | Date | undefined | null,
 ) => {
   if (!dateString) return "";
   const date = new Date(dateString);
-  return format(date, "yyyy-MM-dd'T'HH:mm");
+  return format(date, "yyyy-MM-dd'T'HH:mm", { timeZone: browserTimeZone });
+};
+
+export const getTimeServerValue = (
+  dateString: string | Date | undefined | null,
+) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  return format(date, "yyyy-MM-dd'T'HH:mmxxx", { timeZone: "UTC" });
 };
 
 function Input({
@@ -18,12 +27,12 @@ function Input({
   ...props
 }: React.ComponentProps<"input">) {
   const value = React.useMemo(() => {
-    console.log(props.name, initVal);
     if (type === "datetime-local" && typeof initVal === "string") {
       return initVal ? getDateTimeLocalValue(initVal) : "";
     }
     return initVal;
-  }, [initVal, type, props.name]);
+  }, [initVal, type]);
+
   return (
     <input
       type={type}

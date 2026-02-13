@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "remark-mdx-to-plain-text.d.ts"
   ],
   "exclude": ["node_modules"]
 }

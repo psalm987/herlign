@@ -3,7 +3,7 @@
  * Displays individual event in list layout
  */
 
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Calendar,
   // MapPin,
@@ -17,6 +17,7 @@ import type { Event } from "@/lib/tanstack/types";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDate, formatTime } from "@/lib/utils/date";
+import getTextFromMarkdown from "@/lib/getTextFromMarkdown";
 
 interface EventCardProps {
   event: Event;
@@ -30,6 +31,12 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
 
   const soon =
     startDate.getTime() - new Date().getTime() < 7 * 24 * 60 * 60 * 1000;
+
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization
+  const description = useMemo(() => {
+    if (!event?.description) return "";
+    return getTextFromMarkdown(event.description).slice(0, 200);
+  }, [event?.description]);
 
   const statusBadge = (
     <div className="absolute left-3 top-3">
@@ -110,7 +117,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
             {event.title}
           </h3>
           <p className="mb-4 line-clamp-2 text-sm text-gray-600">
-            {event.description}
+            {description}
           </p>
 
           {/* Event Meta Information */}

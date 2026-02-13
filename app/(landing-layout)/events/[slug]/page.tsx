@@ -1,7 +1,9 @@
-import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { serialize } from "next-mdx-remote/serialize";
+import { type MDXRemoteSerializeResult } from "next-mdx-remote";
+import MdxRemoteClient from "@/components/ui/editor/mdx-remote-client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -12,7 +14,7 @@ import {
   ExternalLinkIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { addDate, formatDate, formatTime } from "@/lib/utils/date";
+import { formatDate, formatTime } from "@/lib/utils/date";
 import { createClient } from "@/lib/supabase/server";
 import { Event } from "@/lib/tanstack/types";
 
@@ -83,17 +85,21 @@ export default async function EventDetailPage({
       .eq("status", "published")
       .single();
 
+  console.log("Fetched event for slug:", slug, "Event found:", event);
+
+  // Serialize description to MDX so we can render rich content
+  const mdxSource: MDXRemoteSerializeResult<
+    Record<string, unknown>,
+    Record<string, unknown>
+  > = await serialize(event?.description || "");
+
   // Handle error or not found
   if (error || !event) {
-    notFound();
+    return notFound();
   }
 
-  const serverOffset = {
-    hours: 1,
-  };
-
-  const startDate = addDate(new Date(event.start_date), serverOffset);
-  const endDate = addDate(new Date(event.end_date), serverOffset);
+  const startDate = new Date(event.start_date);
+  const endDate = new Date(event.end_date);
 
   return (
     <div className="min-h-screen bg-white py-12">
@@ -198,8 +204,8 @@ export default async function EventDetailPage({
           <h2 className="font-heading text-2xl text-gray-900 mb-4">
             About This {event.type === "event" ? "Event" : "Workshop"}
           </h2>
-          <div className="text-gray-700 whitespace-pre-wrap leading-relaxed">
-            {event.description}
+          <div className="text-gray-700 leading-loose">
+            <MdxRemoteClient source={mdxSource} />
           </div>
         </div>
 

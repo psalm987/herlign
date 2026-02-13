@@ -67,12 +67,14 @@ export async function PUT(
         const body = await request.json();
         const validation = eventUpdateSchema.safeParse(body);
 
+
         if (!validation.success) {
             return NextResponse.json(
                 { error: 'Validation failed', details: validation.error.message },
                 { status: 400 }
             );
         }
+        console.log('Update event validation:', validation?.data);
 
         // If slug is being updated, validate it and check uniqueness
         if (validation.data.slug) {

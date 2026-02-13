@@ -5,7 +5,7 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { Event } from "@/lib/tanstack/types";
 import Image from "next/image";
+import getTextFromMarkdown from "@/lib/getTextFromMarkdown";
 
 interface FeaturedCarouselSectionProps {
   events: Event[];
@@ -51,27 +52,33 @@ export const FeaturedCarouselSection: React.FC<
     setCurrentIndex((prev) => (prev + 1) % events.length);
   };
 
-  if (events.length === 0) return null;
-
   const currentEvent = events[currentIndex];
   const startDate = new Date(currentEvent.start_date);
   const endDate = new Date(currentEvent.end_date);
 
-  const formatDate = (date: Date) => {
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization
+  const description = useMemo(() => {
+    if (!currentEvent?.description) return "";
+    return getTextFromMarkdown(currentEvent.description).slice(0, 200);
+  }, [currentEvent?.description]);
+
+  const formatDate = useCallback((date: Date) => {
     return date.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
       year: "numeric",
     });
-  };
+  }, []);
 
-  const formatTime = (date: Date) => {
+  const formatTime = useCallback((date: Date) => {
     return date.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
       hour12: true,
     });
-  };
+  }, []);
+
+  if (events.length === 0) return null;
 
   return (
     <section className="relative w-full">
@@ -133,7 +140,7 @@ export const FeaturedCarouselSection: React.FC<
 
               {/* Description */}
               <p className="line-clamp-2 text-base text-white/90 sm:text-lg">
-                {currentEvent.description}
+                {description}
               </p>
 
               {/* Meta Info */}

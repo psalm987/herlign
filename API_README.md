@@ -17,7 +17,7 @@ This Next.js 16 App Router API has been fully implemented for the Herlign women'
 
 ## 📁 Project Structure
 
-```
+```text
 ├── app/api/
 │   ├── auth/                     # Authentication (login, logout, session)
 │   ├── admin/                    # Admin-only endpoints (protected)
@@ -162,7 +162,8 @@ The chat system supports three AI providers (configured via environment variable
 
 - `POST /api/auth/login` - Admin login
 - `POST /api/auth/logout` - Admin logout
-- `GET /api/auth/session` - Check session
+- `GET|POST /api/auth/session` - Check session
+- `GET /api/auth/csrf` - Get CSRF token (for compatibility)
 
 ### Admin (Auth Required)
 

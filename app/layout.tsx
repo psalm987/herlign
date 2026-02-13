@@ -3,6 +3,7 @@ import { axiforma, clashDisplay, gochiHand } from "./fonts";
 import { QueryProvider } from "@/lib/tanstack/provider";
 import { Toaster } from "sonner";
 import "./globals.css";
+import "@mdxeditor/editor/style.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {

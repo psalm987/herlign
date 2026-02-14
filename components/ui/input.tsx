@@ -11,12 +11,12 @@ export const getDateTimeLocalValue = (
   return format(date, "yyyy-MM-dd'T'HH:mm");
 };
 
-export const getTimeServerValue = (
+export const getDateTimeServerValue = (
   dateString: string | Date | undefined | null,
 ) => {
   if (!dateString) return "";
   const date = new Date(dateString);
-  return format(date, "yyyy-MM-dd'T'HH:mmxxx", { timeZone: "UTC" });
+  return format(date, "yyyy-MM-dd'T'HH:mmxxx");
 };
 
 function Input({

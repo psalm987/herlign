@@ -76,6 +76,8 @@ export async function PUT(
         }
         console.log('Update event validation:', validation?.data);
 
+        const updateData = {...validation.data, end_date: body?.end_date, start_date: body?.start_date} as Partial<Event>;
+
         // If slug is being updated, validate it and check uniqueness
         if (validation.data.slug) {
             if (!isValidSlug(validation.data.slug)) {
@@ -119,7 +121,7 @@ export async function PUT(
         // Update event
         const { data, error } = await supabase
             .from('events')
-            .update(validation.data as never)
+            .update(updateData as never)
             .eq('id', id)
             .eq('admin_id', user.id) // Ensure admin owns the event
             .select()

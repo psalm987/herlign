@@ -66,7 +66,7 @@ export function EventForm({
     if (selectedImage) {
       data.image_url = selectedImage.url;
     }
-    // Date/time normalization is handled by the Zod validator (getTimeServerValue)
+    // Date/time normalization is handled by the Zod validator 
     // to avoid double-conversion that can shift or drop the time component.
     console.log("Submitting form with data:", data);
     onSubmit(data);

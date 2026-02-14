@@ -132,6 +132,8 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        const updateData = { ...validation.data, end_date: body?.end_date, start_date: body?.start_date } as Partial<Event>;
+
         // Generate unique slug if not provided
         let slug = validation.data.slug;
         if (!slug) {
@@ -152,7 +154,7 @@ export async function POST(request: NextRequest) {
             }
         }
 
-        const eventData = { ...validation.data, slug, admin_id: user.id };
+        const eventData = { ...updateData, slug, admin_id: user.id };
 
         // Create event
         const { data, error } = await supabase

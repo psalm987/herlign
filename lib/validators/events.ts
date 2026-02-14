@@ -4,8 +4,9 @@
  * Zod schemas for validating event/workshop data
  */
 
-import { getTimeServerValue } from '@/components/ui/input';
+// import { getDateTimeServerValue } from '@/components/ui/input';
 import { z } from 'zod';
+import { localToIsoWithOffset } from '../utils/date';
 
 const baseEventSchema = z.object({
     type: z.enum(['event', 'workshop'], {
@@ -31,8 +32,8 @@ const baseEventSchema = z.object({
         .url('Invalid URL format')
         .optional()
         .nullable(),
-    start_date: z.string().transform((str) => getTimeServerValue(str)).optional(),
-    end_date: z.string().transform((str) => getTimeServerValue(str)).optional(),
+    start_date: z.preprocess(localToIsoWithOffset, z.string().datetime()).optional() as z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>,
+    end_date: z.preprocess(localToIsoWithOffset, z.string().datetime()).optional() as z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>,
     max_attendees: z.number()
         .int('Max attendees must be an integer')
         .positive('Max attendees must be positive')

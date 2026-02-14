@@ -26,6 +26,33 @@ export function toLocalOffsetString(
 }
 
 
+export const localToIsoWithOffset = (val: unknown
+) => {
+    if (!val) {
+        return null;
+    }
+    // If it's already a Date, format it with local offset
+    if (val instanceof Date) {
+        return format(val, "yyyy-MM-dd'T'HH:mmxxx", { timeZone: browserTimeZone });
+    }
+
+    if (typeof val !== "string") {
+        return null;
+    }
+    const m = val.match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2})$/);
+    if (!m) {
+        return null;
+    }
+    const base = m[1]; // "YYYY-MM-DDTHH:mm"
+    const [datePart, timePart] = base.split("T");
+    const [y, mo, d] = datePart.split("-").map(Number);
+    const [hh, mm] = timePart.split(":").map(Number);
+    const date = new Date(y, mo - 1, d, hh, mm);
+    const res = format(date, "yyyy-MM-dd'T'HH:mmxxx", { timeZone: browserTimeZone });
+    console.log('Converted date with local offset:', res);
+    return res;
+};
+
 export const formatDate = (date: Date, targetZone = browserTimeZone, options?: {
     showDayOfWeek?: boolean;
 }) => {

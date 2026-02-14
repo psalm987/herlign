@@ -1,5 +1,5 @@
 
-import { formatInTimeZone } from 'date-fns-tz';
+import { format } from 'date-fns-tz';
 
 export const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -16,40 +16,11 @@ export function toLocalOffsetString(
     dateTimeInput: string | Date,
     targetZone = browserTimeZone
 ) {
-    // Normalize input: if it's a Date use it directly. If it's a string coming
-    // from an <input type="datetime-local"> it will be a *naive* local time
-    // like "2026-03-14T10:00" with no timezone. Passing that string into
-    // Date.parse can be interpreted inconsistently (sometimes as UTC), so
-    // explicitly construct a Date using local components in that case.
-    let date: Date;
-
-    if (dateTimeInput instanceof Date) {
-        date = new Date(dateTimeInput);
-    } else if (typeof dateTimeInput === 'string') {
-        // If the string already contains explicit timezone info (Z or +/-offset)
-        // let Date parse it. Otherwise (typical for datetime-local) parse parts.
-        const hasTZ = /[zZ]|[+\-]\d{2}:?\d{2}$/.test(dateTimeInput);
-        const localDatetimePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/;
-
-        if (hasTZ) {
-            date = new Date(dateTimeInput);
-        } else if (localDatetimePattern.test(dateTimeInput)) {
-            const [datePart, timePart] = dateTimeInput.split('T');
-            const [year, month, day] = datePart.split('-').map((v) => parseInt(v, 10));
-            const timeSegments = timePart.split(':').map((v) => parseInt(v, 10));
-            const hour = timeSegments[0] ?? 0;
-            const minute = timeSegments[1] ?? 0;
-            const second = timeSegments[2] ?? 0;
-            // Construct a Date in local time using components
-            date = new Date(year, month - 1, day, hour, minute, second);
-        } else {
-            date = new Date(dateTimeInput);
-        }
-    } else {
-        date = new Date(dateTimeInput as unknown as string);
-    }
-
-    return formatInTimeZone(date, targetZone, "yyyy-MM-dd'T'HH:mmxxx");
+    if (!dateTimeInput) return "";
+    const date = new Date(dateTimeInput);
+    const base = format(date, "yyyy-MM-dd'T'HH:mm", { timeZone: targetZone });
+    const offset = format(date, "xxx", { timeZone: targetZone });
+    return `${base}${offset}`;
 }
 
 

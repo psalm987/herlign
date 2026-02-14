@@ -14,7 +14,6 @@ import Image from "next/image";
 
 import { DevTool } from "@hookform/devtools";
 
-import { toLocalOffsetString } from "@/lib/utils/date";
 import { ForwardRefEditor } from "@/components/ui/editor/mdx-ref";
 
 interface EventFormProps {
@@ -67,10 +66,8 @@ export function EventForm({
     if (selectedImage) {
       data.image_url = selectedImage.url;
     }
-
-    if (data.start_date)
-      data.start_date = toLocalOffsetString(data?.start_date);
-    if (data.end_date) data.end_date = toLocalOffsetString(data?.end_date);
+    // Date/time normalization is handled by the Zod validator (getTimeServerValue)
+    // to avoid double-conversion that can shift or drop the time component.
     console.log("Submitting form with data:", data);
     onSubmit(data);
   };
@@ -78,7 +75,6 @@ export function EventForm({
   return (
     <>
       <UnsavedChangesWarning isDirty={isDirty} />
-
       <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
         {/* Basic Information */}
         <Card className="p-6">
@@ -129,7 +125,7 @@ export function EventForm({
                 </div>
               )}
             />
-
+            /
             <Controller
               control={control}
               name="type"
@@ -155,7 +151,6 @@ export function EventForm({
                 </div>
               )}
             />
-
             <Controller
               control={control}
               name="mode"
@@ -181,7 +176,6 @@ export function EventForm({
                 </div>
               )}
             />
-
             <Controller
               control={control}
               name="status"
@@ -208,7 +202,6 @@ export function EventForm({
                 </div>
               )}
             />
-
             <Controller
               control={control}
               name="slug"

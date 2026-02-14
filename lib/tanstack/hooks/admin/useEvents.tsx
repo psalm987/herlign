@@ -21,6 +21,7 @@ import type {
   ApiResponse,
   MutationContext,
 } from "@/lib/tanstack/types";
+import { toLocalOffsetString } from "@/lib/utils/date";
 
 // =====================================================
 // Query Hooks
@@ -129,6 +130,9 @@ export function useUpdateEvent(
     mutationFn: ({ id, data }) => eventActions.updateEvent(id, data),
     // Optimistic update
     onMutate: async ({ id, data }) => {
+      if (data?.start_date)
+        data.start_date = toLocalOffsetString(data.start_date);
+      if (data?.end_date) data.end_date = toLocalOffsetString(data.end_date);
       // Cancel outgoing refetches
       await queryClient.cancelQueries({
         queryKey: adminEventKeys.detail(id),

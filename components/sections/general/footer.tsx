@@ -32,7 +32,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-sans font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 font-sans text-sm">
+            <ul className="space-y-2 font-sans text-sm list-none">
               {MENU.map((item) => (
                 <li key={item.href}>
                   <Link

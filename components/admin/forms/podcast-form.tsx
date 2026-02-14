@@ -142,21 +142,6 @@ export function PodcastForm({
                 </div>
               )}
             />
-
-            {/* <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-900 shrink-0 flex-1">
-              <p className="font-medium mb-2">ℹ️ About Podcast Sync</p>
-              <ul className="list-disc list-inside space-y-1 text-blue-800">
-                <li>
-                  Podcast metadata (title, description, stats) is automatically
-                  synced from YouTube
-                </li>
-                <li>You can only control visibility on this page</li>
-                <li>
-                  Use the &quot;Sync from YouTube&quot; button on the list page
-                  to update all podcasts
-                </li>
-              </ul>
-            </div> */}
           </div>
         </Card>
 

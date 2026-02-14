@@ -2,14 +2,13 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { format } from "date-fns-tz";
-import { browserTimeZone } from "@/lib/utils/date";
 
 export const getDateTimeLocalValue = (
   dateString: string | Date | undefined | null,
 ) => {
   if (!dateString) return "";
   const date = new Date(dateString);
-  return format(date, "yyyy-MM-dd'T'HH:mm", { timeZone: browserTimeZone });
+  return format(date, "yyyy-MM-dd'T'HH:mm");
 };
 
 export const getTimeServerValue = (

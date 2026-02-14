@@ -29,7 +29,7 @@ export default function HypeSquadSection() {
                 once in a while, you need your battery recharged, and this is
                 why we exist! Inside our community, you&apos;ll find:
               </p>
-              <ul className="space-y-4">
+              <ul className="space-y-4 list-none">
                 {BENEFITS.map((benefit) => (
                   <li key={benefit} className="text-left">
                     <span className="bg-perple-500 text-white size-4 rounded-full inline-flex items-center justify-center mr-2">

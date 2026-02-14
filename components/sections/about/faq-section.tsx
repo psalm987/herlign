@@ -24,7 +24,7 @@ const FAQSection = () => {
               Answers.
             </h2>
 
-            <ul className="text-md md:text-xl text-gray-700 mb-8 max-w-md mx-auto">
+            <ul className="text-md md:text-xl text-gray-700 mb-8 max-w-md mx-auto list-none">
               {FAQS.map((faq, index) => (
                 <li key={index} className={"mb-6"}>
                   <h3 className="font-semibold mb-2 text-gray-900">

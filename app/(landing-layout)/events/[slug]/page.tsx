@@ -197,7 +197,7 @@ export default async function EventDetailPage({
           <h2 className="font-heading text-2xl text-gray-900 mb-4">
             About This {event.type === "event" ? "Event" : "Workshop"}
           </h2>
-          <div className="text-gray-700 leading-loose">
+          <div className="text-gray-700 leading-loose [&>p]:min-h-[1.5em]!">
             <MdxRemoteClient source={mdxSource} />
           </div>
         </div>

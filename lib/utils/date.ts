@@ -26,12 +26,15 @@ export function toLocalOffsetString(
 }
 
 
-export const formatDate = (date: Date, targetZone = browserTimeZone) => {
-    return format(date, "yyyy-MM-dd", { timeZone: targetZone });
+export const formatDate = (date: Date, targetZone = browserTimeZone, options?: {
+    showDayOfWeek?: boolean;
+}) => {
+    const formatStr = options?.showDayOfWeek ? "EEEE, MMMM d, yyyy" : "MMMM d, yyyy";
+    return format(date, formatStr, { timeZone: targetZone });
 };
 
 export const formatTime = (date: Date, targetZone = browserTimeZone) => {
-    return format(date, "HH:mm", { timeZone: targetZone });
+    return format(date, "h:mm a", { timeZone: targetZone });
 };
 
 /**

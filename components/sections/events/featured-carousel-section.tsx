@@ -5,7 +5,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import type { Event } from "@/lib/tanstack/types";
 import Image from "next/image";
 import getTextFromMarkdown from "@/lib/getTextFromMarkdown";
+import { formatDate, formatTime } from "@/lib/utils/date";
 
 interface FeaturedCarouselSectionProps {
   events: Event[];
@@ -61,22 +62,6 @@ export const FeaturedCarouselSection: React.FC<
     if (!currentEvent?.description) return "";
     return getTextFromMarkdown(currentEvent.description).slice(0, 200);
   }, [currentEvent?.description]);
-
-  const formatDate = useCallback((date: Date) => {
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  }, []);
-
-  const formatTime = useCallback((date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-  }, []);
 
   if (events.length === 0) return null;
 
@@ -147,7 +132,9 @@ export const FeaturedCarouselSection: React.FC<
               <div className="flex flex-wrap gap-4 text-sm text-white/90">
                 <div className="flex items-center gap-2">
                   <Calendar className="size-4" />
-                  <span>{formatDate(startDate)}</span>
+                  <span>
+                    {formatDate(startDate, undefined, { showDayOfWeek: true })}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="size-4" />

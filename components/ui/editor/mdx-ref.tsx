@@ -11,13 +11,13 @@ import {
   CreateLink,
   ListsToggle,
   listsPlugin,
+  BlockTypeSelect,
+  Separator,
   type MDXEditorMethods,
   type MDXEditorProps,
+  quotePlugin,
+  StrikeThroughSupSubToggles,
 } from "@mdxeditor/editor";
-
-const Divider = () => (
-  <hr className="h-[-webkit-fill-available] w-auto border-0 border-r border-gray-300" />
-);
 
 // This is the only place InitializedMDXEditor is imported directly.
 const Editor = dynamic(() => import("./mdx"), {
@@ -34,16 +34,21 @@ export const ForwardRefEditor = forwardRef<MDXEditorMethods, MDXEditorProps>(
         linkPlugin(),
         linkDialogPlugin(),
         listsPlugin(),
+        quotePlugin(),
         toolbarPlugin({
           toolbarClassName: "my-classname",
           toolbarContents: () => (
             <>
               <UndoRedo />
-              <Divider />
+              <Separator />
               <BoldItalicUnderlineToggles />
               <CreateLink />
-              <Divider />
+              <Separator />
+              <StrikeThroughSupSubToggles />
+              <Separator />
               <ListsToggle />
+              <Separator />
+              <BlockTypeSelect />
             </>
           ),
         }),

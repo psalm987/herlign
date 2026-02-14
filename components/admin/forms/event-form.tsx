@@ -125,7 +125,7 @@ export function EventForm({
                 </div>
               )}
             />
-            /
+
             <Controller
               control={control}
               name="type"

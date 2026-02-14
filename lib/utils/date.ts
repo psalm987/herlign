@@ -20,36 +20,34 @@ export function toLocalOffsetString(
 ) {
     if (!dateTimeInput) return "";
     const date = new Date(dateTimeInput);
-    const base = format(date, "yyyy-MM-dd'T'HH:mm", { timeZone: targetZone });
-    const offset = format(date, "xxx", { timeZone: targetZone });
-    return `${base}${offset}`;
+    return format(date, "yyyy-MM-dd'T'HH:mm:ssxxx", { timeZone: targetZone });
 }
 
 
 export const localToIsoWithOffset = (val: unknown
 ) => {
     if (!val) {
-        return null;
+        return val;
     }
     // If it's already a Date, format it with local offset
     if (val instanceof Date) {
-        return format(val, "yyyy-MM-dd'T'HH:mmxxx", { timeZone: browserTimeZone });
+        return format(val, "yyyy-MM-dd'T'HH:mm:ssxxx", { timeZone: browserTimeZone });
     }
 
     if (typeof val !== "string") {
-        return null;
+        return val;
     }
     const m = val.match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2})$/);
     if (!m) {
-        return null;
+        return val;
     }
     const base = m[1]; // "YYYY-MM-DDTHH:mm"
     const [datePart, timePart] = base.split("T");
     const [y, mo, d] = datePart.split("-").map(Number);
     const [hh, mm] = timePart.split(":").map(Number);
     const date = new Date(y, mo - 1, d, hh, mm);
-    const res = format(date, "yyyy-MM-dd'T'HH:mmxxx", { timeZone: browserTimeZone });
-    console.log('Converted date with local offset:', res);
+    const res = format(date, "yyyy-MM-dd'T'HH:mm:ssxxx", { timeZone: browserTimeZone });
+    console.log("Converted local datetime:", val, "to ISO with offset:", res);
     return res;
 };
 

@@ -32,8 +32,16 @@ const baseEventSchema = z.object({
         .url('Invalid URL format')
         .optional()
         .nullable(),
-    start_date: z.preprocess(localToIsoWithOffset, z.string().datetime()).optional() as z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>,
-    end_date: z.preprocess(localToIsoWithOffset, z.string().datetime()).optional() as z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>,
+    start_date: z.preprocess(localToIsoWithOffset, z.string().refine((s) => {
+        if (typeof s !== 'string') return false;
+        const t = Date.parse(s);
+        return !Number.isNaN(t);
+    }, { message: 'Invalid datetime' })).optional() as z.ZodOptional<z.ZodEffects<z.ZodEffects<z.ZodString, string, string>, string, string>>,
+    end_date: z.preprocess(localToIsoWithOffset, z.string().refine((s) => {
+        if (typeof s !== 'string') return false;
+        const t = Date.parse(s);
+        return !Number.isNaN(t);
+    }, { message: 'Invalid datetime' })).optional() as z.ZodOptional<z.ZodEffects<z.ZodEffects<z.ZodString, string, string>, string, string>>,
     max_attendees: z.number()
         .int('Max attendees must be an integer')
         .positive('Max attendees must be positive')

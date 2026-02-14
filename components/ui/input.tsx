@@ -16,7 +16,7 @@ export const getDateTimeServerValue = (
 ) => {
   if (!dateString) return "";
   const date = new Date(dateString);
-  return format(date, "yyyy-MM-dd'T'HH:mmxxx");
+  return format(date, "yyyy-MM-dd'T'HH:mm:ssxxx");
 };
 
 function Input({

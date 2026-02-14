@@ -14,9 +14,9 @@ import {
   ExternalLinkIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { formatDate, formatTime } from "@/lib/utils/date";
 import { createClient } from "@/lib/supabase/server";
 import { Event } from "@/lib/tanstack/types";
+import EventDateTimeClient from "@/components/sections/events/event-date-time-client";
 
 /**
  * Generate metadata for event page
@@ -157,14 +157,7 @@ export default async function EventDetailPage({
             {/* Date & Time */}
             <div className="flex items-start gap-3">
               <CalendarIcon className="w-5 h-5 text-ohrange-600 mt-1 shrink-0" />
-              <div>
-                <p className="font-semibold text-gray-900">
-                  {formatDate(startDate)}
-                </p>
-                <p className="text-gray-600 text-sm">
-                  {formatTime(startDate)} - {formatTime(endDate)}
-                </p>
-              </div>
+              <EventDateTimeClient startDate={startDate} endDate={endDate} />
             </div>
 
             {/* Location/Mode */}

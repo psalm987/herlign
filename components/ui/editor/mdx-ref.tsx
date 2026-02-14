@@ -36,7 +36,7 @@ export const ForwardRefEditor = forwardRef<MDXEditorMethods, MDXEditorProps>(
         listsPlugin(),
         quotePlugin(),
         toolbarPlugin({
-          toolbarClassName: "my-classname",
+          toolbarClassName: "flex-wrap",
           toolbarContents: () => (
             <>
               <UndoRedo />

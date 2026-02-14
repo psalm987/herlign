@@ -3,6 +3,8 @@ import { format } from 'date-fns-tz';
 
 export const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+console.log('Browser time zone detected:', browserTimeZone, " in the ", typeof window === "undefined" ? "server" : "client");
+
 /**
  * Converts any datetime input to an ISO string with local offset
  * in the browser's IANA time zone.
@@ -24,20 +26,12 @@ export function toLocalOffsetString(
 }
 
 
-export const formatDate = (date: Date) => {
-    return date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-    });
+export const formatDate = (date: Date, targetZone = browserTimeZone) => {
+    return format(date, "yyyy-MM-dd", { timeZone: targetZone });
 };
 
-export const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-    });
+export const formatTime = (date: Date, targetZone = browserTimeZone) => {
+    return format(date, "HH:mm", { timeZone: targetZone });
 };
 
 /**

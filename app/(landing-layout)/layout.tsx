@@ -1,6 +1,6 @@
 import { Footer } from "@/components/sections/general/footer";
 import { Navigation } from "@/components/sections/general/navigation";
-import { ChatWidget } from "@/components/chat";
+// import { ChatWidget } from "@/components/chat";
 import React from "react";
 import { getAuthUser } from "@/lib/auth";
 
@@ -12,7 +12,7 @@ const LandingLayout = async ({ children }: { children: React.ReactNode }) => {
       <Navigation isAdmin={!!user} />
       {children}
       <Footer />
-      <ChatWidget />
+      {/* <ChatWidget /> */}
     </div>
   );
 };
